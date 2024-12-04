@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'kyiv_type_titling_regular';
+    src: url('../assets/Fonts/kyiv_type_titling/KyivTypeTitling-Regular.otf');
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:sans-serif;
+}
+.introduce-wrapper{
+    background-image:url("../assets/Images/background1.png") ;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 80vh; 
+    width: 100%;
+    overflow: hidden;
+}
+.welcome-sentence{
+    padding-top: 250px;
+    padding-left: 100px;
+    color: #FED18D;
+    font-family: 'kyiv_type_titling_regular',sans-serif;
+}
+.list-book-type{
+    display: flexbox;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: "0px 4px 6px rgba(0, 0, 0, 0.1)"; 
+}
+.list-book-type h2{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 40px;
+    font-family: 'kyiv_type_titling_regular',sans-serif;
+}
+.carousel-items-list-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.items-carousel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-carousel-list{
+    display: flex;
+    list-style-type: none;
+}
+.carousel-item div{
+    display: flexbox;
+    flex-direction: row;
+}
+.carousel-item div img{
+    width: 80px;
+    height: 100px;
+}
+.carousel-arrow{
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 20px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right:30px ;
+    margin-left:30px ;
+    transition: 0.3 ease;
+}
+.carousel-arrow:hover{
+    background-color: #FED18D;
+    cursor: pointer;
+}
+.carousel-arrow img{
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+.bottom-background{
+    background-image:url("../assets/Images/background2.png") ;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 80vh; 
+    width: 100%;
+    overflow: hidden;
+}

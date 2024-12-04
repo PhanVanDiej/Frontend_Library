@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'kyiv_type_titling_regular';
+    src: url('../assets/Fonts/kyiv_type_titling/KyivTypeTitling-Regular.otf');
+}
+.navbar {
+    background-color: #000000;
+    display: flex;
+    padding-left: 200px;
+    align-items: center;
+}
+
+.navbar img{
+    width: 40px;
+    height: 40px;
+}
+
+.navbar ul {
+    margin: 0;  
+    list-style: none;
+    padding-left: 50px;  
+    display: flex;    
+    justify-content: center;
+    align-content: stretch;
+}
+
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'kyiv_type_titling_regular',sans-serif;
+    transition: background-color 0.3s ease; 
+}
+
+.navbar ul li a:hover {
+    background-color: #575757; 
+}
+.Home-title{
+    font-size: 30px;
+    text-decoration: none;
+    padding: 20px;
+    margin: 0;
+    width: 200px;
+    font-family: 'kyiv_type_titling_regular',sans-serif;
+}
+
+.search-box{
+   margin-left: 100px;  
+   background-color: #8E8E8E;
+   border-radius: 20px;
+   display: flex;
+   gap: 30px;
+   padding: 5px;
+   cursor: pointer;
+}
+.search-box img{
+    width: 20px;
+    height: 20px;
+
+}
