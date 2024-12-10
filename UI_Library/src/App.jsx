@@ -21,7 +21,7 @@ function App(){
               <Route path='/user_information' element={<User_Information></User_Information>}/>
               <Route path='/history' element={<HistoryAction></HistoryAction>}/>
               <Route path='/announcement' element={<Announcement></Announcement>}/>
-              <Route path='/search_result' element={<SearchResult></SearchResult>}/>
+              <Route path='/search_result/:id' element={<SearchResult></SearchResult>}/>
           </Routes>
      </div>
     </>

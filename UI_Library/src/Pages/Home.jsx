@@ -1,9 +1,21 @@
 import React from 'react'
 import '../Styles/Pages/Home.css'
-import BooksType_Carousel from '../Components/BooksType_Carousel'
 import Footer from '../Components/Footer'
 import Header_Main from '../Components/Header_Main'
+import ScrollList from '../Components/ScrollList_Book'
 export default function Home(){
+    const products = [
+        { id: 1, name: "Product 1", image: "https://via.placeholder.com/150" },
+        { id: 2, name: "Product 2", image: "https://via.placeholder.com/150" },
+        { id: 3, name: "Product 3", image: "https://via.placeholder.com/150" },
+        { id: 4, name: "Product 4", image: "https://via.placeholder.com/150" },
+        { id: 5, name: "Product 5", image: "https://via.placeholder.com/150" },
+        { id: 6, name: "Product 6", image: "https://via.placeholder.com/150" },
+        { id: 7, name: "Product 6", image: "https://via.placeholder.com/150" },
+        { id: 8, name: "Product 6", image: "https://via.placeholder.com/150" },
+        { id: 9, name: "Product 6", image: "https://via.placeholder.com/150" },
+        { id: 10, name: "Product 6", image: "https://via.placeholder.com/150" },
+      ];
     return (
         <div>
             <Header_Main></Header_Main>
@@ -12,7 +24,7 @@ export default function Home(){
             </div>
             <div className='list-book-type'>
                 <h2>CÁC THỂ LOẠI SÁCH</h2>
-                <BooksType_Carousel></BooksType_Carousel>
+                <ScrollList products={products}></ScrollList>
             </div>
             <div className='bottom-background'>
             </div>
