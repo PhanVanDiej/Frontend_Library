@@ -3,7 +3,7 @@ import Header_Main from '../Components/Header_Main'
 import '../Styles/Home.css'
 import BooksType_Carousel from '../Components/BooksType_Carousel'
 import Footer from '../Components/Footer'
-export default function Home(){
+export default  function Home(){
     return (
         <div>
             <div className='introduce-wrapper'>
