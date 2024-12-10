@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../Components/Header_Register'
+import '../Styles/Pages/Login.css'
 
 export default function SignupPage(){
     return(

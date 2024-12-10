@@ -1,9 +1,11 @@
 import React from 'react'
+import Header_Main from '../Components/Header_Main'
 
 const HistoryAction = () => {
   return (
     <div>
-      <h1>Lich si hoat dong</h1>
+      <Header_Main></Header_Main>
+      <h1>Lich su hoat dong</h1>
     </div>
   )
 }

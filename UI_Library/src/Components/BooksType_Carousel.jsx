@@ -2,6 +2,7 @@ import React from 'react'
 import bookImage from '../assets/Images/book.png'
 import leftArrow from '../assets/Icons/left_arrow.png'
 import rightArrow from '../assets/Icons/right_arrow.png'
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 const BooksType_Carousel = () => {
   return (
     <div>
@@ -11,30 +12,37 @@ const BooksType_Carousel = () => {
         </button>
         <div className='carousel-items-list-wrapper'>
             <ul className='image-carousel-list'>
-                <li className='carousel-item'>
+                <CustomLink to='/search_result'>
                     <div>
                         <img src={bookImage} alt='image-item'></img>
-                        <a href='#'>Sách giáo khoa</a>
+                        <p style={{textDecoration:'none'}}>Sách Giáo khoa</p>
                     </div>
-                </li>
-                <li className='carousel-item'>
+                </CustomLink>
+                <CustomLink to='/search_result'>
                     <div>
                         <img src={bookImage} alt='image-item'></img>
-                        <a href='#'>Sách giải trí</a>
+                        <p >Sách Giáo khoa</p>
                     </div>
-                </li>
-                <li className='carousel-item'>
+                </CustomLink>
+                <CustomLink to='/search_result'>
                     <div>
                         <img src={bookImage} alt='image-item'></img>
-                        <a href='#'>Sách khoa học</a>
+                        <p >Sách Giải trí</p>
                     </div>
-                </li>
-                <li className='carousel-item'>
+                </CustomLink>
+                <CustomLink to='/search_result'>
                     <div>
                         <img src={bookImage} alt='image-item'></img>
-                        <a href='#'>Văn học nghệ thuật</a>
+                        <p >Sách Khoa học</p>
                     </div>
-                </li>
+                </CustomLink>
+                <CustomLink to='/search_result'>
+                    <div>
+                        <img src={bookImage} alt='image-item'></img>
+                        <p>Văn học nghệ thuật</p>
+                    </div>
+                </CustomLink>
+               
             </ul>
         </div>
         <button className="carousel-arrow">
@@ -44,5 +52,15 @@ const BooksType_Carousel = () => {
     </div>
   )
 }
-
+function CustomLink({to,children,...props}){
+    const resovledPath=useResolvedPath(to)
+    const isActived=useMatch({ path:resovledPath.pathname, end:true }) // Dam bao path phai dung hoan toan
+    return(
+        <li className={"carousel-item"}>
+            <Link to={to} {...props}>
+            {children}
+            </Link>
+        </li>
+    )
+}
 export default BooksType_Carousel

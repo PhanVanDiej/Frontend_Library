@@ -1,11 +1,12 @@
 import React from 'react'
-import Header_Main from '../Components/Header_Main'
-import '../Styles/Home.css'
+import '../Styles/Pages/Home.css'
 import BooksType_Carousel from '../Components/BooksType_Carousel'
 import Footer from '../Components/Footer'
+import Header_Main from '../Components/Header_Main'
 export default function Home(){
     return (
         <div>
+            <Header_Main></Header_Main>
             <div className='introduce-wrapper'>
                 <h1 className='welcome-sentence'>SOME SENTENCES GO HERE</h1>
             </div>

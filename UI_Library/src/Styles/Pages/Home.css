@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'kyiv_type_titling_regular';
-    src: url('../assets/Fonts/kyiv_type_titling/KyivTypeTitling-Regular.otf');
+    src: url('../../assets/Fonts/kyiv_type_titling/KyivTypeTitling-Regular.otf');
 }
 *{
     margin: 0;
@@ -9,7 +9,7 @@
     font-family:sans-serif;
 }
 .introduce-wrapper{
-    background-image:url("../assets/Images/background1.png") ;
+    background-image:url("../../assets/Images/background1.png") ;
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -49,15 +49,14 @@
 .image-carousel-list{
     display: flex;
     list-style-type: none;
+    gap: 50px;
 }
-.carousel-item div{
-    display: flexbox;
-    flex-direction: row;
-}
+
 .carousel-item div img{
     width: 80px;
     height: 100px;
 }
+
 .carousel-arrow{
     width: 40px;
     height: 40px;
@@ -81,7 +80,7 @@
     height: 30px;
 }
 .bottom-background{
-    background-image:url("../assets/Images/background2.png") ;
+    background-image:url("../../assets/Images/background2.png") ;
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 

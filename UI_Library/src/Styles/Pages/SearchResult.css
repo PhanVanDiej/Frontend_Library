@@ -1,0 +1,6 @@
+
+.SearchResult-wrapping-content{
+    box-sizing: border-box;
+    display: flex;
+    margin: 50px;
+}

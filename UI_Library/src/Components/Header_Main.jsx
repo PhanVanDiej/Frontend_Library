@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Styles/Header.css';
+import '../Styles/Components/Header.css';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import arrowDown from '../assets/Icons/arrow_down.png';
 import transparency from '../assets/Icons/transparency.png';

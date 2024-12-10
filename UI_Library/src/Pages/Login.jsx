@@ -1,7 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import Header from "../Components/Header_Register";
+import '../Styles/Pages/Login.css'
+import {useNavigate} from 'react-router-dom'
 
 export default function LoginPage() {
+  const handleLogin=(e)=>{
+    e.prevenDefault();
+  }
   return (
     <div>
       <Header></Header>

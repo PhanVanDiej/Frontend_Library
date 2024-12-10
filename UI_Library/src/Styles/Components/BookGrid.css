@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'kyiv_type_titling_regular';
+  src: url('../../assets/Fonts/kyiv_type_titling/KyivTypeTitling-Regular.otf');
+}
+.result-container{
+  margin-left: 50px;
+  width: 100%;
+}
+.title{
+  margin-bottom: 10px;
+  font-family: 'kyiv_type_titling_regular',sans-serif;
+}
+.pagination {
+  display: flex;
+  justify-content: right;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.page-item {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #A27430;
+  color: white;
+  border-radius: 5px;
+}
+
+.disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  padding:20px;
+  border-radius: 10px;
+}
+.grid-item{
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
+.grid-item:hover{
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+.grid-item img{
+ width: 150px;
+ height: 220px;
+}
+.grid-item label{
+  background-color: #2D9AFF;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
