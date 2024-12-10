@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import '../Styles/Components/BookGrid.css'
 import cover from '../assets/Book_Cover/rezero.png'
+import { useNavigate } from "react-router-dom";
 
 const BookGrid = ({ productsPerPage = 15 }) => {
   const [products, setProducts] = useState([]);
@@ -31,13 +32,17 @@ const BookGrid = ({ productsPerPage = 15 }) => {
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
-
+  //Dieu huong den book_detail
+  const navigate = useNavigate();
+  const handleProductClick=({id})=>{
+    navigate(`/book_detail/${id}`);
+  }
   return (
     <div className="result-container">
       <h1 className="title">Kết quả tìm kiếm</h1>
       <div className="grid-container">
         {currentProducts.map((product) => (
-          <div className="grid-item" key={product.id}>
+          <div className="grid-item" key={product.id} onClick={() => handleProductClick(product.id)}>
             <img
                 src={cover}              // Thay the = product.image 
                 alt={product.name} 

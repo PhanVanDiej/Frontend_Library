@@ -1,0 +1,118 @@
+.wrapping-content{
+    margin: 0;
+    padding: 50px 100px 100px 100px;
+    box-sizing: border-box;
+}
+.path ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+.path ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+.path ul li a:hover{
+    color:#A27430 ;
+}
+
+.book-detail-container{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+.request-area{
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 30px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+.book-cover{
+    width: 360px;
+    height: 540px;
+}
+.request-btn{
+    display: flex;
+    gap: 10px;
+}
+.btn-border{
+    background: none;
+    border: solid 2px black;
+    border-radius: 15px;
+    width: 150px;
+    height: 40px;
+    margin-top: 5xr
+}
+.btn-border:hover{
+    cursor: pointer;
+    border-color: #A27430;
+    color: #A27430;
+}
+.btn-border div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-border img{
+    width: 22px;
+    height: 22px;
+}
+.btn-fill{
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    width: 150px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+.btn-fill:hover{
+    background-color: #A27430;
+    cursor: pointer;
+}
+
+.mark-book {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    height: fit-content;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+}
+.row-defined{
+    display: flex; 
+    gap:300px;
+}
+.detail-information{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+.book-summary{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+.suggest-related-book-scroll{
+    margin-top: 100px;
+    border-radius: 5px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+
+}

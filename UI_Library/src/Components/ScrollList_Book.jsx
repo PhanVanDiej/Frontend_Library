@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import '../Styles/Components/ScrollList.css'
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import BookImg from '../assets/Images/book.png'
 import leftArrow from '../assets/Icons/left_arrow.png'
 import rightArrow from '../assets/Icons/right_arrow.png'
+
 const ScrollList = ({ products }) => {
   const containerRef = useRef(null);
 
@@ -35,7 +35,7 @@ const ScrollList = ({ products }) => {
       <div className="product-list" ref={containerRef}>
         {products.map((product) => (
           <div key={product.id} className="product-item" onClick={() => handleProductClick(product.id)}>
-            <img src={BookImg} alt={product.name} className="product-image" />         
+            <img src={BookImg} alt={product.name} className="product-image" />
             <p className="product-name">{product.name}</p>
           </div>
         ))}

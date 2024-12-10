@@ -9,6 +9,7 @@ import HistoryAction from './Pages/HistoryAction'
 import Announcement from './Pages/Announcement'
 import Header_Main from './Components/Header_Main'
 import SearchResult from './Pages/SearchResult'
+import Book_Detail from './Pages/Book_Detail'
 function App(){
   return (
     <>
@@ -22,6 +23,7 @@ function App(){
               <Route path='/history' element={<HistoryAction></HistoryAction>}/>
               <Route path='/announcement' element={<Announcement></Announcement>}/>
               <Route path='/search_result/:id' element={<SearchResult></SearchResult>}/>
+              <Route path='/book_detail/:id' element={<Book_Detail></Book_Detail>}/>
           </Routes>
      </div>
     </>
