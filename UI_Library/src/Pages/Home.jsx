@@ -1,21 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import '../Styles/Pages/Home.css'
 import Footer from '../Components/Footer'
-import Header_Main from '../Components/Header_Main'
-import ScrollList from '../Components/ScrollList_Book'
-export default function Home(){
-    const products = [
-        { id: 1, name: "Product 1", image: "" },
-        { id: 2, name: "Product 2", image: "" },
-        { id: 3, name: "Product 3", image: "" },
-        { id: 5, name: "Product 5", image: "" },
-        { id: 6, name: "Product 6", image: "" },
-        { id: 7, name: "Product 6", image: "" },
-        { id: 8, name: "Product 6", image: "" },
-        { id: 9, name: "Product 6", image: "" },
-        { id: 10, name: "Product 6", image: "" },
-        { id: 4, name: "Product 4", image: "" },
-      ];
+import Header_Main from '../Components/Header_Main' 
+import ScrollList from '../Components/ScrollList_Book' 
+import BE_ENDPOINT from '../Env/EndPont'
+export default  function Home(){
+    const [products, setProducts] = useState([]);
+   async function fetchBookType() 
+   { 
+        const response= await fetch(BE_ENDPOINT+"book-types"); 
+        
+        const responseData= await response.json();
+        setProducts(responseData);
+   } 
+   useEffect(()=>{ 
+    fetchBookType();
+   },[])
     return (
         <div>
             <Header_Main></Header_Main>

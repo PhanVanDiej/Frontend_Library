@@ -10,6 +10,10 @@ import Announcement from './Pages/Announcement'
 import Header_Main from './Components/Header_Main'
 import SearchResult from './Pages/SearchResult'
 import Book_Detail from './Pages/Book_Detail'
+import BookBorrowingSlipList from './Pages/BookBorrowingSlipList'
+import RegisterNewBookTitleForm from './Pages/RegisterNewBookTitle'
+import RegisterNewBookTypeForm from './Pages/RegisterNewBookType'
+import EditBookTitleForm from './Pages/EditBookTitle'
 function App(){
   return (
     <>
@@ -23,7 +27,11 @@ function App(){
               <Route path='/history' element={<HistoryAction></HistoryAction>}/>
               <Route path='/announcement' element={<Announcement></Announcement>}/>
               <Route path='/search_result/:id' element={<SearchResult></SearchResult>}/>
-              <Route path='/book_detail/:id' element={<Book_Detail></Book_Detail>}/>
+              <Route path='/book_detail/:id' element={<Book_Detail></Book_Detail>}/> 
+              <Route path="/book_borrowing_slip_list" element={<BookBorrowingSlipList></BookBorrowingSlipList>}/> 
+              <Route path="/register_book_title" element={<RegisterNewBookTitleForm></RegisterNewBookTitleForm>}/>
+              <Route path="/register_book_type" element={<RegisterNewBookTypeForm></RegisterNewBookTypeForm>}/>
+              <Route path="/edit_book_title/:id" element={<EditBookTitleForm></EditBookTitleForm>}/>
           </Routes>
      </div>
     </>

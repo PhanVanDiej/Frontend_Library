@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header_Main from '../Components/Header_Main'
 import { useParams } from "react-router-dom";
 import '../Styles/Pages/BookDetail.css'
 import cover from '../assets/Book_Cover/rezero.png'
 import bag from '../assets/Icons/bag.png'
 import ScrollList from '../Components/ScrollList_Book';
+import BE_ENDPOINT from '../Env/EndPont'; 
+import displayImageURL from '../Env/DisplayImage';
 const Book_Detail = () => {
-    const book_id=useParams();
+    const bookId= useParams();  
+    console.log(bookId.id);
+    const [bookDetail, setBookDetail] = useState({}); 
+    useEffect(()=>{
+      async function fetchToServer(bookId) 
+      { 
+        const response= await fetch(BE_ENDPOINT+"book-titles/details/"+bookId);
+        if(!response.ok) 
+        {
+          return;
+        }  
+        const responseData= await response.json();
+        console.log(responseData);
+        setBookDetail(responseData)
+        
+      } 
+      fetchToServer(bookId.id);
+      console.log("Fetch")
+    },[])
     const suggestBook = [
+      {id:0, name:"Product 0", image:""},
       { id: 1, name: "Product 1", image: "" },
       { id: 2, name: "Product 2", image: "" },
       { id: 3, name: "Product 3", image: "" },
@@ -26,21 +47,16 @@ const Book_Detail = () => {
       <Header_Main></Header_Main>
       <div className='wrapping-content'>
         <div className='path'>
-            <ul>
-                <li><a className='book-type-path' href='#'>Sách Tiếng Việt</a></li>
-                <li><p>{'>'}</p></li>
-                <li><a className='book-type-path' href='#'>Light novel</a></li>
-                <li><p>{'>'}</p></li>
-                <li><a className='book-type-path' href='#'>Phiêu lưu</a></li>
-            </ul>
+           <h3>{bookDetail?.type?.name}</h3>
+           <br></br>
         </div>
         <div className='book-detail-container'>
             <div className='request-area'>
-                <img className='book-cover' src={cover} alt={'Book'+book_id}></img>
+                <img className='book-cover' src={displayImageURL(bookDetail?.imageData)} alt={'Book'+bookId.id}></img>
                 <div className='request-btn'>
                   <button type='submit' className='btn-border'>
                     <div>
-                      <img src={bag} alt='Bag'></img>
+                      <img src={displayImageURL(bookDetail?.imageData)} alt='Bag'></img>
                       <p>Thêm vào giỏ</p>
                     </div>
                   </button>
@@ -52,48 +68,40 @@ const Book_Detail = () => {
             </div>
             <div className='book-information'>
                 <div className='mark-book'>
-                  <h1 className='book-title'>Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18 </h1>
+                  <h1 className='book-title'>{bookDetail?.name} </h1>
                   <div className='row-defined'>
-                    <p><span style={{color:"#A27430"}}>Nhà xuất bản :</span>Hồng Đức</p>
-                    <p><span style={{color:"#A27430"}}>Tác giả :</span>Tappei Nagatsuki, Shinichirou...</p>
+                    
+                    <p><span style={{color:"#A27430"}}>Tác giả :</span>{bookDetail?.author}</p>
                   </div>
                   <div className='row-defined'>
-                    <p><span style={{color:"#A27430"}}>Trạng thái :</span>Còn {remain} trên kệ</p>
-                    <p><span style={{color:"#A27430"}}>Hình thức bìa:</span>Bìa mềm</p>
+                    <p><span style={{color:"#A27430"}}>Trạng thái :</span>Còn {bookDetail?.amountRemaining} trên kệ</p>
+                    <p><span style={{color:"#A27430"}}>Tổng số lượng : </span>{bookDetail?.amount}</p>
                   </div>
                 </div>
                 <div className='detail-information'>
                   <h3>Thông tin chi tiết</h3>
                   <p><span style={{color:"#8F8F8F"}}>Mã sách : </span>REZ2023428</p>
                   <hr/>
-                  <p><span style={{color:"#8F8F8F"}}>Nhà xuất bản : </span>Hồng Đức</p>
+                  <p><span style={{color:"#8F8F8F"}}>Nhà xuất bản : </span>{bookDetail?.nxb}</p>
                   <hr/>
-                  <p><span style={{color:"#8F8F8F"}}>Tác giả : </span>Tappei Nagatsuki, Shinichirou...</p>
+                  <p><span style={{color:"#8F8F8F"}}>Tác giả : </span>{bookDetail?.author}</p>
                   <hr/>
-                  <p><span style={{color:"#8F8F8F"}}>Năm xuất bản : </span>2023</p>
+                  <p><span style={{color:"#8F8F8F"}}>Năm xuất bản : </span>{bookDetail?.year}</p>
                   <hr/>
-                  <p><span style={{color:"#8F8F8F"}}>Ngôn ngữ : </span>Tiếng Việt</p>
+                  <p><span style={{color:"#8F8F8F"}}>Ngôn ngữ : </span>{bookDetail?.language}</p>
                   <hr/>
-                  <p><span style={{color:"#8F8F8F"}}>Số trang : </span>418</p>
+                  <p><span style={{color:"#8F8F8F"}}>Số trang : </span>{bookDetail?.pageAmount}</p>
                   <hr/>
-                  <p><span style={{color:"#8F8F8F"}}>Thể loại : </span>Light novel, Fantasy, Phiêu lưu</p>
+                  <p><span style={{color:"#8F8F8F"}}>Thể loại : </span>{bookDetail?.type?.name}</p>
                 </div>
                 <div className='book-summary'>
                   <h3>Mô tả nội dung</h3>
-                  <p>Từ khi đến thế giới khác, trải nghiệm thường xuyên nhất của Subaru có lẽ là tử vong.<br/><br/>
-
-                      Có lần cậu chết vì lời nguyền của ma thú dạng chó con. Ra đi trong giấc ngủ, không đau không ngứa, thậm chí không biết đến sợ hãi. Tính ra là cái chết an lạc hạng nhất trong truyện, thấm đẫm sự từ bi của tác giả.<br/><br/>
-
-Tuy nhiên sự từ bi ấy không kéo dài lâu. Dần dà qua mười tập truyện, Subaru nghiễm nhiên biến thành vật thí nghiệm cho các cách kết thúc cuộc đời. Cậu đã qua tay nhiều đao phủ khác nhau, từ ma thú, tinh linh đến con người, trong đó có chính bản thân cậu. Cậu bị tấn công vào đủ bộ vị khác nhau, từ đầu, cổ đến tứ chi, nội tạng…<br/>
-
-Nhưng có lẽ chưa lần nào đao phủ lại bé nhỏ xinh xắn đặc biệt, và cậu bị tấn công một cách toàn vẹn khủng khiếp, từ trong ra ngoài, từ trên xuống dưới… như sẽ kể trong tập 11.<br/><br/>
-
-Tập 11 cũng là bước ngoặt đầy trớ trêu trong diễn biến của Re:Zero. Trước đây sau mỗi lần Subaru chết đi sống lại, cậu thay đổi thì tình hình sẽ thay đổi. Còn lần này, môi trường và mọi người xung quanh thiên biến vạn hóa, dù cậu chưa kịp động đậy làm gì.</p>
+                  <p>{bookDetail?.review}</p>
                 </div>
             </div>
         </div>
         <div className='suggest-related-book-scroll'>
-            <ScrollList products={suggestBook}></ScrollList>
+            
         </div>
       </div>
     </div>
