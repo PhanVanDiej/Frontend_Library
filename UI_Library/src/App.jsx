@@ -19,6 +19,7 @@ import BuyBookForm from './Pages/BuyBook'
 import SellBookForm from './Pages/SellBook'
 import ReaderManagement from './Pages/ReaderManagement' 
 import LibrarianInformation from './Pages/LibrarianManagement'
+import CreateLibrarian from './Pages/CreateLibrarianAccount'
 function App(){
   return (
     <>
@@ -41,7 +42,8 @@ function App(){
               <Route path="/buy_book" element={<BuyBookForm></BuyBookForm>}/> 
               <Route path="/sell_book" element={<SellBookForm></SellBookForm>}/>
               <Route path="/reader_management" element={<ReaderManagement></ReaderManagement>}/>
-              <Route path="/librarian_management" element={<LibrarianInformation></LibrarianInformation>}/>
+              <Route path="/librarian_management" element={<LibrarianInformation></LibrarianInformation>}/> 
+              <Route path='/create_librarian' element={<CreateLibrarian></CreateLibrarian>}/>
           </Routes>
      </div>
     </>
