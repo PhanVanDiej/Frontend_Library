@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"; 
 import Header_Main from "../Components/Header_Main";
-import BE_ENDPOINT from "../Env/EndPont";
+import BE_ENDPOINT from "../Env/EndPont"; 
+import "../Styles/Pages/RegisterBookTitle.css"
 function RegisterNewBookTitleForm() 
 {
     const [bookType, setBookType]= useState([]);
@@ -74,8 +75,8 @@ function RegisterNewBookTitleForm()
 
             </Header_Main> 
             <div>
-                <h3>Đăng ký sách mới</h3> 
-                <form id="register_form">
+                <h2 className="title">Đăng ký sách mới</h2> 
+                <form id="register_form" className="registerForm">
                     <div>
                         <label htmlFor="bookName">Tên sách :</label> 
                         <input type="text" required id="bookName"/>
