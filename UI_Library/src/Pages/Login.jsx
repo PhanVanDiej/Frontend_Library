@@ -1,13 +1,5 @@
 import React,{useState} from "react";
 import Header from "../Components/Header_Register";
-<<<<<<< HEAD
-import '../Styles/Pages/Login.css'
-import {useNavigate} from 'react-router-dom'
-
-export default function LoginPage() {
-  const handleLogin=(e)=>{
-    e.prevenDefault();
-=======
 import handleLogin  from "../FetchScripts/HandleLogin";
 export default function LoginPage() {
   async function Login(nameOrEmail, password) 
@@ -21,7 +13,6 @@ export default function LoginPage() {
       else {
         console.log("Fail");
       }
->>>>>>> FetchToServer
   }
   return (
     <div>

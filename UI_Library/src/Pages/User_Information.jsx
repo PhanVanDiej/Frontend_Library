@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-import Header_Main from '../Components/Header_Main'
-=======
 import React, { useState, useEffect } from 'react'
 import BE_ENDPOINT from '../Env/EndPont';
 
@@ -57,14 +53,9 @@ const User_Information = () => {
        fetchUser(userId);
     }
   },[]);
->>>>>>> FetchToServer
 
   return (
     <div>
-<<<<<<< HEAD
-      <Header_Main></Header_Main>
-      <h1>Thong tin doc gia</h1>
-=======
       <h1>Thông tin tài khoản</h1>
 
       <div id="userInfoArea">
@@ -83,7 +74,6 @@ const User_Information = () => {
         <button>Thay đổi mật khẩu</button> 
         <br></br>
       </div>
->>>>>>> FetchToServer
     </div>
   )
 }

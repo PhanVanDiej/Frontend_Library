@@ -11,7 +11,7 @@ const SearchResult = () => {
         <Header_Main></Header_Main>
         <div className='SearchResult-wrapping-content'>
           <SideBar_Left/>
-          <BookGrid></BookGrid>
+          <BookGrid id={id}></BookGrid>
         </div>
     </div>
     

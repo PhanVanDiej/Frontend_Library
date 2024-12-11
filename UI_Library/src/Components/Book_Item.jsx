@@ -12,9 +12,5 @@ const Book_Item = ({key,title,image,state,name}) => {
     </div>
   )
 }
-<<<<<<< HEAD
 
 export default Book_Item
-=======
-export default Book_Item
->>>>>>> FetchToServer

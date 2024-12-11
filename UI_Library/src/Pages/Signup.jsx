@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header_Register'
-<<<<<<< HEAD
-import '../Styles/Pages/Login.css'
-=======
 import handleRegister from '../FetchScripts/HandleRegister'
 import BE_ENDPOINT from '../Env/EndPont';
->>>>>>> FetchToServer
 
 export default function SignupPage(){ 
     const [submit,setSubmit] = useState(false);

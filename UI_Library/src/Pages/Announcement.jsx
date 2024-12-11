@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import React from 'react'
-import Header_Main from '../Components/Header_Main'
-=======
 import React, { useEffect, useState } from 'react'
 import BE_ENDPOINT from '../Env/EndPont'; 
 import NotificationTag from '../Components/Notification';
->>>>>>> FetchToServer
 
 const Announcement = () => {
   const [data, setData ]=useState(null);
