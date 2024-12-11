@@ -1,6 +1,7 @@
 import React from 'react'
 import '../Styles/Pages/Home.css'
 import Footer from '../Components/Footer'
+<<<<<<< HEAD
 import Header_Main from '../Components/Header_Main'
 import ScrollList from '../Components/ScrollList_Book'
 export default function Home(){
@@ -16,6 +17,9 @@ export default function Home(){
         { id: 9, name: "Product 6", image: "https://via.placeholder.com/150" },
         { id: 10, name: "Product 6", image: "https://via.placeholder.com/150" },
       ];
+=======
+export default  function Home(){
+>>>>>>> FetchToServer
     return (
         <div>
             <Header_Main></Header_Main>
