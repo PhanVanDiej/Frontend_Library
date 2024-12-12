@@ -36,7 +36,7 @@ export default function SignupPage(){
         if(submit==true) 
         {
            fetchAndDisplay();
-           submit=false;
+           setSubmit(false);
         }
     },[submit])
    

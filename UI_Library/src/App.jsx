@@ -15,6 +15,9 @@ import RegisterNewBookTitleForm from './Pages/RegisterNewBookTitle'
 import RegisterNewBookTypeForm from './Pages/RegisterNewBookType'
 import EditBookTitleForm from './Pages/EditBookTitle'
 import EditBookTypeForm from './Pages/EditBookType'
+import BuyBookForm from './Pages/BuyBook'
+import SellBookForm from './Pages/SellBook'
+import ReaderManagement from './Pages/ReaderManagement'
 function App(){
   return (
     <>
@@ -33,7 +36,10 @@ function App(){
               <Route path="/register_book_title" element={<RegisterNewBookTitleForm></RegisterNewBookTitleForm>}/>
               <Route path="/register_book_type" element={<RegisterNewBookTypeForm></RegisterNewBookTypeForm>}/>
               <Route path="/edit_book_title/:id" element={<EditBookTitleForm></EditBookTitleForm>}/> 
-              <Route path="/edit_book_type/:id" element={<EditBookTypeForm></EditBookTypeForm>}/>
+              <Route path="/edit_book_type/:id" element={<EditBookTypeForm></EditBookTypeForm>}/> 
+              <Route path="/buy_book" element={<BuyBookForm></BuyBookForm>}/> 
+              <Route path="/sell_book" element={<SellBookForm></SellBookForm>}/>
+              <Route path="/reader_management" element={<ReaderManagement></ReaderManagement>}/>
           </Routes>
      </div>
     </>
