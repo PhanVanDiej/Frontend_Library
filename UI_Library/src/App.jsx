@@ -14,6 +14,7 @@ import BookBorrowingSlipList from './Pages/BookBorrowingSlipList'
 import RegisterNewBookTitleForm from './Pages/RegisterNewBookTitle'
 import RegisterNewBookTypeForm from './Pages/RegisterNewBookType'
 import EditBookTitleForm from './Pages/EditBookTitle'
+import EditBookTypeForm from './Pages/EditBookType'
 function App(){
   return (
     <>
@@ -31,7 +32,8 @@ function App(){
               <Route path="/book_borrowing_slip_list" element={<BookBorrowingSlipList></BookBorrowingSlipList>}/> 
               <Route path="/register_book_title" element={<RegisterNewBookTitleForm></RegisterNewBookTitleForm>}/>
               <Route path="/register_book_type" element={<RegisterNewBookTypeForm></RegisterNewBookTypeForm>}/>
-              <Route path="/edit_book_title/:id" element={<EditBookTitleForm></EditBookTitleForm>}/>
+              <Route path="/edit_book_title/:id" element={<EditBookTitleForm></EditBookTitleForm>}/> 
+              <Route path="/edit_book_type/:id" element={<EditBookTypeForm></EditBookTypeForm>}/>
           </Routes>
      </div>
     </>
