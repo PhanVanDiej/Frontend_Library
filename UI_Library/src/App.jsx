@@ -7,9 +7,9 @@ import SignupPage from './Pages/Signup'
 import User_Information from './Pages/User_Information'
 import HistoryAction from './Pages/HistoryAction'
 import Announcement from './Pages/Announcement'
-import Header_Main from './Components/Header_Main'
 import SearchResult from './Pages/SearchResult'
 import Book_Detail from './Pages/Book_Detail'
+import Cart from './Pages/Cart'
 function App(){
   return (
     <>
@@ -24,6 +24,7 @@ function App(){
               <Route path='/announcement' element={<Announcement></Announcement>}/>
               <Route path='/search_result/:id' element={<SearchResult></SearchResult>}/>
               <Route path='/book_detail/:id' element={<Book_Detail></Book_Detail>}/>
+              <Route path='/cart' element={<Cart></Cart>}/>
           </Routes>
      </div>
     </>

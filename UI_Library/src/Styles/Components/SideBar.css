@@ -3,13 +3,13 @@
     src: url('../../assets/Fonts/kyiv_type_titling/KyivTypeTitling-Regular.otf');
 }
 .leftside-bar{
-  height: 100%;
   width: 250px;
   background-color: #333;
   color: white;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+  height: fit-content;
 }
 
 .option-filter{

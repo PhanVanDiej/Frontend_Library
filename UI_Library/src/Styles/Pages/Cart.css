@@ -1,0 +1,80 @@
+.content-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.content-wrapper h2{
+    width: 1000px;
+}
+.checkBox-select-book{
+    display: flex;
+    box-Shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    width: 1000px;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.checkBox-select-book .bookNumber-header{
+    margin-left: 470px;
+}
+.cart-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    box-Shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 1000px;
+    border-radius: 10px;
+}
+.cart-item{
+    display: flex;
+    align-items: center;
+    margin-top:15px;
+}
+.cart-item p{
+    width: 500px;
+    margin-left: 20px;
+}
+.book-cover{
+    width: 80px;
+    height: 120px;
+}
+.adjustNum-box{
+    margin-left: 93px;
+    border: solid 2px #8F8F8F;
+    border-radius: 5px;
+    padding: 3px;
+}
+.adjustNum-box button{
+    border: none;
+    background-color: white;
+    font-size: large;
+    font-weight: bold;
+    color: #8F8F8F;
+}
+.adjustNum-box input{
+    width: 50px;
+    text-align: center;
+    border: none;
+    
+}
+.adjustNum-box input[type="number"]::-webkit-inner-spin-button,
+.adjustNum-box input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.deleteBtn-Icon{
+    width: 35px;
+    height: 35px;
+    margin-left: 50px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.deleteBtn-Icon:hover{
+    background-color: red;
+    cursor: pointer;
+}

@@ -5,6 +5,8 @@ import '../Styles/Pages/BookDetail.css'
 import cover from '../assets/Book_Cover/rezero.png'
 import bag from '../assets/Icons/bag.png'
 import ScrollList from '../Components/ScrollList_Book';
+import { useNavigate } from "react-router-dom";
+
 const Book_Detail = () => {
     const book_id=useParams();
     const suggestBook = [
@@ -21,6 +23,10 @@ const Book_Detail = () => {
     ]
     // fetch data tai day
     const remain=3;
+    const navigate=useNavigate();
+    const handleOnClickBorrowBtn=()=>{
+      navigate('/cart');
+    }
   return (
     <div>
       <Header_Main></Header_Main>
@@ -44,7 +50,7 @@ const Book_Detail = () => {
                       <p>Thêm vào giỏ</p>
                     </div>
                   </button>
-                  <button type='submit' className='btn-fill'>
+                  <button type='submit' className='btn-fill' onClick={handleOnClickBorrowBtn}>
                       Mượn sách
                   </button>
                 </div>

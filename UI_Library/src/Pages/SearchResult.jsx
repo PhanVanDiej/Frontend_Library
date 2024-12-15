@@ -7,14 +7,15 @@ import { useParams } from "react-router-dom";
 const SearchResult = () => {
   const {id}=useParams();
   return (
-    <div className='wrapping-content'>
-        <Header_Main></Header_Main>
-        <div className='SearchResult-wrapping-content'>
-          <SideBar_Left/>
-          <BookGrid></BookGrid>
-        </div>
+    <div>
+      <Header_Main></Header_Main>
+      <div className='wrapping-content'>
+          <div className='SearchResult-wrapping-content'>
+            <SideBar_Left/>
+            <BookGrid></BookGrid>
+          </div>
+      </div>
     </div>
-    
   )
 }
 export default SearchResult

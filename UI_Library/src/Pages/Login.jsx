@@ -4,8 +4,9 @@ import '../Styles/Pages/Login.css'
 import {useNavigate} from 'react-router-dom'
 
 export default function LoginPage() {
-  const handleLogin=(e)=>{
-    e.prevenDefault();
+  const navigate=useNavigate();
+  const handleLogin=()=>{
+    navigate('/home');
   }
   return (
     <div>
@@ -29,7 +30,7 @@ export default function LoginPage() {
               </label>
               <a href="#">Quên mật khẩu?</a>
             </div>
-            <button className="submit-btn">Đăng nhập</button>
+            <button className="submit-btn" onClick={handleLogin}>Đăng nhập</button>
             <div className="register-link">
               <p>
                 Bạn chưa có tài khoản,

@@ -16,6 +16,7 @@ export default function Home(){
         { id: 10, name: "Product 6", image: "" },
         { id: 4, name: "Product 4", image: "" },
       ];
+    
     return (
         <div>
             <Header_Main></Header_Main>
