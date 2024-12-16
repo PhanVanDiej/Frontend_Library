@@ -1,19 +1,44 @@
-import {React,useState} from 'react'
+import {React,useEffect,useState} from 'react'
 import Header_Main from '../Components/Header_Main'
 import '../Styles/Pages/Cart.css'
 import BookCover from '../assets/Book_Cover/rezero.png'
 import recycleBin from '../assets/Icons/recycle_bin.png'
+import BE_ENDPOINT from '../Env/EndPont'
+import displayImageURL from '../Env/DisplayImage'
 const Cart = () => {
     const numItems=2;
 
-    const exampleCartItems=[
+    /*const exampleCartItems=[
         { id: 1, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
         { id: 2, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image: ''},
         { id: 3, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image: ''},
         { id: 4, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18',image: ''},
         { id: 5, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
         { id: 6, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
-    ]
+    ]*/
+   const [exampleCartItems, setExampleCartItems] = useState([]);
+   useEffect(()=>{ 
+    async function getAllCartData() 
+    {
+        const response= await fetch(BE_ENDPOINT+"reader/cart",{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            return;
+        } 
+        const responseData = await response.json(); 
+        console.log(responseData);
+        setExampleCartItems(responseData);
+
+    } 
+    getAllCartData();
+
+   },[])
 
     const [adjustValue,setAdjustValue]=useState(1);
 
@@ -48,7 +73,9 @@ const Cart = () => {
                     <div className='cart-item'>
                         <img
                             className='book-cover'
-                            src={BookCover}
+                            src={
+                                "data:image/jpeg;base64,"+item.image
+                            }
                             alt={item.title}/>
                         <p>{item.title}</p>
                         <div className='adjustNum-box'>
