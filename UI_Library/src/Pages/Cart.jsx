@@ -8,13 +8,39 @@ import displayImageURL from '../Env/DisplayImage'
 
 const Cart = () => { 
     function updateAtOneIndex(item, index, amount) 
-{
-    if(item.id==index) 
     {
-       item.amount=amount;
+        if(item.id==index) 
+        {
+        item.amount=amount;
+        } 
+        return item;
     } 
-    return item;
-}
+    async function handleSaveCart() 
+    {
+        const data = exampleCartItems.map(
+            (item)=>{
+                return {
+                    cartDetailId:item.cartDetailId,
+                    amount:item.amount
+                }
+            }
+        ); 
+        console.log(data);
+        const response = await fetch(BE_ENDPOINT+"reader/saveCart", {
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+ localStorage.getItem("token")
+            },
+            body:JSON.stringify(data)
+        });
+        if(!response.ok) 
+        {
+            alert("Update gio sach that bai");
+            return;
+        } 
+        window.location.reload();
+    }
     const numItems=2;
 
     /*const exampleCartItems=[
@@ -133,7 +159,7 @@ const Cart = () => {
         </div>
       </div> 
       <div>
-        <button>Luu</button> 
+        <button onClick={handleSaveCart}>Luu</button> 
         <button>Xoa toan bo</button>
       </div>
     </div>
