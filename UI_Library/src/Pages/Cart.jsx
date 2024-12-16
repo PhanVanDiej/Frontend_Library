@@ -56,7 +56,10 @@ const Cart = () => {
         cartItems.map((item)=>{
             countBook=countBook + item.ischecked
         })
-        if(countBook < 1)
+        if(cartItems.length===0)
+            alert('Giỏ hàng trống! Hãy tìm kiếm thêm vài cuốn sách cho giỏ hàng của bạn.')
+
+        else if(countBook < 1)
             alert('Vui lòng chọn ít nhất một cuốn sách để mượn')
         else
         navigate('/borrow_slip')
