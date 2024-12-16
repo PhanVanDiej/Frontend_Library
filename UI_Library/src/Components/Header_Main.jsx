@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useEffect,useState} from 'react'
 import '../Styles/Components/Header.css';
 import { Link, Navigate, useMatch, useResolvedPath } from 'react-router-dom';
 import arrowDown from '../assets/Icons/arrow_down.png';
@@ -6,6 +6,7 @@ import downBlack from '../assets/Icons/down_black.png';
 import transparency from '../assets/Icons/transparency.png';
 import logo from '../assets/Icons/logo.png';
 import { useNavigate } from "react-router-dom";
+import BE_ENDPOINT from '../Env/EndPont';
 
 
 export default function Header_Main() {
@@ -15,7 +16,7 @@ export default function Header_Main() {
   const openSearchBox = () => setIsSearchBoxOpen(true);
   const closeSearchBox = () => setIsSearchBoxOpen(false);
 
-  const exampleBookData=[
+  /*const exampleBookData=[
     { id: 1, title:'Re:Zero - Bắt đầu lại ở một thế giới khác'},
     { id: 2, title :'Harry Potter'},
     { id: 3, title:`Alice's Adventures in Wonderland`},
@@ -24,7 +25,28 @@ export default function Header_Main() {
     { id: 6, title:'Matilda'},
     { id: 7, title:'Thousand Splendid Suns'},
     { id: 8, title:'To Kill a Mockingbird'}
-  ]
+  ];
+*/
+  const [exampleBookData, setExampleBookData] = useState([]);
+  useEffect(()=>{
+    async function getAllBookTitleFromServer() 
+    {
+      const response = await fetch(BE_ENDPOINT+"book-titles/all");
+      if(!response.ok) 
+      {
+        return;
+      } 
+      const responseData= await response.json();
+      setExampleBookData(responseData.map((item)=>{
+        return {
+          id:item.id,
+          title:item.name
+        }
+      }));
+    }
+    getAllBookTitleFromServer();
+  },
+[])
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult,setSearchResult]=useState([]);
