@@ -14,7 +14,25 @@ const Cart = () => {
         item.amount=amount;
         } 
         return item;
-    } 
+    }  
+    async function handleDeleteFromCart(itemIndex) 
+    {
+        const response = await fetch(BE_ENDPOINT+"reader/deleteItemFromCart/"+itemIndex,
+            {
+                method:"DELETE",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"Bearer "+localStorage.getItem("token")
+                }
+            }
+        );
+        if(!response.ok) 
+        {
+            alert("Delete item fail");
+            return;
+        } 
+        window.location.reload();
+    }
     async function handleSaveCart() 
     {
         const data = exampleCartItems.map(
@@ -152,15 +170,17 @@ const Cart = () => {
                                 +
                             </button>
                         </div>
-                        <img className='deleteBtn-Icon' src={recycleBin} alt='delete'/>
+                        <img className='deleteBtn-Icon' src={recycleBin} alt='delete' onClick={()=>{
+                            handleDeleteFromCart(item.cartDetailId)
+                        }}/>
                     </div>
                 )
             })}
         </div>
       </div> 
       <div>
-        <button onClick={handleSaveCart}>Luu</button> 
-        <button>Xoa toan bo</button>
+        <button onClick={handleSaveCart}>Lưu</button> 
+        <button>Xóa toàn bộ</button>
       </div>
     </div>
   )
