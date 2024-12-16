@@ -1,6 +1,7 @@
-
-.SearchResult-wrapping-content{
-    box-sizing: border-box;
+.wrapping-content{
     display: flex;
-    margin: 50px;
+    justify-content: center;
+}
+.SearchResult-wrapping-content{
+    display: flex;
 }

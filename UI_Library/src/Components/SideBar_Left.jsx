@@ -3,7 +3,7 @@ import '../Styles/Components/SideBar.css'
 
 const SideBar_Left = () => {
   return (
-    <div className='searchResult-wrapcontent'>
+    <div>
       <div className='leftside-bar'>
         <h3 className='sidebar-title'>Lọc tìm kiếm</h3>
         <div className='option-filter'>
@@ -43,9 +43,8 @@ const SideBar_Left = () => {
                 </li>
             </ul>
         </div>
-       
+        </div>
       </div>
-    </div>
   )
 }
 
