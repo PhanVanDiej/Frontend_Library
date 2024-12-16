@@ -10,6 +10,7 @@ import Announcement from './Pages/Announcement'
 import SearchResult from './Pages/SearchResult'
 import Book_Detail from './Pages/Book_Detail'
 import Cart from './Pages/Cart'
+import Borrow_Slip from './Pages/Borrow_Slip'
 function App(){
   return (
     <>
@@ -25,6 +26,7 @@ function App(){
               <Route path='/search_result/:id' element={<SearchResult></SearchResult>}/>
               <Route path='/book_detail/:id' element={<Book_Detail></Book_Detail>}/>
               <Route path='/cart' element={<Cart></Cart>}/>
+              <Route path='/borrow_slip' element={<Borrow_Slip></Borrow_Slip>}/>
           </Routes>
      </div>
     </>
