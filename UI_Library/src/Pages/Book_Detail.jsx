@@ -28,7 +28,28 @@ const Book_Detail = () => {
       } 
       fetchToServer(bookId.id);
       console.log("Fetch")
-    },[])
+    },[]);
+    async function handleAddToCart() 
+    {
+        const data= {
+          bookTitleId:bookId.id
+        }; 
+        console.log(data);
+        const response = await fetch(BE_ENDPOINT+"reader/addToCart",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("token")
+          },
+          body:JSON.stringify(data)
+        });
+        if(!response.ok) 
+        {
+          alert("Them vao gio sach that bai");
+        } 
+        navigate("/cart");
+        
+    }
     const suggestBook = [
       {id:0, name:"Product 0", image:""},
       { id: 1, name: "Product 1", image: "" },
@@ -61,7 +82,7 @@ const Book_Detail = () => {
                 <img className='book-cover' src={displayImageURL(bookDetail?.imageData)} alt={'Book'+bookId.id}></img>
                 <div className='request-btn'>
                   <button type='submit' className='btn-border'>
-                    <div>
+                    <div onClick={handleAddToCart}>
                       <img src={displayImageURL(bookDetail?.imageData)} alt='Bag'></img>
                       <p>Thêm vào giỏ</p>
                     </div>
