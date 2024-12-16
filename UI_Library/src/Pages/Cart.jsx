@@ -59,6 +59,21 @@ const Cart = () => {
         } 
         window.location.reload();
     }
+    async function handleDeleteAllFromCart() 
+    {
+        const response = await fetch(BE_ENDPOINT+"reader/clearCart",{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            return;
+        } 
+        window.location.reload();
+    }
     const numItems=2;
 
     /*const exampleCartItems=[
@@ -180,7 +195,7 @@ const Cart = () => {
       </div> 
       <div>
         <button onClick={handleSaveCart}>Lưu</button> 
-        <button>Xóa toàn bộ</button>
+        <button onClick={handleDeleteAllFromCart}>Xóa toàn bộ</button>
       </div>
     </div>
   )
