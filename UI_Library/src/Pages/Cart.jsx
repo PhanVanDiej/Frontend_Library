@@ -4,8 +4,17 @@ import '../Styles/Pages/Cart.css'
 import BookCover from '../assets/Book_Cover/rezero.png'
 import recycleBin from '../assets/Icons/recycle_bin.png'
 import BE_ENDPOINT from '../Env/EndPont'
-import displayImageURL from '../Env/DisplayImage'
-const Cart = () => {
+import displayImageURL from '../Env/DisplayImage' 
+
+const Cart = () => { 
+    function updateAtOneIndex(item, index, amount) 
+{
+    if(item.id==index) 
+    {
+       item.amount=amount;
+    } 
+    return item;
+}
     const numItems=2;
 
     /*const exampleCartItems=[
@@ -16,7 +25,8 @@ const Cart = () => {
         { id: 5, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
         { id: 6, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
     ]*/
-   const [exampleCartItems, setExampleCartItems] = useState([]);
+   const [exampleCartItems, setExampleCartItems] = useState([]); 
+   
    useEffect(()=>{ 
     async function getAllCartData() 
     {
@@ -42,20 +52,33 @@ const Cart = () => {
 
     const [adjustValue,setAdjustValue]=useState(1);
 
-    const handleIncrement = () => {
-        setAdjustValue(adjustValue + 1); 
+    const handleIncrement = (index) => { 
+
+        setExampleCartItems(exampleCartItems.map((item)=>
+        {
+            return updateAtOneIndex(item, index, item.amount+1);
+        }));
     };
     
-    const handleDecrement = () => {
-        if (adjustValue > 0) {
-            setAdjustValue(adjustValue - 1);
-        }
+    const handleDecrement = (index) => {
+        
+        setExampleCartItems(exampleCartItems.map((item)=>
+            {
+                if(item.amount==1) 
+                    {
+                        return item;
+                    }
+                return updateAtOneIndex(item, index, item.amount-1);
+            }));
     };
 
-    const handleChangeValue = (event) => {
+    const handleChangeValue = (event, index) => {
         const newValue = parseInt(event.target.value, 10);
         if (!isNaN(newValue)) {
-            setValue(newValue);
+            setExampleCartItems(exampleCartItems.map((item)=>
+                {
+                    return updateAtOneIndex(item, index, newValue);
+                }));
         }
     };
     return (
@@ -80,17 +103,25 @@ const Cart = () => {
                         <p>{item.title}</p>
                         <div className='adjustNum-box'>
                             <button
-                                onClick={handleDecrement}
+                                onClick={()=>{
+                                    handleDecrement(item.id);
+                                }}
                                 >
                                 -
                             </button>
                             <input
-                                disabled
-                                type='number'
-                                value={adjustValue}
-                                onChange={handleChangeValue}></input>
+                                
+                                type='number' 
+                                min={1}
+                                value={item.amount}
+                                onChange={(e)=>{
+                                    handleChangeValue(e,item.id);
+                                }}/>
                             <button
-                                onClick={handleIncrement}
+                                onClick={()=>{
+                                    handleIncrement(item.id); 
+                                    
+                                }}
                                 >
                                 +
                             </button>
@@ -100,6 +131,10 @@ const Cart = () => {
                 )
             })}
         </div>
+      </div> 
+      <div>
+        <button>Luu</button> 
+        <button>Xoa toan bo</button>
       </div>
     </div>
   )
