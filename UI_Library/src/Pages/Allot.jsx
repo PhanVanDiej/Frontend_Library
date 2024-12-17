@@ -4,7 +4,24 @@ import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 function AllotPage() 
 {  
-    const [listWorkDetail, setListWorkDetail]= useState([]); 
+    const [listWorkDetail, setListWorkDetail]= useState([]);  
+    async function onDeleteWorkDetail(workDetailId) 
+    {
+        const response= await fetch(BE_ENDPOINT+"admin/deleteWorkDate/"+workDetailId,{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            alert("Xoa phan cong that bai");
+            return;
+        } 
+        alert("Xoa phan cong thanh cong");
+        window.location.reload();
+    }
     async function onSubmitWorkDetail() 
     {
         const data = {
@@ -96,7 +113,10 @@ function AllotPage()
                                         <td>{item.librarian.userId}</td>  
                                         <td>{item.librarian.fullname}</td>
                                         <td>{formatDate(item.workDate)}</td> 
-                                        <td><button>Xoa phan cong</button></td>
+                                        <td><button onClick={(e)=>{
+                                            e.preventDefault();
+                                            onDeleteWorkDetail(item.id)
+                                        }}>Xoa phan cong</button></td>
                                     </tr>
                                 )
                             })
