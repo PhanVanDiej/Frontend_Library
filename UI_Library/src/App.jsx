@@ -20,6 +20,7 @@ import ReaderManagement from './Pages/ReaderManagement'
 import LibrarianInformation from './Pages/LibrarianManagement'
 import CreateLibrarian from './Pages/CreateLibrarianAccount'
 import Cart from './Pages/Cart'
+import AllotPage from './Pages/Allot'
 function App(){
   return (
     <>
@@ -45,7 +46,8 @@ function App(){
               <Route path="/librarian_management" element={<LibrarianInformation></LibrarianInformation>}/> 
               <Route path='/create_librarian' element={<CreateLibrarian></CreateLibrarian>}/>
               <Route path='/book_detail/:id' element={<Book_Detail></Book_Detail>}/>
-              <Route path='/cart' element={<Cart></Cart>}/>
+              <Route path='/cart' element={<Cart></Cart>}/> 
+              <Route path="/allot" element={<AllotPage></AllotPage>}/>
           </Routes>
      </div>
     </>
