@@ -146,13 +146,23 @@ const Cart = () => {
       <div className='content-wrapper'>
         <h2>Giỏ hàng </h2>
         <div className='checkBox-select-book'>
-            <p>Số sách trong giỏ ( {numItems} cuốn sách )</p>
+            <input
+                className='checked-box'
+                type='checkbox'
+                checked={selectAll}
+                onChange={handleOnchangeSelectAll}/>
+            <p>Chọn tất cả ( {numItems} cuốn sách )</p>
             <p className='bookNumber-header'>Số lượng</p>
         </div>
         <div className='cart-container'>
-            {exampleCartItems.map((item)=>{
+            {cartItems.map((item)=>{
                 return (
                     <div className='cart-item'>
+                        <input 
+                            className='checked-box'
+                            type='checkbox'
+                            checked={item.ischecked}
+                            onChange={()=>handleOnchangeChecked(item.id)}/>
                         <img
                             className='book-cover'
                             src={
@@ -196,6 +206,8 @@ const Cart = () => {
       <div>
         <button onClick={handleSaveCart}>Lưu</button> 
         <button onClick={handleDeleteAllFromCart}>Xóa toàn bộ</button>
+
+        <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
       </div>
     </div>
   )

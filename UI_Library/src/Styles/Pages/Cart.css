@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    padding-bottom: 100px;
 }
 .content-wrapper h2{
     width: 1000px;
@@ -18,13 +19,13 @@
     margin-top: 20px;
 }
 .checkBox-select-book .bookNumber-header{
-    margin-left: 470px;
+    margin-left: 510px;
 }
 .cart-container{
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     box-Shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 30px;
     width: 1000px;
@@ -39,7 +40,7 @@
     width: 500px;
     margin-left: 20px;
 }
-.book-cover{
+.book-cover-item{
     width: 80px;
     height: 120px;
 }
@@ -77,4 +78,26 @@
 .deleteBtn-Icon:hover{
     background-color: red;
     cursor: pointer;
+}
+.cart-confirm-btn{
+    width: 200px;
+    height: 50px;
+    align-self: flex-end;
+    margin-right: 255px;
+    font-size: medium;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+}
+.cart-confirm-btn:hover{
+    cursor: pointer;
+    background-color: #A27430;
+    color: black;
+}
+.checked-box{
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
 }
