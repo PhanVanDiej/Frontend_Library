@@ -23,6 +23,7 @@ import Cart from './Pages/Cart'
 import AllotPage from './Pages/Allot'
 import WorkDateTable from './Pages/LibrarianWork'
 import Borrow_Slip from './Pages/Borrow_Slip'
+import BookManagementPage from './Pages/BookManagement'
 function App(){
   return (
     <>
@@ -51,7 +52,8 @@ function App(){
               <Route path='/cart' element={<Cart></Cart>}/> 
               <Route path="/allot" element={<AllotPage></AllotPage>}/>
               <Route path="/librarian_work_day" element={<WorkDateTable></WorkDateTable>}/>  
-              <Route path="/borrow_slip" element={<Borrow_Slip></Borrow_Slip>}/>
+              <Route path="/borrow_slip" element={<Borrow_Slip></Borrow_Slip>}/> 
+              <Route path="/book_management" element={<BookManagementPage></BookManagementPage>}/>
           </Routes>
      </div>
     </>
