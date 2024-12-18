@@ -6,7 +6,8 @@ import recycleBin from '../assets/Icons/recycle_bin.png'
 import BE_ENDPOINT from '../Env/EndPont'
 import displayImageURL from '../Env/DisplayImage' 
 
-const Cart = () => { 
+const Cart = () => {  
+    const [selectAll,setSelectAll]=useState(true);
     function updateAtOneIndex(item, index, amount) 
     {
         if(item.id==index) 

@@ -9,7 +9,25 @@ import BE_ENDPOINT from '../Env/EndPont';
 import displayImageURL from '../Env/DisplayImage';
 import { useNavigate } from "react-router-dom";
 
-const Book_Detail = () => {
+const Book_Detail = () => { 
+  function displayFeature() 
+  {
+    if(localStorage.getItem("role")=="0") 
+      {
+        return "Them vao gio"
+      } 
+      return "Chinh sua"
+  } 
+  function displayDeleteOrBorrow() 
+  {
+    if(localStorage.getItem("role")=="0") 
+      {
+        return "Muon sach"
+      } 
+      return "Xoa"
+  }
+  
+  
     const bookId= useParams();  
     console.log(bookId.id);
     const [bookDetail, setBookDetail] = useState({}); 
@@ -84,11 +102,14 @@ const Book_Detail = () => {
                   <button type='submit' className='btn-border'>
                     <div onClick={handleAddToCart}>
                       <img src={displayImageURL(bookDetail?.imageData)} alt='Bag'></img>
-                      <p>Thêm vào giỏ</p>
+                      <p>{displayFeature()}
+                       </p>
                     </div>
                   </button>
                   <button type='submit' className='btn-fill' onClick={handleOnClickBorrowBtn}>
-                      Mượn sách
+                      { 
+                      displayDeleteOrBorrow()
+                      }
                   </button>
                 </div>
                 
