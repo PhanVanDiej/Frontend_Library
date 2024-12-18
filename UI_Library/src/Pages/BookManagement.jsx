@@ -32,7 +32,7 @@ function BookManagementPage()
         const listRes= listBook.filter((item)=>{
             if(searchType!="Tat ca")  
             {
-                if(searchType=="Sang sang") 
+                if(searchType=="San sang") 
                 {
                     if(item.status.id!=0) 
                     {
@@ -55,17 +55,46 @@ function BookManagementPage()
                     }
                 }
             }
-            if(item.id==value) 
+            if(item.id==keyword) 
                 return true;
-            if(item.title.name.includes(value))   
+            if(item.title.name.includes(keyword))   
                 return true;
-            if(item.title.type.nam.includes(value)) 
+            if(item.title.type.name.includes(keyword)) 
                 return true;
             return false;
         }) 
         setListSelectedBook(listRes);
-     } 
-     
+     }  
+
+     function displayDeleteButton(item) 
+     { 
+        if(item.status.id!=0)
+        {
+            return ""
+        } 
+        return (
+            <button onClick={()=>{
+                onDeleteBook(item.id);
+            }}>Xoa sach</button>
+        )
+     }
+     async function onDeleteBook(id) 
+     {
+        const response = await fetch(BE_ENDPOINT+"librarian/deleteBook/"+id, {
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            alert("Fail");
+            return;
+        } 
+        alert("Success");
+        window.location.reload();
+     }
 
     return (
         <div>
@@ -75,7 +104,7 @@ function BookManagementPage()
                 <h2>Quan ly sach</h2> 
                 <div>
                     <input type="text" placeholder="Tim kiem" id="searchData" onKeyDown={(e)=>{
-                        e.preventDefault();
+                        
                         if(e.key=="Enter") 
                         {
                             onSearch(document.getElementById("searchType").value);
@@ -110,7 +139,9 @@ function BookManagementPage()
                                             <td>{item.title.name}</td> 
                                             <td>{item.title.type.name}</td>  
                                             <td>{item.status.name}</td>
-                                            <td><button>Xoa</button></td>
+                                            <td>{ 
+                                            displayDeleteButton(item)
+                                                }</td>
                                         </tr>
                                     )
                                 })
