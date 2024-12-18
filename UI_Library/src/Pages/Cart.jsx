@@ -1,146 +1,101 @@
-import {React,useEffect,useState} from 'react'
+import {React,useState, useEffect} from 'react'
 import Header_Main from '../Components/Header_Main'
 import '../Styles/Pages/Cart.css'
 import BookCover from '../assets/Book_Cover/rezero.png'
 import recycleBin from '../assets/Icons/recycle_bin.png'
+import { useNavigate } from 'react-router-dom' 
 import BE_ENDPOINT from '../Env/EndPont'
-import displayImageURL from '../Env/DisplayImage' 
 
-const Cart = () => {  
-    const [selectAll,setSelectAll]=useState(true);
-    function updateAtOneIndex(item, index, amount) 
-    {
-        if(item.id==index) 
+const exampleCartItems=[
+        { id: 1, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:'', quantity: 1, ischecked: true},
+        { id: 2, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image: '', quantity: 1, ischecked: true},
+        { id: 3, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image: '', quantity: 1, ischecked: true},
+        { id: 4, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image: '', quantity: 1, ischecked: true},
+        { id: 5, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:'', quantity: 1, ischecked: true},
+        { id: 6, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:'', quantity: 1, ischecked: true},
+    ];
+const Cart = () => {
+
+    const navigate=useNavigate()
+
+    const [cartItems,setCartItems]=useState([]);
+    useEffect(()=>{ 
+        async function getAllCartData() 
         {
-        item.amount=amount;
-        } 
-        return item;
-    }  
-    async function handleDeleteFromCart(itemIndex) 
-    {
-        const response = await fetch(BE_ENDPOINT+"reader/deleteItemFromCart/"+itemIndex,
-            {
-                method:"DELETE",
+            const response= await fetch(BE_ENDPOINT+"reader/cart",{
+                method:"GET",
                 headers:{
                     "Content-Type":"application/json",
                     "Authorization":"Bearer "+localStorage.getItem("token")
                 }
-            }
-        );
-        if(!response.ok) 
-        {
-            alert("Delete item fail");
-            return;
-        } 
-        window.location.reload();
-    }
-    async function handleSaveCart() 
-    {
-        const data = exampleCartItems.map(
-            (item)=>{
-                return {
-                    cartDetailId:item.cartDetailId,
-                    amount:item.amount
-                }
-            }
-        ); 
-        console.log(data);
-        const response = await fetch(BE_ENDPOINT+"reader/saveCart", {
-            method:"PUT",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":"Bearer "+ localStorage.getItem("token")
-            },
-            body:JSON.stringify(data)
-        });
-        if(!response.ok) 
-        {
-            alert("Update gio sach that bai");
-            return;
-        } 
-        window.location.reload();
-    }
-    async function handleDeleteAllFromCart() 
-    {
-        const response = await fetch(BE_ENDPOINT+"reader/clearCart",{
-            method:"DELETE",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":"Bearer "+localStorage.getItem("token")
-            }
-        });
-        if(!response.ok) 
-        {
-            return;
-        } 
-        window.location.reload();
-    }
-    const numItems=2;
-
-    /*const exampleCartItems=[
-        { id: 1, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
-        { id: 2, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image: ''},
-        { id: 3, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image: ''},
-        { id: 4, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18',image: ''},
-        { id: 5, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
-        { id: 6, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:''},
-    ]*/
-   const [exampleCartItems, setExampleCartItems] = useState([]); 
-   
-   useEffect(()=>{ 
-    async function getAllCartData() 
-    {
-        const response= await fetch(BE_ENDPOINT+"reader/cart",{
-            method:"GET",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":"Bearer "+localStorage.getItem("token")
-            }
-        });
-        if(!response.ok) 
-        {
-            return;
-        } 
-        const responseData = await response.json(); 
-        console.log(responseData);
-        setExampleCartItems(responseData);
-
-    } 
-    getAllCartData();
-
-   },[])
-
-    const [adjustValue,setAdjustValue]=useState(1);
-
-    const handleIncrement = (index) => { 
-
-        setExampleCartItems(exampleCartItems.map((item)=>
-        {
-            return updateAtOneIndex(item, index, item.amount+1);
-        }));
-    };
-    
-    const handleDecrement = (index) => {
-        
-        setExampleCartItems(exampleCartItems.map((item)=>
+            });
+            if(!response.ok) 
             {
-                if(item.amount==1) 
-                    {
-                        return item;
-                    }
-                return updateAtOneIndex(item, index, item.amount-1);
-            }));
-    };
+                return;
+            } 
+            const responseData = await response.json(); 
+            console.log(responseData);
+            setCartItems(responseData);
+    
+        } 
+        getAllCartData();
+    
+       },[]);
+    const [selectAll,setSelectAll]=useState(true)
 
-    const handleChangeValue = (event, index) => {
-        const newValue = parseInt(event.target.value, 10);
-        if (!isNaN(newValue)) {
-            setExampleCartItems(exampleCartItems.map((item)=>
-                {
-                    return updateAtOneIndex(item, index, newValue);
-                }));
-        }
-    };
+    const numItems=cartItems.length;
+
+    const handleIncrement=(id)=>{
+        setCartItems((items)=>
+            items.map((item)=>
+                item.id===id ? {...item,quantity: item.quantity+1 } : item
+            )
+        );
+    }
+    const handleDecrement=(id)=>{
+        setCartItems((items)=>
+            items.map((item)=>
+                item.id===id && item.quantity > 1 ? {...item,quantity: item.quantity - 1 } : item
+            )
+        );
+    }
+    const handleDeleteItem=(id)=>{
+        setCartItems((items)=>
+            items.filter((item)=> item.id!==id)
+        )
+    }
+
+    const handleOnchangeChecked=(id)=>{
+        setCartItems((items)=>
+            items.map((item)=>
+                item.id===id ? {...item,ischecked: !item.ischecked } : item
+            )
+        );
+    }
+    const handleConfirmCartSubmit=()=>{
+        // Update Cart Database trước
+        // Điều hướng đến Phiếu mượn
+        var countBook=0;
+        cartItems.map((item)=>{
+            countBook=countBook + item.ischecked
+        })
+        if(cartItems.length===0)
+            alert('Giỏ hàng trống! Hãy tìm kiếm thêm vài cuốn sách cho giỏ hàng của bạn.')
+
+        else if(countBook < 1)
+            alert('Vui lòng chọn ít nhất một cuốn sách để mượn')
+        else
+        navigate('/borrow_slip')
+    }
+    const handleOnchangeSelectAll=()=>{
+        setCartItems((items)=>
+            items.map((item)=>
+                item= selectAll?  {...item,ischecked:false}:{...item,ischecked:true}
+            )
+        );
+        setSelectAll(!selectAll)
+    }
+   
     return (
     <div>
       <Header_Main></Header_Main>
@@ -165,48 +120,33 @@ const Cart = () => {
                             checked={item.ischecked}
                             onChange={()=>handleOnchangeChecked(item.id)}/>
                         <img
-                            className='book-cover'
-                            src={
-                                "data:image/jpeg;base64,"+item.image
-                            }
+                            className='book-cover-item'
+                            src={'data:image/jpeg;base64,'+item.image} //item.image
                             alt={item.title}/>
                         <p>{item.title}</p>
                         <div className='adjustNum-box'>
                             <button
-                                onClick={()=>{
-                                    handleDecrement(item.id);
-                                }}
+                                onClick={()=>handleDecrement(item.id)}
                                 >
                                 -
                             </button>
                             <input
-                                
-                                type='number' 
-                                min={1}
-                                value={item.amount}
-                                onChange={(e)=>{
-                                    handleChangeValue(e,item.id);
-                                }}/>
+                                disabled
+                                type='number'
+                                value={item.quantity}
+                                ></input>
                             <button
-                                onClick={()=>{
-                                    handleIncrement(item.id); 
-                                    
-                                }}
+                                onClick={()=>handleIncrement(item.id)}
                                 >
                                 +
                             </button>
                         </div>
-                        <img className='deleteBtn-Icon' src={recycleBin} alt='delete' onClick={()=>{
-                            handleDeleteFromCart(item.cartDetailId)
-                        }}/>
+                        <img className='deleteBtn-Icon' src={recycleBin} alt='delete' 
+                            onClick={()=>handleDeleteItem(item.id)}/>
                     </div>
                 )
             })}
         </div>
-      </div> 
-      <div>
-        <button onClick={handleSaveCart}>Lưu</button> 
-        <button onClick={handleDeleteAllFromCart}>Xóa toàn bộ</button>
 
         <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
       </div>

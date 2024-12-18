@@ -22,6 +22,7 @@ import CreateLibrarian from './Pages/CreateLibrarianAccount'
 import Cart from './Pages/Cart'
 import AllotPage from './Pages/Allot'
 import WorkDateTable from './Pages/LibrarianWork'
+import Borrow_Slip from './Pages/Borrow_Slip'
 function App(){
   return (
     <>
@@ -49,7 +50,8 @@ function App(){
               <Route path='/book_detail/:id' element={<Book_Detail></Book_Detail>}/>
               <Route path='/cart' element={<Cart></Cart>}/> 
               <Route path="/allot" element={<AllotPage></AllotPage>}/>
-              <Route path="/librarian_work_day" element={<WorkDateTable></WorkDateTable>}/>
+              <Route path="/librarian_work_day" element={<WorkDateTable></WorkDateTable>}/>  
+              <Route path="/borrow_slip" element={<Borrow_Slip></Borrow_Slip>}/>
           </Routes>
      </div>
     </>
