@@ -9,7 +9,8 @@ import BE_ENDPOINT from '../Env/EndPont';
 import displayImageURL from '../Env/DisplayImage';
 import { useNavigate } from "react-router-dom";
 
-const Book_Detail = () => { 
+const Book_Detail = () => {  
+ 
   function displayFeature() 
   {
     if(localStorage.getItem("role")=="0") 
@@ -85,7 +86,19 @@ const Book_Detail = () => {
     const remain=3;
     const navigate=useNavigate();
     const handleOnClickBorrowBtn=()=>{
-      navigate('/cart');
+      if(localStorage.getItem("role")!=0) 
+      {
+        navigate('/edit_book_title/'+bookId.id);
+      } 
+      else {
+        navigate("/cart");
+      }
+    }
+
+
+    async function onDeleteBook() 
+    {
+      const response = await fetch("")
     }
   return (
     <div>
@@ -99,8 +112,8 @@ const Book_Detail = () => {
             <div className='request-area'>
                 <img className='book-cover' src={displayImageURL(bookDetail?.imageData)} alt={'Book'+bookId.id}></img>
                 <div className='request-btn'>
-                  <button type='submit' className='btn-border'>
-                    <div onClick={handleAddToCart}>
+                  <button type='submit' className='btn-border' onClick={handleOnClickBorrowBtn}>
+                    <div >
                       <img src={displayImageURL(bookDetail?.imageData)} alt='Bag'></img>
                       <p>{displayFeature()}
                        </p>
