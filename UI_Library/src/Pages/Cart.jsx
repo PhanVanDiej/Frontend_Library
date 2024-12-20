@@ -19,7 +19,7 @@ const Cart = () => {
     const navigate=useNavigate()
 
     const [cartItems,setCartItems]=useState([]);
-    let selectedCartItem=[];
+    let [selectedCartItem, setSelectedCartItem] = useState([]);
     useEffect(()=>{ 
         async function getAllCartData() 
         {
@@ -37,7 +37,7 @@ const Cart = () => {
             const responseData = await response.json(); 
             console.log(responseData);
             setCartItems(responseData);
-            selectedCartItem=responseData;
+            setSelectedCartItem(responseData);
     
         } 
         getAllCartData();
@@ -93,7 +93,7 @@ const Cart = () => {
         }
        
     }
-    const handleConfirmCartSubmit=()=>{
+    const handleConfirmCartSubmit=async ()=>{
         // Update Cart Database trước
         // Điều hướng đến Phiếu mượn
         var countBook=0;
@@ -106,7 +106,32 @@ const Cart = () => {
         else if(countBook < 1)
             alert('Vui lòng chọn ít nhất một cuốn sách để mượn')
         else
-        navigate('/borrow_slip')
+        { 
+            const data= {
+                listRequest:selectedCartItem.map((item)=>{
+                     return {
+                        cartDetailId: item.cartDetailId,
+                        amount: item.amount
+                     }
+                })
+            }; 
+            console.log(selectedCartItem);
+            const response = await fetch(BE_ENDPOINT+"reader/borrow/cart", {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"Bearer "+localStorage.getItem("token")
+                },
+                body:JSON.stringify(data)
+            }); 
+            if(!response.ok) 
+            {
+                alert("Fail");
+                return;
+            } 
+            const responseData= await response.json();
+            console.log(responseData);
+        }
     }
     const handleOnchangeSelectAll=()=>{
        selectedCartItem=cartItems;
@@ -119,6 +144,7 @@ const Cart = () => {
                 amount:item.amount
             }
         });
+        
         const response = await fetch(BE_ENDPOINT+"reader/saveCart",{
             method:"PUT",
             headers:{
