@@ -19,6 +19,7 @@ const Cart = () => {
     const navigate=useNavigate()
 
     const [cartItems,setCartItems]=useState([]);
+    const [selectedCartItem, setSelectedCartItem] = useState([]);
     useEffect(()=>{ 
         async function getAllCartData() 
         {
@@ -36,6 +37,7 @@ const Cart = () => {
             const responseData = await response.json(); 
             console.log(responseData);
             setCartItems(responseData);
+            setSelectedCartItem(responseData);
     
         } 
         getAllCartData();
@@ -48,21 +50,32 @@ const Cart = () => {
     const handleIncrement=(id)=>{
         setCartItems((items)=>
             items.map((item)=>
-                item.id===id ? {...item,quantity: item.quantity+1 } : item
+                item.id===id ? {...item,amount: item.amount+1 } : item
             )
         );
     }
     const handleDecrement=(id)=>{
         setCartItems((items)=>
             items.map((item)=>
-                item.id===id && item.quantity > 1 ? {...item,quantity: item.quantity - 1 } : item
+                item.id===id && item.amount > 1 ? {...item,amount: item.amount - 1 } : item
             )
         );
     }
-    const handleDeleteItem=(id)=>{
-        setCartItems((items)=>
-            items.filter((item)=> item.id!==id)
-        )
+    const handleDeleteItem= async (id)=>{
+        const response= await fetch(BE_ENDPOINT+"reader/deleteItemFromCart/"+id,{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            alert("Fail");
+            return;
+        } 
+        alert("Success");
+        window.location.reload();
     }
 
     const handleOnchangeChecked=(id)=>{
@@ -94,8 +107,31 @@ const Cart = () => {
             )
         );
         setSelectAll(!selectAll)
-    }
-   
+    }     
+    async function onSaveAllCartItem(cartItems) 
+    {
+        const data= cartItems.map((item)=>{
+            return {
+                cartDetailId: item.cartDetailId,
+                amount:item.amount
+            }
+        });
+        const response = await fetch(BE_ENDPOINT+"reader/saveCart",{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token") 
+            },
+            body:JSON.stringify(data)
+        });
+        if(!response.ok) 
+        {
+            alert("Fail");
+            return;
+        } 
+        alert("Success");
+        return;
+    }   
     return (
     <div>
       <Header_Main></Header_Main>
@@ -133,7 +169,7 @@ const Cart = () => {
                             <input
                                 disabled
                                 type='number'
-                                value={item.quantity}
+                                value={item.amount}
                                 ></input>
                             <button
                                 onClick={()=>handleIncrement(item.id)}
@@ -142,13 +178,17 @@ const Cart = () => {
                             </button>
                         </div>
                         <img className='deleteBtn-Icon' src={recycleBin} alt='delete' 
-                            onClick={()=>handleDeleteItem(item.id)}/>
+                            onClick={()=>handleDeleteItem(item.cartDetailId)}/>
                     </div>
                 )
             })}
         </div>
 
         <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
+        <button className='cart-confirm-btn' onClick={(e)=>{
+            e.preventDefault();
+            onSaveAllCartItem(cartItems);
+        }}>Lưu</button>
       </div>
     </div>
   )
