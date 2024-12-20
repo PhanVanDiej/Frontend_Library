@@ -19,7 +19,7 @@ const Cart = () => {
     const navigate=useNavigate()
 
     const [cartItems,setCartItems]=useState([]);
-    const [selectedCartItem, setSelectedCartItem] = useState([]);
+    let selectedCartItem=[];
     useEffect(()=>{ 
         async function getAllCartData() 
         {
@@ -37,7 +37,7 @@ const Cart = () => {
             const responseData = await response.json(); 
             console.log(responseData);
             setCartItems(responseData);
-            setSelectedCartItem(responseData);
+            selectedCartItem=responseData;
     
         } 
         getAllCartData();
@@ -78,12 +78,20 @@ const Cart = () => {
         window.location.reload();
     }
 
-    const handleOnchangeChecked=(id)=>{
-        setCartItems((items)=>
-            items.map((item)=>
-                item.id===id ? {...item,ischecked: !item.ischecked } : item
-            )
-        );
+    const handleOnchangeChecked=(item, isChecked)=>{ 
+        if(isChecked) 
+        {
+            selectedCartItem.push(item);
+        } 
+        if(!isChecked) 
+        {
+            selectedCartItem= selectedCartItem.filter((i)=>{
+                if(i.cartDetailId==item.cartDetailId) 
+                    return false;
+                return true;
+            })
+        }
+       
     }
     const handleConfirmCartSubmit=()=>{
         // Update Cart Database trước
@@ -101,12 +109,7 @@ const Cart = () => {
         navigate('/borrow_slip')
     }
     const handleOnchangeSelectAll=()=>{
-        setCartItems((items)=>
-            items.map((item)=>
-                item= selectAll?  {...item,ischecked:false}:{...item,ischecked:true}
-            )
-        );
-        setSelectAll(!selectAll)
+       selectedCartItem=cartItems;
     }     
     async function onSaveAllCartItem(cartItems) 
     {
@@ -131,7 +134,8 @@ const Cart = () => {
         } 
         alert("Success");
         return;
-    }   
+    }     
+     
     return (
     <div>
       <Header_Main></Header_Main>
@@ -153,8 +157,12 @@ const Cart = () => {
                         <input 
                             className='checked-box'
                             type='checkbox'
-                            checked={item.ischecked}
-                            onChange={()=>handleOnchangeChecked(item.id)}/>
+                            defaultChecked={true}
+                            onChange={(e)=>{
+                                handleOnchangeChecked(item, e.target.checked);
+                                
+                                console.log(selectedCartItem);    
+                            }}/>
                         <img
                             className='book-cover-item'
                             src={'data:image/jpeg;base64,'+item.image} //item.image
