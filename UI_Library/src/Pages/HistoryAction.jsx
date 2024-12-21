@@ -65,7 +65,11 @@ const HistoryAction = () => {
     if(status=="BORROWING") 
     {
       return (
-        <button>Gia han</button>
+        < button onClick={(e)=>{
+          e.preventDefault();
+          onRenewal(item)
+        }} 
+        >Gia han</button>
       );
     } 
     return "";
@@ -89,6 +93,31 @@ const HistoryAction = () => {
         body:JSON.stringify(data)
       });
       if(!response.ok) 
+      {
+        alert("Fail");
+        return;
+      } 
+      alert("Success");
+      window.location.reload();
+  }
+
+  async function onRenewal(item) 
+  { 
+    const data= {
+      serviceId:item.service.serviceId,
+      bookId:[
+        item.book.id
+      ],
+      status:"RENEWAL"
+    }
+    const response = await fetch(BE_ENDPOINT+"borrowing-card-detail",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer "+localStorage.getItem(token)
+      }
+    });
+    if(!response.ok) 
       {
         alert("Fail");
         return;
