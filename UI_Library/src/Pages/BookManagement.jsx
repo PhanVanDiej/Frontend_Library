@@ -68,10 +68,15 @@ function BookManagementPage()
 
      function displayDeleteButton(item) 
      { 
-        if(item.status.id!=0)
+          
+        if(item.status.id==1) 
         {
-            return ""
+            return (<button>Lay sach</button>)
         } 
+        if(item.status.id==4) 
+        {
+            return (<button>Tra sach</button>)
+        }
         return (
             <button onClick={()=>{
                 onDeleteBook(item.id);
@@ -95,6 +100,8 @@ function BookManagementPage()
         alert("Success");
         window.location.reload();
      }
+
+     
 
     return (
         <div>
@@ -126,7 +133,7 @@ function BookManagementPage()
                                 <th>Ten dau sach</th> 
                                 <th>The loai</th> 
                                 <th>Trang thai</th> 
-                                <th>Xoa sach</th>
+                                <th>Hanh dong</th>
                             </tr>
                         </thead> 
                         <tbody>
@@ -141,7 +148,8 @@ function BookManagementPage()
                                             <td>{item.status.name}</td>
                                             <td>{ 
                                             displayDeleteButton(item)
-                                                }</td>
+                                                }</td> 
+                                            
                                         </tr>
                                     )
                                 })
