@@ -26,6 +26,41 @@ function BookManagementPage()
         getAllBookFromServer();
 
      },[]); 
+
+     async function readerTakeBook(item) 
+     { 
+        const response = await fetch(BE_ENDPOINT+"librarian/reader_take_book/"+item.id,{
+            method:"PUT",
+            headers:{ 
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            alert("Fail");
+            return;
+        } 
+        alert("Success");
+        window.location.reload();
+     }
+     async function returnBook(item) 
+     {
+        const response = await fetch(BE_ENDPOINT+"librarian/return_book/"+item.id,{
+            method:"PUT",
+            headers:{ 
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            alert("Fail");
+            return;
+        } 
+        alert("Success");
+        window.location.reload();
+     }
      function onSearch(searchType) 
      {
         const keyword= document.getElementById("searchData").value ;
@@ -71,11 +106,17 @@ function BookManagementPage()
           
         if(item.status.id==1) 
         {
-            return (<button>Lay sach</button>)
+            return (<button onClick={(e)=>{
+                e.preventDefault();
+                readerTakeBook(item);
+            }}>Lay sach</button>)
         } 
-        if(item.status.id==4) 
+        if(item.status.id==3) 
         {
-            return (<button>Tra sach</button>)
+            return (<button onClick={(e)=>{
+                e.preventDefault();
+                returnBook(item)
+            }}>Tra sach</button>)
         }
         return (
             <button onClick={()=>{
