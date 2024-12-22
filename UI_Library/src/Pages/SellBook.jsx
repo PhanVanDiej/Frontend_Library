@@ -1,4 +1,4 @@
-import React from "react"; 
+import React, { useEffect, useState } from "react"; 
 import Header_Main from "../Components/Header_Main"; 
 import * as XLSX from 'xlsx'
 import BE_ENDPOINT from "../Env/EndPont";
@@ -9,6 +9,24 @@ function SellBookForm()
         listDetailRequest:[]
 
     } 
+    
+
+    const [listBook, setListBook] = useState([]);  
+    const [listSellBook, setListSellBook] = useState([]);
+    useEffect(()=>{
+        async function getAllBook() 
+        {
+            const response = await fetch(BE_ENDPOINT+"books/all");
+            if(!response.ok) 
+            {
+                return;
+            } 
+            const responseData= await response.json(); 
+            console.log(responseData);
+            setListBook(responseData);
+        } 
+        getAllBook();
+    },[])
     async function onSubmit() 
     {
         const file = document.getElementById("uploadExcelFile").files[0];
@@ -40,28 +58,154 @@ function SellBookForm()
         const message= await response.text();
         document.getElementById("messageArea").innerHTML=message;
     }
+ 
+    function onConfirmAdd() 
+    {
+        
+        const newData = {
+            bookId:document.getElementById("bookId").value,
+            price:document.getElementById("price").value
+        }
+        let message="Khong co sach voi ma nay"; 
+        for(let i=0;i<listBook.length;i++) 
+        { 
+            if(listBook[i].id==newData.bookId) 
+            {
+                if(listBook[i].status.id!=0) 
+                {
+                    message="Khong the ban sach nay";
+                }
+                message="Yes";
+            }
+        } 
+        if(message!="Yes") 
+        {
+            document.getElementById("messageArea").innerHTML=message;
+            return;
+        } 
+
+        for(let i=0;i<listSellBook.length;i++) 
+        {
+            if(listSellBook[i].bookId==newData.bookId) 
+            {
+                message="Da them sach nay";
+            }
+        }
+        if(message!="Yes") 
+            {
+                document.getElementById("messageArea").innerHTML=message;
+                return;
+            }
+        
+        setListSellBook([...listSellBook, newData]) 
+       
+    } 
+    function onConfirmDeleteAll() 
+    {
+        setListSellBook([]);
+    }
+    function onDeleteAt(id) 
+    {
+        const listTemp= listSellBook.filter((item)=>{
+            if(item.bookId==id) 
+            {
+                return false;
+            } 
+            return true;
+        });
+        setListSellBook(listTemp);
+    }
+
+
+    async function onConfirmSell() 
+    {
+        const data = {
+            implementDate:new Date(),
+            listDetailRequest:listSellBook
+        } 
+        const response = await fetch(BE_ENDPOINT+"librarian/sell/book",{
+            method:"POST",
+            headers:{
+                "Content-Type":"Application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            },
+            body:JSON.stringify(data)
+        });
+        if(!response.ok) 
+        {
+            alert("Sell book fail");
+        }
+        const message= await response.text();
+        document.getElementById("messageArea").innerHTML=message;
+    }
    return (
     
         <div>
             <Header_Main>
 
             </Header_Main> 
+           <div>
+            <h2>Ban sach</h2> 
             <div>
-                <form onSubmit={(e)=>{ 
-                    e.preventDefault(); 
-                    onSubmit();
-
-                }}>
-                    <div>
-                        <label htmlFor="üploadExcelFile" > 
-                           Tải file dữ liệu
-                        </label> 
-                        <input type="file" required id="uploadExcelFile"/>
-                    </div> 
-                    <input type="submit" value="Xac nhan ban sach"/>
+                <form id="sell_book_info" onSubmit={(e)=>{
+                        e.preventDefault();
+                        onConfirmAdd();
+                    }}>
+                    <label htmlFor="bookId">Ma sach</label> 
+                    <input type="number" id="bookId" required/>
+                    <label htmlFor="price">Gia ban</label> 
+                    <input type="number" id="price" required/>
+                    <input type="submit" value="Them"/>
                 </form>
+                <div id="messageArea"></div>
+                <div>
+                    <button 
+                    onClick={(e)=>{
+                        e.preventDefault();
+                        onConfirmSell();
+                    }}  
+                    >Xac nhan</button> 
+                    <button  
+                    onClick={(e)=>{
+                        e.preventDefault();
+                        onConfirmDeleteAll();
+                    }}
+                    >Xoa toan bo</button> 
+                    <button>Huy</button>
+                </div>
             </div>
-            <p id="messageArea"></p>
+            <div>
+                <table border={1}>
+                    <thead>
+                        <tr>
+                            <th>STT</th> 
+                            <th>Ma sach</th> 
+                            <th>Gia ban</th> 
+                            <th>Xoa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            listSellBook.map((item, index)=>{ 
+                                return (
+                                <tr key={index}>
+                                    <td>{index+1}</td>  
+                                    <td>{item.bookId}</td> 
+                                    <td>{item.price}</td> 
+                                    <td><button onClick={
+                                        (e)=>{
+                                            e.preventDefault();
+                                            onDeleteAt(item.bookId);
+                                        }
+                                    }>Xoa</button></td>
+                                </tr>)
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
+           </div>
+            
         </div>
     
 
