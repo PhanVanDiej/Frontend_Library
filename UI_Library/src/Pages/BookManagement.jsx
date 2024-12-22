@@ -58,8 +58,16 @@ function BookManagementPage()
             alert("Fail");
             return;
         } 
-        alert("Success");
-        window.location.reload();
+        const responseData= await response.text();
+        if(responseData!="Success") 
+        {
+
+        } 
+        else {
+            alert("Success");
+            window.location.reload();
+        }
+
      }
      function onSearch(searchType) 
      {

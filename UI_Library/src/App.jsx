@@ -24,6 +24,7 @@ import AllotPage from './Pages/Allot'
 import WorkDateTable from './Pages/LibrarianWork'
 import Borrow_Slip from './Pages/Borrow_Slip'
 import BookManagementPage from './Pages/BookManagement'
+import PenaltyPage from './Pages/PenaltyPage'
 function App(){
   return (
     <>
@@ -54,6 +55,7 @@ function App(){
               <Route path="/librarian_work_day" element={<WorkDateTable></WorkDateTable>}/>  
               <Route path="/borrow_slip" element={<Borrow_Slip></Borrow_Slip>}/> 
               <Route path="/book_management" element={<BookManagementPage></BookManagementPage>}/>
+              <Route path="/penalty/:id" element={<PenaltyPage></PenaltyPage>}/>
           </Routes>
      </div>
     </>
