@@ -27,6 +27,8 @@ import BookManagementPage from './Pages/BookManagement'
 import PenaltyPage from './Pages/PenaltyPage'
 import BuyBookHistoryPage from './Pages/BuyBookHistory'
 import SellBookBillPage from './Pages/SellBookBillHistory'
+import ChangeNormalInfo from './Pages/ChangeNormalInfo'
+import EditEmail from './Pages/EditEmail'
 function App(){
   return (
     <>
@@ -59,7 +61,9 @@ function App(){
               <Route path="/book_management" element={<BookManagementPage></BookManagementPage>}/>
               <Route path="/penalty/:id" element={<PenaltyPage></PenaltyPage>}/> 
               <Route path="/buy_book_history" element={<BuyBookHistoryPage></BuyBookHistoryPage>}/> 
-              <Route path="/sell_book_history" element={<SellBookBillPage></SellBookBillPage>}/>
+              <Route path="/sell_book_history" element={<SellBookBillPage></SellBookBillPage>}/> 
+              <Route path="/edit_normal_info" element={<ChangeNormalInfo></ChangeNormalInfo>}/> 
+              <Route path="/edit_email" element={<EditEmail></EditEmail>}/>
           </Routes>
      </div>
     </>

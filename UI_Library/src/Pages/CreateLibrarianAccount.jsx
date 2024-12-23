@@ -61,9 +61,11 @@ function CreateLibrarian()
                             <label htmlFor="librarianEmail">Email: </label> 
                             <input id="librarianEmail" required type="email"/>
 
-                        </div>
+                        </div> 
+                        <br></br>
                        <input type="submit" value="Xac nhan"/>
-                    </form>
+                    </form> 
+                    
                 </div>
  
             </div>

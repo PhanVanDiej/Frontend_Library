@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
-import BE_ENDPOINT from "../Env/EndPont"; 
+import BE_ENDPOINT from "../Env/EndPont";  
+import "../Styles/Pages/BookManagement.css"
 function BookManagementPage() 
 {
     const [listSelectBook, setListSelectedBook] = useState([]);

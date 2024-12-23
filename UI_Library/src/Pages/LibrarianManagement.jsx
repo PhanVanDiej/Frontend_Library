@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"; 
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
-import LibrarianDetail from "../Components/LibrarianInformation";
+import LibrarianDetail from "../Components/LibrarianInformation"; 
+import "../Styles/Pages/LibrarianManagement.css"
 function LibrarianInformation(){
 const [librarianData, setLibrarianData]= useState([]);
 const [listSelectLibrarian, setListSelecctLibrarian]= useState([]);
@@ -18,7 +19,7 @@ function onSearchLibrarian(searchData)
 useEffect(()=>{ 
     async function getAllLibrarian() 
     {
-        const response = await fetch(BE_ENDPOINT+"admin/getAllLinrarian",{
+        const response = await fetch(BE_ENDPOINT+"admin/getAllLibrarian",{
             method:"GET",
             headers:{
                 "Content-Type":"application/json",

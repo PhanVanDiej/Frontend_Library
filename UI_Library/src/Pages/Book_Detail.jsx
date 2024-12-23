@@ -85,20 +85,68 @@ const Book_Detail = () => {
     // fetch data tai day
     const remain=3;
     const navigate=useNavigate();
-    const handleOnClickBorrowBtn=()=>{
+    const handleOnClickBorrowBtn=async ()=>{ 
+      console.log("Click");
       if(localStorage.getItem("role")!=0) 
       {
         navigate('/edit_book_title/'+bookId.id);
       } 
-      else {
+      else {  
+        
+        const data = {
+          bookTitleId:bookId.id
+        }
+        const response = await fetch(BE_ENDPOINT+"reader/addToCart",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("token")
+          },
+          body:JSON.stringify(data)
+        });
+        if(!response.ok) 
+        {
+          alert("Fail");
+          return;
+        } 
+        alert("Success");
         navigate("/cart");
       }
+    }
+    async function onBorrowOneBook() 
+    {
+      const response= await fetch(BE_ENDPOINT+"reader/borrowOneBook/"+bookId.id,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":"Bearer "+localStorage.getItem("token")
+        }
+      }); 
+      if(!response.ok) 
+        {
+            alert("Fail");
+            return;
+        } 
+        const responseData= await response.json();
+        console.log(responseData);
+        if(responseData.message=="Not enough"){
+        let messageString = "Khong du sach ";
+        for(let i=0;i<responseData.listResponse.length;i++) 
+        {
+            messageString+=responseData.listResponse[i]+",";
+        } 
+        messageString+="vui long dieu chinh lai so luong";
+        alert(messageString); 
+        return;
+        }
+        alert("Muon sach thanh cong"); 
+        navigate("/history");
     }
 
 
     async function onDeleteBook() 
     {
-      const response = await fetch("")
+      
     }
   return (
     <div>
@@ -112,14 +160,19 @@ const Book_Detail = () => {
             <div className='request-area'>
                 <img className='book-cover' src={displayImageURL(bookDetail?.imageData)} alt={'Book'+bookId.id}></img>
                 <div className='request-btn'>
-                  <button type='submit' className='btn-border' onClick={handleOnClickBorrowBtn}>
+                  <button type='submit' className='btn-border' onClick={(e)=>{ 
+                    e.preventDefault();
+                    handleOnClickBorrowBtn()}}>
                     <div >
                       <img src={displayImageURL(bookDetail?.imageData)} alt='Bag'></img>
                       <p>{displayFeature()}
                        </p>
                     </div>
                   </button>
-                  <button type='submit' className='btn-fill' onClick={handleOnClickBorrowBtn}>
+                  <button type='submit' className='btn-fill' onClick={(e)=>{
+                    e.preventDefault();
+                    onBorrowOneBook();
+                  }}>
                       { 
                       displayDeleteOrBorrow()
                       }

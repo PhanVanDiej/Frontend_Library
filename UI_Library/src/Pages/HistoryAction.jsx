@@ -21,7 +21,8 @@ const HistoryAction = () => {
         {
           return;
         } 
-        const responseData= await response.json();
+        const responseData= await response.json(); 
+        console.log(responseData);
         setListBorrowingDetail(responseData.reverse()); 
         setListSelectedBorrowingDetail(responseData.reverse());
     } 
@@ -92,11 +93,11 @@ const HistoryAction = () => {
         },
         body:JSON.stringify(data)
       });
-      if(!response.ok) 
+      /*if(!response.ok) 
       {
         alert("Fail");
         return;
-      } 
+      } */
       alert("Success");
       window.location.reload();
   }
@@ -105,17 +106,19 @@ const HistoryAction = () => {
   { 
     const data= {
       serviceId:item.service.serviceId,
-      bookId:[
+      booksId:[
         item.book.id
       ],
       status:"RENEWAL"
     }
+    console.log(data);
     const response = await fetch(BE_ENDPOINT+"borrowing-card-detail",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
-        "Authorization":"Bearer "+localStorage.getItem(token)
-      }
+        "Authorization":"Bearer "+localStorage.getItem("token")
+      },
+      body:JSON.stringify(data)
     });
     if(!response.ok) 
       {

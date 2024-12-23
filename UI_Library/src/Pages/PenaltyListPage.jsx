@@ -42,7 +42,7 @@ function PenaltyList()
                         </thead> 
                         <tbody>
                             {
-                                penaltyList.map((item, idex)=>{
+                                penaltyList.map((item, index)=>{
                                     return (
                                         <tr>
                                             <td>{index+1}</td> 

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import BE_ENDPOINT from '../Env/EndPont';
+import BE_ENDPOINT from '../Env/EndPont'; 
+import { useNavigate } from 'react-router-dom';
+import Header_Main from '../Components/Header_Main';
 
 const User_Information = () => { 
-  const userId=localStorage.getItem("userId");
+  const userId=localStorage.getItem("userId"); 
+  const navigate= useNavigate();
   function  onClickEditNormalInformation() 
-  {
+  {    
+    navigate("/edit_normal_info");
   } 
   function onClickChangeEmail()
   {
@@ -56,6 +60,7 @@ const User_Information = () => {
 
   return (
     <div>
+      <Header_Main></Header_Main>
       <h1>Thông tin tài khoản</h1>
 
       <div id="userInfoArea">
@@ -67,13 +72,19 @@ const User_Information = () => {
         <h3>Vai trò: </h3>
       </div>
       <div>
-        <button>Sửa đổi thông tin cơ bản</button>  
+        <button  onClick={
+          (e)=>{
+            e.preventDefault();
+            onClickEditNormalInformation();
+          }
+        }>Sửa đổi thông tin cơ bản</button>  
         <br></br>
         <button>Thay đổi email</button> 
         <br></br> 
         <button>Thay đổi mật khẩu</button> 
         <br></br>
-      </div>
+      </div> 
+      
     </div>
   )
 }
