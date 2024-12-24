@@ -93,11 +93,11 @@ const HistoryAction = () => {
         },
         body:JSON.stringify(data)
       });
-      /*if(!response.ok) 
+      if(!response.ok) 
       {
         alert("Fail");
         return;
-      } */
+      } 
       alert("Success");
       window.location.reload();
   }

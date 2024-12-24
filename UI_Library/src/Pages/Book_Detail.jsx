@@ -25,7 +25,7 @@ const Book_Detail = () => {
       {
         return "Muon sach"
       } 
-      return "Xoa"
+      return "Danh sach cac sach"
   }
   
   
@@ -144,9 +144,9 @@ const Book_Detail = () => {
     }
 
 
-    async function onDeleteBook() 
+    async function onMoveToBookPage() 
     {
-      
+        
     }
   return (
     <div>
@@ -194,7 +194,7 @@ const Book_Detail = () => {
                 </div>
                 <div className='detail-information'>
                   <h3>Thông tin chi tiết</h3>
-                  <p><span style={{color:"#8F8F8F"}}>Mã sách : </span>REZ2023428</p>
+                  <p><span style={{color:"#8F8F8F"}}>Mã sách : </span>{bookDetail.id}</p>
                   <hr/>
                   <p><span style={{color:"#8F8F8F"}}>Nhà xuất bản : </span>{bookDetail?.nxb}</p>
                   <hr/>

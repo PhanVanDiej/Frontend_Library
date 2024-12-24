@@ -45,31 +45,7 @@ function BookManagementPage()
         alert("Success");
         window.location.reload();
      }
-     async function returnBook(item) 
-     {
-        const response = await fetch(BE_ENDPOINT+"librarian/return_book/"+item.id,{
-            method:"PUT",
-            headers:{ 
-                "Content-Type":"application/json",
-                "Authorization":"Bearer "+localStorage.getItem("token")
-            }
-        });
-        if(!response.ok) 
-        {
-            alert("Fail");
-            return;
-        } 
-        const responseData= await response.text();
-        if(responseData!="Success") 
-        {
-
-        } 
-        else {
-            alert("Success");
-            window.location.reload();
-        }
-
-     }
+     
      function onSearch(searchType) 
      {
         const keyword= document.getElementById("searchData").value ;
@@ -113,19 +89,10 @@ function BookManagementPage()
      function displayDeleteButton(item) 
      { 
           
-        if(item.status.id==1) 
-        {
-            return (<button onClick={(e)=>{
-                e.preventDefault();
-                readerTakeBook(item);
-            }}>Lay sach</button>)
-        } 
+         
         if(item.status.id==3) 
         {
-            return (<button onClick={(e)=>{
-                e.preventDefault();
-                returnBook(item)
-            }}>Tra sach</button>)
+            return "Dang duoc muon";
         }
         return (
             <button onClick={()=>{
