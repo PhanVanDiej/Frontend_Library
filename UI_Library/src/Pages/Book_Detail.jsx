@@ -115,6 +115,11 @@ const Book_Detail = () => {
     }
     async function onBorrowOneBook() 
     {
+      if(localStorage.getItem("role")!=0) 
+      {
+        navigate("/book_management"); 
+        return;
+      }
       const response= await fetch(BE_ENDPOINT+"reader/borrowOneBook/"+bookId.id,{
         method:"POST",
         headers:{

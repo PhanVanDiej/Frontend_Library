@@ -2,11 +2,34 @@ import React, { useEffect, useState } from 'react'
 import Header_Main from '../Components/Header_Main'
 import '../Styles/Pages/HistoryAction.css'
 import BE_ENDPOINT from '../Env/EndPont'; 
-import formatDate from '../Env/FormatDate';
+import formatDate from '../Env/FormatDate'; 
+import Swal from "sweetalert2";
 const HistoryAction = () => { 
-
+  
   const [listBorrowingDetail, setListBorrowingDetail] = useState([]); 
-  const [listSelectedBorrowingDetail, setListSelectedBorrowingDetail] = useState([]);
+  const [listSelectedBorrowingDetail, setListSelectedBorrowingDetail] = useState([]); 
+  function chooseRenewalDate(item) 
+  { 
+     const oldExpireDate = item.expireDate;
+     const htmlTag=`<input id="newExpireDate" type="date" min=${oldExpireDate}/>`
+      Swal.fire(
+        {
+          title:"Chon ngay tra moi",
+          html:htmlTag,
+          focusConfirm:false,
+          preConfirm:()=>{
+            const date = Swal.getPopup().querySelector('#newExpireDate').value; 
+            if (!date) { Swal.showValidationMessage(`Please select a date`); } return { newExpireDate: date }}
+        }
+      ).then(
+        (result)=>{
+          if(result.isConfirmed) 
+          { 
+            onRenewal(item, result.value);
+          }
+        }
+      ) 
+    }
   useEffect(()=>{ 
     async function getBookBorrowingDetail() 
     {
@@ -49,7 +72,7 @@ const HistoryAction = () => {
     } 
     if(status=="RENEWAL") 
     {
-      return "Da gia han";
+      return "Dang cho gia han";
     }
   } 
   function displayAction(status, item) 
@@ -68,7 +91,7 @@ const HistoryAction = () => {
       return (
         < button onClick={(e)=>{
           e.preventDefault();
-          onRenewal(item)
+          chooseRenewalDate(item);
         }} 
         >Gia han</button>
       );
@@ -102,25 +125,17 @@ const HistoryAction = () => {
       window.location.reload();
   }
 
-  async function onRenewal(item) 
+  async function onRenewal(item, data) 
   { 
-    const data= {
-      serviceId:item.service.serviceId,
-      booksId:[
-        item.book.id
-      ],
-      status:"RENEWAL"
-    }
-    console.log(data);
-    const response = await fetch(BE_ENDPOINT+"borrowing-card-detail",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+localStorage.getItem("token")
-      },
-      body:JSON.stringify(data)
-    });
-    if(!response.ok) 
+      const response = await fetch(BE_ENDPOINT+"reader/renewal/"+item.id,{
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":"Bearer "+localStorage.getItem("token")
+        },
+        body:JSON.stringify(data)
+      });
+      if(!response.ok) 
       {
         alert("Fail");
         return;
@@ -131,7 +146,9 @@ const HistoryAction = () => {
   return (
     <div>
       <Header_Main></Header_Main>
+     
       <div className='content-wrapper'>
+        
         <div className='nav-cart-state'>
             <ul>
                 <li onClick={

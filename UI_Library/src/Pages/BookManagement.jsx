@@ -12,7 +12,7 @@ function BookManagementPage()
             const listBookResponse= await fetch(BE_ENDPOINT+"librarian/getAllBook",{
                 method:"GET",
                 headers:{
-                    "Content-Type":"äpplication/json",
+                    "Content-Type":"application/json",
                     "Authorization":"Bearer "+localStorage.getItem("token")
                 }
             });
