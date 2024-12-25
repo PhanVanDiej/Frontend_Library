@@ -26,7 +26,7 @@ function BookManagementPage()
             const listBookData = await listBookResponse.json();
             
             console.log(book);
-            if(book==null){
+            if(book.id==undefined){
             setListBook(listBookData);
             setListSelectedBook(listBookData); 
             console.log(listBookData); 

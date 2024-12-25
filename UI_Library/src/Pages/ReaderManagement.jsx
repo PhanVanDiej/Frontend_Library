@@ -2,11 +2,14 @@ import React, { useState , useEffect} from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import lockOrUnlockUser from "../FetchScripts/LockOrUnlockUser";
+import { useLocation } from "react-router-dom";
 
 function ReaderManagement()
 {
     const [listUser, setListUser] = useState([]);
     const [listTemp, setListTemp]= useState([]);
+    const location = useLocation();
+    const user = location.state||{};
 
     useEffect(()=>{ 
         async function fetchFromServer() 
@@ -23,9 +26,16 @@ function ReaderManagement()
                 return; 
             } 
             const responseData= await response.json(); 
-            
-            setListUser(responseData); 
-            setListTemp(responseData);
+            if(user.userId==undefined) 
+            {
+                setListUser(responseData); 
+                setListTemp(responseData);
+            }
+            else {
+                setListUser([user]);
+                setListTemp(responseData);
+                document.getElementById("searchBar").defaultValue=user.userId;
+            }
             
         } 
         fetchFromServer();
@@ -69,8 +79,10 @@ function ReaderManagement()
                                 <th>Mã độc giả</th>
                                 <th>Tên độc giả</th> 
                                 <th>Email</th> 
-                                <th>Số điện thoại</th> 
-                                <th>Trạng thái</th>
+                                <th>Số điện thoại</th>  
+                                <th>Số lần vi phạm</th>
+                                <th>Trạng thái</th> 
+                                
                             </tr>
                         </thead> 
                         <tbody>
@@ -86,18 +98,19 @@ function ReaderManagement()
                                         stateText="Mở khóa";
                                     }
                                     return <tr>
-                                        <th>{index+1}</th> 
-                                        <th>{item.userId}</th> 
-                                        <th>{item.fullname}</th> 
-                                        <th>{item.email}</th> 
-                                        <th>{item.phoneNumber}</th> 
-                                        <th><button onClick={
+                                        <td>{index+1}</td> 
+                                        <td>{item.userId}</td> 
+                                        <td>{item.fullname}</td> 
+                                        <td>{item.email}</td> 
+                                        <td>{item.phoneNumber}</td>  
+                                        <td>{item.penaltyTime}</td>
+                                        <td><button onClick={
                                             (e)=>{
                                                 e.preventDefault();
                                                 lockOrUnlockUser(item.userId,item.enable);
 
                                             }
-                                        }>{stateText}</button></th>
+                                        }>{stateText}</button></td>
                                     </tr>
                                 })
                             }

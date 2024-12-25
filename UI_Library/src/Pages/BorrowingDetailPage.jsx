@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 function BorrowingDetailPage() 
 {
     const [borrowDetailList, setBorrowDetailList]= useState([]);
@@ -31,13 +32,115 @@ function BorrowingDetailPage()
         getAllBorrowDetail();
 
     },[]);
+    function renewalOffline(item) 
+    { 
+        const oldExpireDate = item.expireDate;
+        const htmlTag=`<input id="newExpireDate" type="date" min=${oldExpireDate}/>`
+        Swal.fire({
+            title:"Chon ngay tra moi",
+            html:htmlTag,
+            focusConfirm:false,
+            preConfirm:()=>{
+            const date = Swal.getPopup().querySelector('#newExpireDate').value; 
+            if (!date) { Swal.showValidationMessage(`Please select a date`); } return { newExpireDate: date }}
+        }).then((result)=>{
+            if(result.isConfirmed) 
+            {
+                onRenewal(item, result.value);
+            }
+        })
+    } 
+    function navigateToUserInfo(item) 
+    { 
+        navigate("/reader_management",{
+            state:{user:item.service.reader}
+        })
+    }
+    function DestroyBookAndLockUser(item) 
+    {
+        Swal.fire(
+            {
+                title:"Xác nhận",
+                text:"Hủy sách và khóa tài khoản độc giả",
+                icon:"warning"
+            }
+        ).then((result)=>{
+            if(result.isConfirmed) 
+            {
 
+            }
+        })
+    } 
+    async function onDestroyBookAndLockUser(item) 
+    {
+        const response = await fetch(BE_ENDPOINT+"librarian/destroy_book_lock_user/"+item.id,{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            Swal.fire(
+                {
+                    title:"Thất bại",
+                    text:"Thao tác thất bại", 
+                    icon:"fail"
+                }
+            );
+            return;
+        } 
+        Swal.fire(
+            {
+                title:"Thành công",
+                text:"Thao tác thành công",
+                icon:"success"
+            }
+        ).then((result)=>{
+            window.location.reload();
+        })
+    }
+    async function onRenewal(item, newExpireDate) 
+    { 
+        const data = {
+            newExpireDate:newExpireDate
+        }
+        const response = await fetch(BE_ENDPOINT+"librarian/renewalOffline/"+item.id,{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            },
+            body:JSON.stringify(data)
+        });
+        if(!response.ok) 
+        {
+            Swal.fire({
+                title:"Gia hạn thất bại",
+                text:"Vui lòng thử lại",
+                icon:"fail"
+            });
+            return;
+        } 
+        Swal.fire({
+            title:"Gia hạn thành công",
+            text:"Gia hạn sách thành công",
+            icon:"success"
+        }).then((result)=>{
+            window.location.reload();
+        })
+    }
     function displayAction(item) 
     {
-        if(item.status=="RETURNED"||item.status=="CANCELLED") 
+        if(item.status=="RETURNED")
         {
-            return "";
-        } 
+            return "Đã trả";
+        }  
+        if(item.status=="CANCELLED") 
+        {
+            return "Đã hủy";
+        }
         if(item.status=="PENDING") 
         {
             return (<button
@@ -62,8 +165,18 @@ function BorrowingDetailPage()
                         }
                     }
                     >Nhan sach tra</button> 
-                    <button>Thong tin doc gia</button> 
-                    <button>Huy sach va khoa tai khoan</button>
+                    <button onClick={
+                        (e)=>{
+                            e.preventDefault();
+                            navigateToUserInfo(item);
+                        }
+                    }>Thong tin doc gia</button> 
+                    <button  onClick={
+                        (e)=>{
+                            e.preventDefault();
+                            DestroyBookAndLockUser(item);
+                        }
+                    }>Huy sach va khoa tai khoan</button>
                     </div> 
 
                 
@@ -78,7 +191,12 @@ function BorrowingDetailPage()
             }
             
             >Nhan sach tra</button>
-            <button>Gia han</button>
+            <button   
+            onClick={(e)=>{
+                e.preventDefault();
+                renewalOffline(item);
+            }}
+            >Gia han</button>
             
             </div>
         
