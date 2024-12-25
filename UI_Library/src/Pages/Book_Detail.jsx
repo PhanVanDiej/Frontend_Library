@@ -69,21 +69,7 @@ const Book_Detail = () => {
         navigate("/cart");
         
     }
-    const suggestBook = [
-      {id:0, name:"Product 0", image:""},
-      { id: 1, name: "Product 1", image: "" },
-      { id: 2, name: "Product 2", image: "" },
-      { id: 3, name: "Product 3", image: "" },
-      { id: 5, name: "Product 5", image: "" },
-      { id: 6, name: "Product 6", image: "" },
-      { id: 7, name: "Product 6", image: "" },
-      { id: 8, name: "Product 6", image: "" },
-      { id: 9, name: "Product 6", image: "" },
-      { id: 10, name: "Product 6", image: "" },
-      { id: 4, name: "Product 4", image: "" },
-    ]
-    // fetch data tai day
-    const remain=3;
+    
     const navigate=useNavigate();
     const handleOnClickBorrowBtn=async ()=>{ 
       console.log("Click");
@@ -117,7 +103,7 @@ const Book_Detail = () => {
     {
       if(localStorage.getItem("role")!=0) 
       {
-        navigate("/book_management"); 
+        navigate("/book_management",{state:bookDetail})
         return;
       }
       const response= await fetch(BE_ENDPOINT+"reader/borrowOneBook/"+bookId.id,{

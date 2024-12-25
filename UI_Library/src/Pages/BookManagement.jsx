@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";  
 import "../Styles/Pages/BookManagement.css"
+import { useLocation } from "react-router-dom";
 function BookManagementPage() 
-{
+{ 
+    const location = useLocation();
+    const book= location.state||{};
     const [listSelectBook, setListSelectedBook] = useState([]);
     const [listBook, setListBook] = useState([]);
      useEffect(()=>{
@@ -21,8 +24,22 @@ function BookManagementPage()
                     return;
                 }  
             const listBookData = await listBookResponse.json();
+            
+            console.log(book);
+            if(book==null){
             setListBook(listBookData);
-            setListSelectedBook(listBookData);
+            setListSelectedBook(listBookData); 
+            console.log(listBookData); 
+            return; 
+            } 
+            else {
+                setListBook(listBookData);
+                setListSelectedBook(listBookData.filter((item)=>{
+                    return (item.title.id== book.id);
+                }))
+                document.getElementById("searchData").defaultValue=book.name;
+            }
+
         } 
         getAllBookFromServer();
 

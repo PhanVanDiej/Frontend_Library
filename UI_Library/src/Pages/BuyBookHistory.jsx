@@ -37,8 +37,6 @@ function BuyBookHistoryPage()
                         <tr>
                             <th>STT</th> 
                             <th>Ma phieu nhap</th> 
-                            <th>Ma thu thu</th> 
-                            <th>Ten thu thu</th> 
                             <th>Ma dau sach</th> 
                             <th>Ten dau sach</th> 
                             <th>So luong</th> 
@@ -53,8 +51,7 @@ function BuyBookHistoryPage()
                                     <tr>
                                         <td>{index+1}</td> 
                                         <td>{item.buyBookBill.buyBookBillId}</td> 
-                                        <td>{item.buyBookBill.librarianId.userId}</td> 
-                                        <td>{item.buyBookBill.librarianId.fullname}</td> 
+                                        
                                         <td>{item.bookTitle.id}</td> 
                                         <td>{item.bookTitle.name}</td> 
                                         <td>{item.amount}</td> 

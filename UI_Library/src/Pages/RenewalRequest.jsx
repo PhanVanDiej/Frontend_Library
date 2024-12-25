@@ -51,7 +51,7 @@ function RenewalRequestPage()
         Swal.fire({
             title:"Phản hồi thành công!",
             text:"Đã phản hồi thành công ",
-            icon:"successsuccess"
+            icon:"success"
         }).then((result)=>{
             window.location.reload();
         });

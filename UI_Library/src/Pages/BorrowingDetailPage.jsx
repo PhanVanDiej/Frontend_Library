@@ -49,8 +49,27 @@ function BorrowingDetailPage()
             >Lay sach</button>);
         } 
         if(item.status=="BORROWING") 
-        {
-            return (<button
+        { 
+            const currentDate= new Date(); 
+            const expireDate= new Date(item.expireDate);
+            if(currentDate.getTime()>expireDate.getTime()) 
+            {
+                return (<div><button
+                    onClick={
+                        (e)=>{
+                            e.preventDefault();
+                            onReturnBook(item);
+                        }
+                    }
+                    >Nhan sach tra</button> 
+                    <button>Thong tin doc gia</button> 
+                    <button>Huy sach va khoa tai khoan</button>
+                    </div> 
+
+                
+                )
+            }
+            return (<div><button
             onClick={
                 (e)=>{
                     e.preventDefault();
@@ -58,7 +77,12 @@ function BorrowingDetailPage()
                 }
             }
             
-            >Nhan sach tra</button>)
+            >Nhan sach tra</button>
+            <button>Gia han</button>
+            
+            </div>
+        
+        )
         } 
         if(item.status=="RENEWAL") 
         {
