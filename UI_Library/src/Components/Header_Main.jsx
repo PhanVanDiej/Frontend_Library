@@ -46,19 +46,52 @@ export default function Header_Main() {
   const navigate = useNavigate();
 
   const handleOnClickResult=(id)=>{
+    closeSearchBox()
     navigate(`/book_detail/${id}`)
   }
+
+  // Thử với role=1
+  localStorage.setItem("role","1");
+  
+  const handleDutyOnClick=(path)=>{
+    return()=>
+      navigate(path);
+  }
+
   return (
     <div>
       <header className="header">
         <nav className="navbar">
             <img src={logo} alt='ArrowDown'></img>
             <Link to="/home" className='Home-title' style={{color:"#A27430"}}>Trang Chủ</Link>
+
+            {/* Thay đổi header theo role */}
             <ul>
-                <CustomLink to='/user_information'>Thông tin đọc giả</CustomLink>
-                <CustomLink to='/history'>Lịch sử hoạt động</CustomLink>
-                <CustomLink to='/announcement'>Thông báo</CustomLink>
+              {localStorage.getItem("role")=="1" &&(   // Role = 1 : thủ thư
+                <>
+                  <CustomLink to='/user_information'>Thông tin thủ thư</CustomLink>
+                  <li>
+                    <p>Nghiệp vụ</p>
+                    <ul className='dropdown-menu'>
+                      <li className='option-drop' onClick={handleDutyOnClick('/#')}>Quản lý độc giả</li>
+                      <li className='option-drop' onClick={handleDutyOnClick('/#')}>Quản lý sách</li>
+                      <li className='option-drop' onClick={handleDutyOnClick('/#')}>Danh sách yêu cầu gia hạn</li>
+                      <li className='option-drop' onClick={handleDutyOnClick('/#')}>Mua sách</li>
+                      <li className='option-drop' onClick={handleDutyOnClick('/#')}>Bán sách</li>
+                      <li className='option-drop' onClick={handleDutyOnClick('/#')}>Danh sách phiếu phạt</li>
+                    </ul>
+                  </li>
+                </>
+              )}
+              {localStorage.getItem("role")=="0" &&(  //role =0 : độc giả
+                <>
+                  <CustomLink to='/user_information'>Thông tin đọc giả</CustomLink>
+                  <CustomLink to='/history'>Lịch sử hoạt động</CustomLink>
+                  <CustomLink to='/announcement'>Thông báo</CustomLink>
+                </>
+              )}
             </ul>
+
             <div className='search-box' onClick={openSearchBox}>
               <img src={arrowDown} alt='ArrowDown'></img>
               <img src={transparency} alt='Transparency'></img>
