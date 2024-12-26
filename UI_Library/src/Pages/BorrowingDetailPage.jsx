@@ -67,7 +67,7 @@ function BorrowingDetailPage()
         ).then((result)=>{
             if(result.isConfirmed) 
             {
-
+                onDestroyBookAndLockUser(item)
             }
         })
     } 
@@ -153,8 +153,10 @@ function BorrowingDetailPage()
         } 
         if(item.status=="BORROWING") 
         { 
-            const currentDate= new Date(); 
-            const expireDate= new Date(item.expireDate);
+            const currentDate= new Date();
+            console.log(currentDate) 
+            const expireDate= new Date(item.expireDate); 
+            console.log(expireDate);
             if(currentDate.getTime()>expireDate.getTime()) 
             {
                 return (<div><button
