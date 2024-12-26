@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";  
 import "../Styles/Pages/BookManagement.css"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 function BookManagementPage() 
 { 
     const location = useLocation();
-    const book= location.state||{};
+    const book= location.state||{}; 
+    const navigate = useNavigate();
     const [listSelectBook, setListSelectedBook] = useState([]);
     const [listBook, setListBook] = useState([]);
      useEffect(()=>{
@@ -109,12 +110,27 @@ function BookManagementPage()
          
         if(item.status.id==3) 
         {
-            return "Dang duoc muon";
+            return (
+                <div>
+                    <p>Đang được mượn</p> 
+                    <button onClick={(e)=>{
+                e.preventDefault();
+                navigate("/book_detail/"+item.title.id)
+            }}>Xem tựa sách</button>
+                </div>
+            )
         }
         return (
+            <div>
             <button onClick={()=>{
                 onDeleteBook(item.id);
-            }}>Xoa sach</button>
+            }}>Xoa sach</button>  
+            <br></br>
+            <button onClick={(e)=>{
+                e.preventDefault();
+                navigate("/book_detail/"+item.title.id)
+            }}>Xem tựa sách</button>
+            </div>
         )
      }
      async function onDeleteBook(id) 
