@@ -71,7 +71,7 @@ export default function Header_Main() {
   const handleOnClickResult=(id)=>{
     navigate(`/book_detail/${id}`)
   }  
-  function handleDutyOnClick(link) 
+  const  handleDutyOnClick=(link) =>
   {
     
   }
@@ -83,12 +83,12 @@ export default function Header_Main() {
         <li>
           <p>Nghiệp vụ</p>
           <ul className='dropdown-menu'>
-            <li className='option-drop' onClick={handleDutyOnClick('/reader_management')}>Quản lý độc giả</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/book_management')}>Quản lý sách</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/renewal_request')}>Danh sách yêu cầu gia hạn</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/buy_book')}>Mua sách</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/sell_book')}>Bán sách</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/penalty_list')}>Danh sách phiếu phạt</li>
+            <li className='option-drop'><CustomLink to="/reader_management">Quản lý độc giả</CustomLink></li>
+            <li className='option-drop'><CustomLink to="/book_management">Quản lý sách</CustomLink></li>
+            <li className='option-drop'><CustomLink to="/renewal_request">Danh sách yêu cầu gia hạn</CustomLink></li>
+            <li className='option-drop'><CustomLink to="/buy_book">Mua sách</CustomLink></li>
+            <li className='option-drop'><CustomLink to="/sell_book">Bán sách</CustomLink></li>
+            <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li>
           </ul>
         </li>
       </>)

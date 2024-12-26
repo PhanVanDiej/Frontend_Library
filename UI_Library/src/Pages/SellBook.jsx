@@ -59,43 +59,31 @@ function SellBookForm()
         document.getElementById("messageArea").innerHTML=message;
     }
  
-    function onConfirmAdd() 
+    async function onConfirmAdd() 
     {
+        document.getElementById("messageArea").innerHTML="";
         
         const newData = {
             bookId:document.getElementById("bookId").value,
             price:document.getElementById("price").value
         }
-        let message="Khong co sach voi ma nay"; 
-        for(let i=0;i<listBook.length;i++) 
-        { 
-            if(listBook[i].id==newData.bookId) 
-            {
-                if(listBook[i].status.id!=0) 
-                {
-                    message="Khong the ban sach nay";
-                }
-                message="Yes";
+        const response = await fetch(BE_ENDPOINT+"librarian/checkCanSold/"+newData.bookId,{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
             }
-        } 
-        if(message!="Yes") 
-        {
-            document.getElementById("messageArea").innerHTML=message;
+        });
+        if(!response.ok) {
+            document.getElementById("messageArea").innerHTML="Đã có lỗi xảy ra, vui lòng thử lại";
             return;
-        } 
-
-        for(let i=0;i<listSellBook.length;i++) 
-        {
-            if(listSellBook[i].bookId==newData.bookId) 
-            {
-                message="Da them sach nay";
-            }
         }
-        if(message!="Yes") 
-            {
-                document.getElementById("messageArea").innerHTML=message;
-                return;
-            }
+        const responseData = await response.json();
+        if(responseData.message) 
+        {
+            document.getElementById("messageArea").innerHTML=responseData.message;
+            return;
+        }
         
         setListSellBook([...listSellBook, newData]) 
        

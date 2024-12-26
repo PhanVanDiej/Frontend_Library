@@ -22,7 +22,7 @@ function PenaltyList()
             setPenaltyList(responseData.reverse());
         } 
         getPenaltyFromServer();
-    })
+    },[])
     return ( 
         <div>
         <Header_Main></Header_Main> 

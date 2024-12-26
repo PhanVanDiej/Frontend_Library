@@ -56,18 +56,28 @@ function BuyBookForm()
             <div>
                 
                 <div>
-                    <button>Xoa toan bo</button>
-                    <button>Them</button>
+                   
+                    
                 </div> 
                 <div>
                 <div>
             <form id="buyBookTitle" onSubmit={(e)=>{
-                e.preventDefault();
+                e.preventDefault(); 
+                document.getElementById("messageArea").innerHTML="";
+
                 const data = {
                     bookTitleId:document.getElementById("buyBookTitleName")?.value,
                     amount:document.getElementById("buyBookTitleAmount")?.value,
                     price:document.getElementById("buyBookTitlePrice")?.value
-                }; 
+                };  
+                const filterList = listBookTitle.filter((item)=>{
+                    return item.name==data.bookTitleId
+                });
+                if(filterList.length==0) 
+                {
+                    document.getElementById("messageArea").innerHTML="Tên sách không tồn tại trong thư viện, vui lòng chọn tên khác";
+                    return;
+                }
                 const updateList={
                     ...listBuyBook,
                     listDetailRequest: [...listBuyBook.listDetailRequest, data]
@@ -78,13 +88,7 @@ function BuyBookForm()
             }}> 
                 <div>
                 <label htmlFor="buyBookTitleName">Ten sach: </label>
-                <select id="buyBookTitleName" required> 
-                    {
-                        listBookTitle?.map((item)=>{
-                            return <option value={item.id}>{item.name}</option>
-                        })
-                    }
-                    </select> 
+                <input type="text" id="buyBookTitleName" required/> 
                 </div> 
                 <div>
                 <label htmlFor="buyBookTitlePrice">Don gia:</label> 
@@ -99,7 +103,9 @@ function BuyBookForm()
 
                 
             </form>
-        </div>
+        </div> 
+        <div id="messageArea"></div>
+        <div><button>Xoa toan bo</button></div>
                 </div>
             </div>  
             <div>
