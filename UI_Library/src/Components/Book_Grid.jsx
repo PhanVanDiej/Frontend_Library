@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import BE_ENDPOINT from "../Env/EndPont"; 
 import displayImageURL from "../Env/DisplayImage";
 
-const BookGrid = ({ productsPerPage = 15, id }) => {
+const BookGrid = ({ productsPerPage = 10, id }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 

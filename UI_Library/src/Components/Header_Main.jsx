@@ -37,6 +37,7 @@ export default function Header_Main() {
         return;
       } 
       const responseData= await response.json();
+      console.log(responseData);
       setExampleBookData(responseData.map((item)=>{
         return {
           id:item.id,
@@ -69,6 +70,37 @@ export default function Header_Main() {
 
   const handleOnClickResult=(id)=>{
     navigate(`/book_detail/${id}`)
+  }  
+  function handleDutyOnClick(link) 
+  {
+
+  }
+  function display() {
+    if(localStorage.getItem("role")=="1" ) 
+    { return (   // Role = 1 : thủ thư
+      <>
+        <CustomLink to='/user_information'>Thông tin thủ thư</CustomLink>
+        <li>
+          <p>Nghiệp vụ</p>
+          <ul className='dropdown-menu'>
+            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Quản lý độc giả</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Quản lý sách</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Danh sách yêu cầu gia hạn</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Mua sách</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Bán sách</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Danh sách phiếu phạt</li>
+          </ul>
+        </li>
+      </>)
+    }
+    
+    else return (  //role =0 : độc giả
+      <>
+        <CustomLink to='/user_information'>Thông tin đọc giả</CustomLink>
+        <CustomLink to='/history'>Lịch sử hoạt động</CustomLink>
+        <CustomLink to='/announcement'>Thông báo</CustomLink>
+      </>
+    )
   }
   return (
     <div>
@@ -77,10 +109,14 @@ export default function Header_Main() {
             <img src={logo} alt='ArrowDown'></img>
             <Link to="/home" className='Home-title' style={{color:"#A27430"}}>Trang Chủ</Link>
             <ul>
-                <CustomLink to='/user_information'>Thông tin đọc giả</CustomLink>
-                <CustomLink to='/history'>Lịch sử hoạt động</CustomLink>
-                <CustomLink to='/announcement'>Thông báo</CustomLink>
+            <ul>
+              { 
+            display()
+          }
             </ul>
+
+            </ul>
+
             <div className='search-box' onClick={openSearchBox}>
               <img src={arrowDown} alt='ArrowDown'></img>
               <img src={transparency} alt='Transparency'></img>

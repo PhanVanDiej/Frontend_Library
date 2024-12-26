@@ -115,6 +115,7 @@ const Cart = () => {
                      }
                 })
             }; 
+            console.log(data);
             console.log(selectedCartItem);
             const response = await fetch(BE_ENDPOINT+"reader/borrow/cart", {
                 method:"POST",

@@ -8,7 +8,7 @@ function SellBookBillPage()
     useEffect(()=>{
         async function getAllListSellBook() 
         {
-            const response = await fetch(BE_ENDPOINT+"admin/getSellBookBill",{
+            const response = await fetch(BE_ENDPOINT+"librarian/getSellBookBill",{
                 method:"GET",
                 headers:{
                     "Content-Type":"application/json",

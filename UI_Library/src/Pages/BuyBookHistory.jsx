@@ -9,7 +9,7 @@ function BuyBookHistoryPage()
     useEffect(()=>{ 
         async function getDetailFromServer() 
         {
-            const response = await fetch(BE_ENDPOINT+"admin/getBuyBookBill",{
+            const response = await fetch(BE_ENDPOINT+"librarian/getBuyBookDetail",{
                 method:"GET",
                 headers:{
                     "Content-Type":"application/json",
