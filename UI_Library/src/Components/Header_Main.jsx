@@ -73,7 +73,7 @@ export default function Header_Main() {
   }  
   function handleDutyOnClick(link) 
   {
-
+    
   }
   function display() {
     if(localStorage.getItem("role")=="1" ) 
@@ -83,12 +83,12 @@ export default function Header_Main() {
         <li>
           <p>Nghiệp vụ</p>
           <ul className='dropdown-menu'>
-            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Quản lý độc giả</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Quản lý sách</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Danh sách yêu cầu gia hạn</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Mua sách</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Bán sách</li>
-            <li className='option-drop' onClick={handleDutyOnClick('/#')}>Danh sách phiếu phạt</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/reader_management')}>Quản lý độc giả</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/book_management')}>Quản lý sách</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/renewal_request')}>Danh sách yêu cầu gia hạn</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/buy_book')}>Mua sách</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/sell_book')}>Bán sách</li>
+            <li className='option-drop' onClick={handleDutyOnClick('/penalty_list')}>Danh sách phiếu phạt</li>
           </ul>
         </li>
       </>)

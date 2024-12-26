@@ -61,4 +61,5 @@ function PenaltyList()
             </div>
         </div>
     )
-}
+} 
+export default PenaltyList;

@@ -171,7 +171,8 @@ const Cart = () => {
             alert("Fail");
             return;
         } 
-        alert("Success");
+        alert("Success"); 
+        window.location.reload();
         return;
     }     
      

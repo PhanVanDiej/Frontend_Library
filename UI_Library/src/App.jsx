@@ -32,6 +32,7 @@ import EditEmail from './Pages/EditEmail'
 import BorrowingDetailPage from './Pages/BorrowingDetailPage'
 import RenewalRequestPage from './Pages/RenewalRequest'
 import BorrowOfflinePage from './Pages/BorrowingOffline'
+import PenaltyList from './Pages/PenaltyListPage'
 function App(){
   return (
     <>
@@ -70,6 +71,7 @@ function App(){
               <Route path="/all_borrow_detail" element={<BorrowingDetailPage></BorrowingDetailPage>}/> 
               <Route path="/renewal_request" element={<RenewalRequestPage></RenewalRequestPage>}/> 
               <Route path="/borrow_offline" element={<BorrowOfflinePage></BorrowOfflinePage>}/>
+              <Route path="/penalty_list" element={<PenaltyList></PenaltyList>}/>
           </Routes>
      </div>
     </>
