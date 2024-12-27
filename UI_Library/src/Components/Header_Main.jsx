@@ -7,6 +7,7 @@ import transparency from '../assets/Icons/transparency.png';
 import logo from '../assets/Icons/logo.png';
 import { useNavigate } from "react-router-dom";
 import BE_ENDPOINT from '../Env/EndPont';
+import Swal from 'sweetalert2';
 
 
 export default function Header_Main() {
@@ -71,10 +72,36 @@ export default function Header_Main() {
   const handleOnClickResult=(id)=>{
     navigate(`/book_detail/${id}`)
   }  
-  const  handleDutyOnClick=(link) =>
+  /*const htmlTag = (
+    <div>
+      <label htmllFor="startDate">Ngày bắt đầu</label> 
+      <input type="date" id="startDate"/> 
+      <br></br> 
+      <label htmlFor="endDate">Ngày kết thúc</label> 
+      <input type="date" id="endDate"/>
+    </div>
+  );
+  const htmlString =ReactDOMServer.renderToString(htmlTag);
+  function reportByBookTitle() 
   {
-    
-  }
+     Swal.fire({
+      title:"Thống kê lượt mượn theo tựa sách",
+      html:htmlString,
+      focusConfirm:false, 
+      preConfirm:()=>{
+        const startDate= Swal.getPopup().querySelector("#startDate").value;
+        const endDate = Swal.getPopup().querySelector("#endDate").value;
+        if(!startDate||!endDate) 
+        {
+          Swal.showValidationMessage("Vui lòng nhập đầy đủ ngày bắt đầu và ngày kết thúc");
+
+        } 
+        return {
+          
+        }
+      }
+     })
+  }*/
   function display() {
     if(localStorage.getItem("role")=="1" ) 
     { return (   // Role = 1 : thủ thư
@@ -88,7 +115,11 @@ export default function Header_Main() {
             <li className='option-drop'><CustomLink to="/renewal_request">Danh sách yêu cầu gia hạn</CustomLink></li>
             <li className='option-drop'><CustomLink to="/buy_book">Mua sách</CustomLink></li>
             <li className='option-drop'><CustomLink to="/sell_book">Bán sách</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li>
+            <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li> 
+            <li className="option-drop"><div><p>Lập báo cáo</p><ul className="dropdown-menu"> 
+              <li className="option-drop">Báo cáo lượt mượn theo tựa sách</li> 
+              <li className="option-drop">Báo cáo lượt mượn theo thể loại</li>
+              </ul></div></li>
           </ul>
         </li>
       </>)
