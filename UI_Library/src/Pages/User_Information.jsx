@@ -158,7 +158,7 @@ const User_Information = () => {
       console.log(userData);
       
       const userInfoArea= document.getElementById("userInfoArea");
-      userInfoArea.children[0].innerHTML="Mã độc giả: " + userData.userId;
+      userInfoArea.children[0].innerHTML="Mã tài khoản:" + userData.userId;
       userInfoArea.children[1].innerHTML="Họ và tên: "+userData.fullname;
       userInfoArea.children[2].innerHTML="Địa chỉ: "+userData.address;
       userInfoArea.children[3].innerHTML="Số điện thoại: "+userData.phoneNumber;

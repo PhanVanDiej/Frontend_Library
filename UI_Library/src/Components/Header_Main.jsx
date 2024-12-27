@@ -116,6 +116,9 @@ export default function Header_Main() {
             <li className='option-drop'><CustomLink to="/buy_book">Mua sách</CustomLink></li>
             <li className='option-drop'><CustomLink to="/sell_book">Bán sách</CustomLink></li>
             <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li> 
+            <li className="option-drop"><CustomLink to="/penalty">Lập phiếu phạt</CustomLink></li>
+            <li className="option-drop"><CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink></li>
+            <li className="option-drop"><CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink></li>
             <li className="option-drop"><CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink></li>
             <li className="option-drop"><div><p>Lập báo cáo</p><ul className="dropdown-menu"> 
               <li className="option-drop">Báo cáo lượt mượn theo tựa sách</li> 
