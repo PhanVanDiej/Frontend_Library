@@ -1,17 +1,21 @@
 import React,{useState} from "react";
 import Header from "../Components/Header_Register";
 import handleLogin  from "../FetchScripts/HandleLogin";
-export default function LoginPage() {
+import { useNavigate } from "react-router-dom";
+export default function LoginPage() { 
+  const navigate= useNavigate();
   async function Login(nameOrEmail, password) 
   {
     
       const result = await handleLogin(nameOrEmail, password);
       if(result==="Success") 
       {
-          console.log("Success");
+          console.log("Success"); 
+          navigate("/home");
+
       }
       else {
-        console.log("Fail");
+        document.getElementById("messageLogin").innerHTML="Đăng nhập thất bại";
       }
   }
   return (
@@ -31,8 +35,8 @@ export default function LoginPage() {
               <input id="LoginPassword" type="password" placeholder="Mật khẩu" required />
             </div>
             <div className="remember-forgot">
-              <label>
-                <input type="checkbox"></input>Remember me
+              <label id="messageLogin">
+               
               </label>
               <a href="/forgetPassword">Quên mật khẩu?</a>
             </div>
@@ -47,7 +51,7 @@ export default function LoginPage() {
             <div className="register-link">
               <p>
                 Bạn chưa có tài khoản,
-                <a href="#" style={{ color: "red" }}>
+                <a href="/signup" style={{ color: "red" }}>
                   Đăng kí
                 </a>
               </p>

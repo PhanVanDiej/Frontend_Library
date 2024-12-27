@@ -116,12 +116,14 @@ export default function Header_Main() {
             <li className='option-drop'><CustomLink to="/buy_book">Mua sách</CustomLink></li>
             <li className='option-drop'><CustomLink to="/sell_book">Bán sách</CustomLink></li>
             <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li> 
+            <li className="option-drop"><CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink></li>
             <li className="option-drop"><div><p>Lập báo cáo</p><ul className="dropdown-menu"> 
               <li className="option-drop">Báo cáo lượt mượn theo tựa sách</li> 
               <li className="option-drop">Báo cáo lượt mượn theo thể loại</li>
               </ul></div></li>
           </ul>
         </li>
+        <CustomLink to="/regulation">Quy định thư viện</CustomLink>
       </>)
     }
     
@@ -129,7 +131,8 @@ export default function Header_Main() {
       <>
         <CustomLink to='/user_information'>Thông tin đọc giả</CustomLink>
         <CustomLink to='/history'>Lịch sử hoạt động</CustomLink>
-        <CustomLink to='/announcement'>Thông báo</CustomLink>
+        <CustomLink to='/regulation'>Qui định thư viện</CustomLink>
+        <CustomLink to="/cart">Sách muốn mượn</CustomLink>
       </>
     )
   }

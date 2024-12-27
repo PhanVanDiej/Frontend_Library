@@ -34,6 +34,8 @@ import RenewalRequestPage from './Pages/RenewalRequest'
 import BorrowOfflinePage from './Pages/BorrowingOffline'
 import PenaltyList from './Pages/PenaltyListPage'
 import ForgetPassword from './Pages/ForgetPassword'
+import RegulationPage from './Pages/Regulation'
+import UpdateRegulationPage from './Pages/UpdateRegulation'
 function App(){
   return (
     <>
@@ -73,7 +75,9 @@ function App(){
               <Route path="/renewal_request" element={<RenewalRequestPage></RenewalRequestPage>}/> 
               <Route path="/borrow_offline" element={<BorrowOfflinePage></BorrowOfflinePage>}/>
               <Route path="/penalty_list" element={<PenaltyList></PenaltyList>}/> 
-              <Route path="/forgetPassword" element={<ForgetPassword></ForgetPassword>}/>
+              <Route path="/forgetPassword" element={<ForgetPassword></ForgetPassword>}/> 
+              <Route path="/regulation" element={<RegulationPage></RegulationPage>}/>
+              <Route path="/update_regulation" element={<UpdateRegulationPage></UpdateRegulationPage>}/>
           </Routes>
      </div>
     </>
