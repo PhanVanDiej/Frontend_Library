@@ -62,4 +62,5 @@ function PenaltyHistoryPage()
             </div>
         </div>
     )
-}
+} 
+export default PenaltyHistoryPage;

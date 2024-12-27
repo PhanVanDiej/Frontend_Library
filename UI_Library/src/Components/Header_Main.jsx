@@ -135,7 +135,9 @@ export default function Header_Main() {
         <CustomLink to='/user_information'>Thông tin đọc giả</CustomLink>
         <CustomLink to='/history'>Lịch sử hoạt động</CustomLink>
         <CustomLink to='/regulation'>Qui định thư viện</CustomLink>
-        <CustomLink to="/cart">Sách muốn mượn</CustomLink>
+        <CustomLink to="/cart">Sách muốn mượn</CustomLink> 
+        <CustomLink to="/penalty_history">Lịch sử vi phạm</CustomLink>
+        
       </>
     )
   }

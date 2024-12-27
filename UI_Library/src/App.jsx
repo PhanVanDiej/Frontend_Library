@@ -36,6 +36,7 @@ import PenaltyList from './Pages/PenaltyListPage'
 import ForgetPassword from './Pages/ForgetPassword'
 import RegulationPage from './Pages/Regulation'
 import UpdateRegulationPage from './Pages/UpdateRegulation'
+import PenaltyHistoryPage from './Pages/PenaltyHistoryPage'
 function App(){
   return (
     <>
@@ -77,7 +78,8 @@ function App(){
               <Route path="/penalty_list" element={<PenaltyList></PenaltyList>}/> 
               <Route path="/forgetPassword" element={<ForgetPassword></ForgetPassword>}/> 
               <Route path="/regulation" element={<RegulationPage></RegulationPage>}/>
-              <Route path="/update_regulation" element={<UpdateRegulationPage></UpdateRegulationPage>}/>
+              <Route path="/update_regulation" element={<UpdateRegulationPage></UpdateRegulationPage>}/> 
+              <Route path="/penalty_history" element={<PenaltyHistoryPage></PenaltyHistoryPage>}/>
           </Routes>
      </div>
     </>
