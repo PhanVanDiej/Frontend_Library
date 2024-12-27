@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate"; 
 import "../Styles/Pages/BuyBookHistory.css"
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function BuyBookHistoryPage() 
 { 
     const [listBuyBookDetail, setListBuyBookDetail] = useState([]);
@@ -25,7 +26,8 @@ function BuyBookHistoryPage()
             setListBuyBookDetail(responseData.reverse());
         }
         getDetailFromServer();
-    },[])
+    },[]) 
+    permissionLibrarian();
     return (  
         <div>
         <Header_Main></Header_Main>

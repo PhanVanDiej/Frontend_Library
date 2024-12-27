@@ -5,6 +5,7 @@ import BookCover from '../assets/Book_Cover/rezero.png'
 import recycleBin from '../assets/Icons/recycle_bin.png'
 import { useNavigate } from 'react-router-dom' 
 import BE_ENDPOINT from '../Env/EndPont'
+import permissionReader from '../Env/PermissionReader'
 
 const exampleCartItems=[
         { id: 1, title: 'Re: Zero - Bắt đầu lại ở một thế giới khác - Tập 18', image:'', quantity: 1, ischecked: true},
@@ -175,7 +176,7 @@ const Cart = () => {
         window.location.reload();
         return;
     }     
-     
+     permissionReader();
     return (
     <div>
       <Header_Main></Header_Main>

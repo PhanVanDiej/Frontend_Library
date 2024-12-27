@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";  
 import "../Styles/Pages/BookManagement.css"
 import { useLocation, useNavigate } from "react-router-dom";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function BookManagementPage() 
 { 
     const location = useLocation();
@@ -152,7 +153,7 @@ function BookManagementPage()
      }
 
      
-
+     permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main> 

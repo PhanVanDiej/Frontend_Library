@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header_Main from '../Components/Header_Main'; 
 import ReactDOMServer from 'react-dom/server';
 import Swal from 'sweetalert2';
+import permissionReader from '../Env/PermissionReader';
 
 const User_Information = () => { 
   const userId=localStorage.getItem("userId"); 
@@ -183,7 +184,7 @@ const User_Information = () => {
        fetchUser(userId);
     }
   },[]);
-
+  permissionReader();
   return (
     <div>
       <Header_Main></Header_Main>

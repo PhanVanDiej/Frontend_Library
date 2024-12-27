@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import lockOrUnlockUser from "../FetchScripts/LockOrUnlockUser";
 import { useLocation } from "react-router-dom";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 
 function ReaderManagement()
 {
@@ -54,7 +55,7 @@ function ReaderManagement()
         });
         setListUser(listResult);
     }
-
+    permissionLibrarian();
     return (
         <div>
             <Header_Main>

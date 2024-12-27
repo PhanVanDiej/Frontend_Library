@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import Swal from "sweetalert2";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function RenewalRequestPage() 
 { 
     const [listRenewalRequest, setListRenewalRequest] = useState([]);
@@ -73,7 +74,8 @@ function RenewalRequestPage()
             }
         })
 
-    }
+    } 
+    permissionLibrarian();
     return (
 
         <div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react"; 
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function BorrowOfflinePage() 
 { 
     const [listBook, setListBook] = useState([]);
@@ -66,6 +67,7 @@ function BorrowOfflinePage()
 
         alert("Thành công");
     }
+    permissionLibrarian();
     return (
         <div>
             <Header_Main>

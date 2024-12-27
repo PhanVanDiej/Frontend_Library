@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import { useNavigate } from "react-router-dom";
 import BE_ENDPOINT from "../Env/EndPont";
+import permissionReader from "../Env/PermissionReader";
 function ChangeNormalInfo() 
 {  
     
@@ -48,7 +49,8 @@ function ChangeNormalInfo()
         alert("Success"); 
         navigate("/user_information");
         
-    }
+    } 
+    permissionReader();
     return (
         <div>
             <Header_Main>

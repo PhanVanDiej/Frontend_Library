@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
+import permissionReader from "../Env/PermissionReader";
 function PenaltyHistoryPage() 
 { 
     const [listPenalty, setListPenalty] = useState([]);
@@ -25,6 +26,7 @@ function PenaltyHistoryPage()
         getPenaltyList();
 
     },[])
+    permissionReader();
     return (
         <div>
             <Header_Main></Header_Main> 

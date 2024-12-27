@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import displayImageURL from "../Env/DisplayImage";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function EditBookTypeForm() 
 {
     const bookTypeId= useParams();
@@ -74,6 +75,7 @@ function EditBookTypeForm()
 
         }
     }
+    permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"; 
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function RegisterNewBookTypeForm() 
 {
     async function onSubmit() 
@@ -40,7 +41,8 @@ function RegisterNewBookTypeForm()
             e.preventDefault(); 
             onSubmit();
         })
-    },[])
+    },[]) 
+    permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main>   

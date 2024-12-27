@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main"; 
 import * as XLSX from 'xlsx'
 import BE_ENDPOINT from "../Env/EndPont";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function SellBookForm() 
 {
     const listBookSell = {
@@ -125,7 +126,8 @@ function SellBookForm()
         }
         const message= await response.text();
         document.getElementById("messageArea").innerHTML=message;
-    }
+    } 
+    permissionLibrarian();
    return (
     
         <div>

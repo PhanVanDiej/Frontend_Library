@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import Swal from "sweetalert2";
 import BE_ENDPOINT from "../Env/EndPont";
 import { useNavigate } from "react-router-dom";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function UpdateRegulationPage() 
 {
     const [regulation, setRegulation] = useState({}); 
@@ -65,13 +66,17 @@ function UpdateRegulationPage()
             }
 
         })
-    }
+    } 
+    permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main> 
             <div>
                 <h2>Thay đổi quy định thư viện</h2> 
-                <form>
+                <form onSubmit={(e)=>{
+                    e.preventDefault();
+                    onClickSubmit();
+                }}>
                     <label htmlFor="defaultBorrowingDay">Hạn trả sách mặc định (tính từ ngày mượn)</label>
                     <input type="number" id="defaultBorrowingDay" required defaultValue={regulation.defaultBorrowingDays}/> 
                     <label htmlFor="daysToTakeBook">Hạn lấy sách (tính từ ngày mượn)</label> 

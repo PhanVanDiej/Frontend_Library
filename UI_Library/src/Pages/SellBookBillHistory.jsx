@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function SellBookBillPage() 
 { 
     const [listSellBook, setListSellBook] = useState([]);
@@ -25,7 +26,8 @@ function SellBookBillPage()
 
         } 
         getAllListSellBook();
-    },[])
+    },[]) 
+    permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main> 

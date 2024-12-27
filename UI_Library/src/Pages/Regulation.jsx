@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"; 
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
+import permissionReader from "../Env/PermissionReader";
 function RegulationPage() { 
     const [regulation, setRegulation] = useState({});
     useEffect(()=>{ 
@@ -12,7 +13,8 @@ function RegulationPage() {
         }
         getRegulation(); 
         
-    },[])
+    },[]) 
+    permissionReader();
     return (
         <div>
         <Header_Main>

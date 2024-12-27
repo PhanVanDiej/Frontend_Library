@@ -4,6 +4,7 @@ import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function BorrowingDetailPage() 
 {
     const [borrowDetailList, setBorrowDetailList]= useState([]);
@@ -257,7 +258,8 @@ function BorrowingDetailPage()
         } 
         alert("Success");
         window.location.reload();
-    }
+    } 
+    permissionLibrarian();
     return (
         <div>
             <Header_Main>

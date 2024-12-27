@@ -8,6 +8,7 @@ import ScrollList from '../Components/ScrollList_Book';
 import BE_ENDPOINT from '../Env/EndPont'; 
 import displayImageURL from '../Env/DisplayImage';
 import { useNavigate } from "react-router-dom";
+import permissionReader from '../Env/PermissionReader';
 
 const Book_Detail = () => {  
  
@@ -35,6 +36,7 @@ const Book_Detail = () => {
     useEffect(()=>{
       async function fetchToServer(bookId) 
       { 
+       
         const response= await fetch(BE_ENDPOINT+"book-titles/details/"+bookId);
         if(!response.ok) 
         {
@@ -44,7 +46,8 @@ const Book_Detail = () => {
         console.log(responseData);
         setBookDetail(responseData)
         
-      } 
+      }  
+      
       fetchToServer(bookId.id);
       console.log("Fetch")
     },[]);
@@ -139,6 +142,7 @@ const Book_Detail = () => {
     {
         
     }
+    permissionReader();
   return (
     <div>
       <Header_Main></Header_Main>

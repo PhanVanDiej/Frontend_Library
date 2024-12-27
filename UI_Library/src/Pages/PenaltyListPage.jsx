@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"; 
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function PenaltyList() 
 {
     const [penaltyList, setPenaltyList]= useState([]);
@@ -22,7 +23,8 @@ function PenaltyList()
             setPenaltyList(responseData.reverse());
         } 
         getPenaltyFromServer();
-    },[])
+    },[]) 
+    permissionLibrarian();
     return ( 
         <div>
         <Header_Main></Header_Main> 

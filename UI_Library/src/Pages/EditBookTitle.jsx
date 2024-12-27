@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import BE_ENDPOINT from "../Env/EndPont";
 import Header_Main from "../Components/Header_Main";
 import displayImageURL from "../Env/DisplayImage";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function EditBookTitleForm()
 {
     const bookId = useParams();
@@ -97,7 +98,7 @@ function EditBookTitleForm()
         fetchToServer();
 
     },[])
-
+    permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main>

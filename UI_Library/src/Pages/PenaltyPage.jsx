@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
+import permissionLibrarian from "../Env/PermissionLibrarian";
 function PenaltyPage() 
 {
     const penaltyId = useParams();
@@ -46,7 +47,7 @@ function PenaltyPage()
         } 
         alert("Success");
     }
-
+    permissionLibrarian();
     return (<div>
             <Header_Main></Header_Main> 
             <div>

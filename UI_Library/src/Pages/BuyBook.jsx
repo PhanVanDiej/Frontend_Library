@@ -4,6 +4,7 @@ import BuyBookTitleForm from "../Components/BuyBookTitleForm";
 import BE_ENDPOINT from "../Env/EndPont";
 import BuyBook from "../FetchScripts/BuyBook";
 import "../Styles/Pages/BuyBook.css"
+import permissionLibrarian from "../Env/PermissionLibrarian";
 
 function BuyBookForm() 
 {
@@ -48,7 +49,7 @@ function BuyBookForm()
         } 
         return "";
     }
-
+    permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main>  

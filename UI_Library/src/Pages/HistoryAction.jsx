@@ -4,6 +4,7 @@ import '../Styles/Pages/HistoryAction.css'
 import BE_ENDPOINT from '../Env/EndPont'; 
 import formatDate from '../Env/FormatDate'; 
 import Swal from "sweetalert2";
+import permissionReader from '../Env/PermissionReader';
 const HistoryAction = () => { 
   
   const [listBorrowingDetail, setListBorrowingDetail] = useState([]); 
@@ -58,7 +59,7 @@ const HistoryAction = () => {
     {
       return "Dang cho lay";
     } 
-    if(status=="CANCELLED") 
+    if(status=="CANCELLED"||status=="DESTROY") 
     {
       return "Da huy";
     } 
@@ -142,7 +143,8 @@ const HistoryAction = () => {
       } 
       alert("Success");
       window.location.reload();
-  }
+  } 
+  permissionReader();
   return (
     <div>
       <Header_Main></Header_Main>
