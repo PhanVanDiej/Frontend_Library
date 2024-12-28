@@ -72,7 +72,7 @@ function BuyBookForm()
                     price:document.getElementById("buyBookTitlePrice")?.value
                 };  
                 const filterList = listBookTitle.filter((item)=>{
-                    return item.name==data.bookTitleId
+                    return item.id==data.bookTitleId
                 });
                 if(filterList.length==0) 
                 {

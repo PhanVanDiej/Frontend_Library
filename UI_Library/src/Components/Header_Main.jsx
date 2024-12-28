@@ -6,7 +6,8 @@ import downBlack from '../assets/Icons/down_black.png';
 import transparency from '../assets/Icons/transparency.png';
 import logo from '../assets/Icons/logo.png';
 import { useNavigate } from "react-router-dom";
-import BE_ENDPOINT from '../Env/EndPont';
+import BE_ENDPOINT from '../Env/EndPont'; 
+import ReactDOMServer from 'react-dom/server';
 import Swal from 'sweetalert2';
 
 
@@ -101,7 +102,52 @@ export default function Header_Main() {
         }
       }
      })
-  }*/
+  }*/  
+ const htmlTag = (
+  <div>
+    <p>Ngày bắt đầu</p> 
+    <input type="date" id="startDate"/> 
+    <p>Ngày kết thúc</p>
+    <input type="date" id="endDate"/>
+  </div>
+ )
+ const htmlString = ReactDOMServer.renderToString(htmlTag);
+ function onClickReport(option) 
+ {
+    Swal.fire({
+      title:"Lập báo cáo theo thể loại", 
+      html:htmlString,
+      focusConfirm:false,
+      preConfirm:()=>{
+        const startDate= Swal.getPopup().querySelector("#startDate").value;
+        const endDate = Swal.getPopup().querySelector("#endDate").value;
+        if(!startDate||!endDate) 
+        {
+          Swal.showValidationMessage("Cần điền đầy đủ ngày bắt đâuf và ngày kết thúc");
+        }
+        const startDayString =`${startDate.getYear()}-${startDate.getMonth()+1}-${startDate.getDay()}`;
+        const endDayString = `${endDate.getYear()}-${endDate.getMonth()+1}-${endDate.getDay()}`;
+        return {
+          start:startDayString,
+          end:endDayString
+        }
+      }
+
+    }).then(async (result)=>{
+      if(result.isConfirmed) 
+      {
+        if(option==1) 
+        {
+          const response = await fetch(BE_ENDPOINT+"/book-titles/report"+`?strartDate=${result.value.start}&endDate=${result.value.end}`);
+          return;
+        } 
+        else {
+          const response = await fetch(BE_ENDPOINT+"/book-types/report"+`?strartDate=${result.value.start}&endDate=${result.value.end}`);
+          return;
+        }
+      }
+    })
+ }
   function display() {
     if(localStorage.getItem("role")=="1" ) 
     { return (   // Role = 1 : thủ thư
@@ -121,8 +167,18 @@ export default function Header_Main() {
             <li className="option-drop"><CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink></li>
             <li className="option-drop"><CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink></li>
             <li className="option-drop"><div><p>Lập báo cáo</p><ul className="dropdown-menu"> 
-              <li className="option-drop">Báo cáo lượt mượn theo tựa sách</li> 
-              <li className="option-drop">Báo cáo lượt mượn theo thể loại</li>
+              <li className="option-drop" onClick={
+                (e)=>{
+                  e.preventDefault();
+                  onClickReport(1);
+                }
+              }>Báo cáo lượt mượn theo tựa sách</li> 
+              <li className="option-drop"  onClick={
+                (e)=>{
+                  e.preventDefault();
+                  onClickReport(0);
+                }
+              }>Báo cáo lượt mượn theo thể loại</li>
               </ul></div></li>
           </ul>
         </li>

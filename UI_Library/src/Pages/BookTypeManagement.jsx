@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import displayImageURL from "../Env/DisplayImage";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import BE_ENDPOINT from "../Env/EndPont";
 
 function BookTypeManagement() 
 { 
@@ -25,6 +27,40 @@ function BookTypeManagement()
             return (item.name.includes(searchData));
         }) 
         setSelectProducts(listResult);
+    } 
+    function onClickDelete(item) 
+    {
+        Swal.fire({
+            title:"Xóa thể loại",
+            text:"Chắc chắn xóa thể loại?"
+        }).then((result)=>{
+            if(result.isConfirmed) {
+
+            }
+        })  
+    } 
+    async function onDelete(item) 
+    {
+        const response = await fetch(BE_ENDPOINT+"librarian/delete_book_type/"+item.id,{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+        });
+        if(!response.ok) 
+        {
+            Swal.fire({
+                title:"Xóa thất bạibại",
+                text:"Không thể xóa thể loại này"
+            });
+            return;
+        } 
+        Swal.fire({
+            title:"Xóa thành công",
+            text:"Đã xóa thể loại sách"
+        });
+        window.location.reload();
     }
     return (
         <div>
