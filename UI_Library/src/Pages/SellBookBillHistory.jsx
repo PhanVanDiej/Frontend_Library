@@ -32,19 +32,18 @@ function SellBookBillPage()
         <div>
             <Header_Main></Header_Main> 
             <div>
-                <h2>Lich su ban sach</h2> 
+                <h2>Lịch sử thanh lý</h2> 
                 <div>
                     <table border={1}>
                         <thead>
                             <tr>
                                 <th>STT</th>  
-                                <th>Ma phieu ban</th>
-                                <th>Ma sach</th> 
-                                <th>Ten sach</th> 
-                                <th>Ma thu thu</th> 
-                                <th>Ten thu thu</th> 
-                                <th>Gia ban</th> 
-                                <th>Ngay ban</th>
+                                <th>Mã phiếu thanh lý:</th>
+                                <th>Mã sách:</th> 
+                                <th>Tên tựa sách:</th> 
+                                
+                                <th>Giá thanh lý</th> 
+                                <th>Ngày thanh lýlý</th>
                             </tr>
                         </thead> 
                         <tbody>
@@ -56,8 +55,6 @@ function SellBookBillPage()
                                         <td>{item.sellBookBill.sellBookBillId}</td> 
                                         <td>{item.book.id}</td> 
                                         <td>{item.book.title.name}</td> 
-                                        <td>{item.sellBookBill.librarian.userId}</td> 
-                                        <td>{item.sellBookBill.librarian.fullname}</td> 
                                         <td>{item.price}</td> 
                                         <td>{formatDate(item.sellBookBill.implementDate)}</td>
                                     </tr>

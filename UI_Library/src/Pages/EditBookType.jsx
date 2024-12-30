@@ -79,21 +79,22 @@ function EditBookTypeForm()
     return (
         <div>
             <Header_Main></Header_Main>
+            <h2>Thay đổi thông tin thể loại sách</h2>
                 <form id="editBookTypeForm">
                     <div>
-                        <label htmlFor="bookTypeName">Ten the loai:  </label>  
+                        <label htmlFor="bookTypeName">Tên thể loại:  </label>  
                         <input type="text" id="bookTypeName"  defaultValue={bookType?.name}required/>
                     </div> 
                     <div>
-                        <label>Hinh anh the loai sach</label> 
+                        <label>Hình ảnh thể loại sách</label> 
                         <img src={displayImageURL(bookType?.imageData)} ></img>
                     </div> 
                     <div>
-                        <label htmlFor="bookTypeImage">Upload file anh neu muon thay doi hinh anh bia sach</label>
+                        <label htmlFor="bookTypeImage">Upload file ảnh nếu muốn thay đổi hình minh họa thể loại</label>
                         <input type="file" id="bookTypeImage"/>
                     </div> 
                     <div>
-                        <input type="submit" value="Xac nhan"/>
+                        <input type="submit" value="Xác nhậnnhận"/>
                     </div>
                 </form>
                 <p id="MessageZone"></p>

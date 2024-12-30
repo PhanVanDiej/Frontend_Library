@@ -31,7 +31,7 @@ function PenaltyHistoryPage()
         <div>
             <Header_Main></Header_Main> 
             <div>
-                <h2>Lich su vi pham</h2> 
+                <h2>Lịch sử vi phạmphạm</h2> 
                 <div>
                     <table>
                         <thead>

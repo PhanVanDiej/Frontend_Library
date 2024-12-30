@@ -134,16 +134,16 @@ const Cart = () => {
             const responseData= await response.json();
             console.log(responseData);
             if(responseData.message=="Not enough"){
-            let messageString = "Khong du sach ";
+            let messageString = "Không đủ sáchsách ";
             for(let i=0;i<responseData.listResponse.length;i++) 
             {
                 messageString+=responseData.listResponse[i]+",";
             } 
-            messageString+="vui long dieu chinh lai so luong";
+            messageString+="vui lòng điều chỉnh lại số lượng";
             alert(messageString); 
             return;
         }
-            alert("Muon sach thanh cong"); 
+            alert("Mượn sách thành công"); 
             navigate("/history");
         }
     }
@@ -169,10 +169,10 @@ const Cart = () => {
         });
         if(!response.ok) 
         {
-            alert("Fail");
+            alert("Lưu thất bại");
             return;
         } 
-        alert("Success"); 
+        alert("Thành công"); 
         window.location.reload();
         return;
     }     

@@ -34,7 +34,7 @@ function RegisterNewBookTypeForm()
         {
             return ;
         } 
-        alert("Created book type");
+        alert("Tạo thể loại thành côngcông");
     }
     useEffect(()=>{
         document.getElementById("registerNewBookTypeForm").addEventListener("submit",(e)=>{
@@ -49,11 +49,11 @@ function RegisterNewBookTypeForm()
             <div> 
                 <form id="registerNewBookTypeForm"> 
                     <div>
-                        <label htmlFor="bookTypeName">Ten the loai sach</label> 
+                        <label htmlFor="bookTypeName">Tên thể loại sách</label> 
                         <input type="text" id="bookTypeName" required/>
                     </div>
                     <div> 
-                        <label htmlFor="bookTypeImage">Hinh anh minh hoa the loai</label> 
+                        <label htmlFor="bookTypeImage">Hình ảnh minh họa thể loại</label> 
                         <input type="file" id="bookTypeImage" required/>
                     </div>
                     <div>

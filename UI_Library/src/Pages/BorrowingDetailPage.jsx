@@ -38,12 +38,12 @@ function BorrowingDetailPage()
         const oldExpireDate = item.expireDate;
         const htmlTag=`<input id="newExpireDate" type="date" min=${oldExpireDate}/>`
         Swal.fire({
-            title:"Chon ngay tra moi",
+            title:"Chọn ngày trả mới",
             html:htmlTag,
             focusConfirm:false,
             preConfirm:()=>{
             const date = Swal.getPopup().querySelector('#newExpireDate').value; 
-            if (!date) { Swal.showValidationMessage(`Please select a date`); } return { newExpireDate: date }}
+            if (!date) { Swal.showValidationMessage(`Vui lòng chọn ngày trả mới`); } return { newExpireDate: date }}
         }).then((result)=>{
             if(result.isConfirmed) 
             {
@@ -150,7 +150,7 @@ function BorrowingDetailPage()
                     onTakeBook(item);
                 }} 
             
-            >Lay sach</button>);
+            >Lấy sách</button>);
         } 
         if(item.status=="BORROWING") 
         { 
@@ -167,19 +167,19 @@ function BorrowingDetailPage()
                             onReturnBook(item);
                         }
                     }
-                    >Nhan sach tra</button> 
+                    >Nhận sách trả</button> 
                     <button onClick={
                         (e)=>{
                             e.preventDefault();
                             navigateToUserInfo(item);
                         }
-                    }>Thong tin doc gia</button> 
+                    }>Thông tin độc giả</button> 
                     <button  onClick={
                         (e)=>{
                             e.preventDefault();
                             DestroyBookAndLockUser(item);
                         }
-                    }>Huy sach va khoa tai khoan</button>
+                    }>Hủy sách và khóa tài khoản</button>
                     </div> 
 
                 
@@ -193,13 +193,13 @@ function BorrowingDetailPage()
                 }
             }
             
-            >Nhan sach tra</button>
+            >Nhận sách trả</button>
             <button   
             onClick={(e)=>{
                 e.preventDefault();
                 renewalOffline(item);
             }}
-            >Gia han</button>
+            >Gia hạn</button>
             
             </div>
         
@@ -214,7 +214,7 @@ function BorrowingDetailPage()
                     navigate("/renewal_request");
                     return;
                 }}
-                >Phan hoi gia han</button>
+                >Phản hồi gia hạn</button>
             )
         }
     } 
@@ -259,6 +259,12 @@ function BorrowingDetailPage()
         alert("Success");
         window.location.reload();
     } 
+    function onSearch(borrowId) {
+        const listResult= borrowDetailList.filter((item)=>{
+            return item.service.servieId= borrowId;
+        }) 
+        setSelectedBorrowDetailList(listResult);
+    }
     permissionLibrarian();
     return (
         <div>
@@ -266,29 +272,32 @@ function BorrowingDetailPage()
 
             </Header_Main> 
             <div> 
-                <h2>Danh sach phieu muon</h2>
+                <h2>Danh sách các phiếu mượnmượn</h2>
                 <div>
-                    <button>Tat ca</button> 
-                    <button>Dang cho lay</button> 
-                    <button>Dang duoc muon</button> 
-                    <button>Da tra</button>
+                    <button>Tất cả</button> 
+                    <button>Đang chờ lấy</button> 
+                    <button>Đang được mượn</button> 
+                    <button>Đã trả</button>
                 </div> 
                 <div>
-                <input type="text" id="searchDate" placeholder="Tim kiem bang ma phieu"/> 
-                <button>Tim</button>
+                <input type="number" id="searchDate" placeholder="Tìm kiếm bằng mã phiếu"/> 
+                <button  onClick={(e)=>{
+                    e.preventDefault();
+                    onSearch(document.getElementById("searchDate").value);
+                }}>Tìm</button>
                 </div>
                 <table border={1}>
                    <thead>
                     <tr>
                         <th>STT</th> 
-                        <th>Ma phieu muon</th> 
-                        <th>Ma sach</th> 
-                        <th>Ten sach</th> 
-                        <th>Ma doc gia</th> 
-                        <th>Ten doc gia</th> 
-                        <th>Ngay muon</th> 
-                        <th>Ngay tra</th> 
-                        <th>Hanh dong</th>
+                        <th>Mã phiếu mượn</th> 
+                        <th>Mã sách</th> 
+                        <th>Tựa sách</th> 
+                        <th>Mã độc giả</th> 
+                        <th>Tên độc giả</th> 
+                        <th>Ngày mượn</th> 
+                        <th>Ngày trả</th> 
+                        <th>Hành động</th>
                     </tr>
                    </thead>
                    <tbody>

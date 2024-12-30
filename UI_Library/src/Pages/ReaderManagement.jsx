@@ -63,7 +63,7 @@ function ReaderManagement()
             </Header_Main> 
             <div> 
                 <div>
-                <input type="number" id="searchBar" placeholder="Tim kiem bang ma doc gia" onKeyDown={(e)=>{
+                <input type="number" id="searchBar" placeholder="Tìm kiếm bằng mã độc giảgiả" onKeyDown={(e)=>{
                     e.preventDefault();
                     if(e.key=="Enter")
                     {  

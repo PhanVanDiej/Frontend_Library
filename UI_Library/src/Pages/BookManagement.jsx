@@ -4,6 +4,7 @@ import BE_ENDPOINT from "../Env/EndPont";
 import "../Styles/Pages/BookManagement.css"
 import { useLocation, useNavigate } from "react-router-dom";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import Swal from "sweetalert2";
 function BookManagementPage() 
 { 
     const location = useLocation();
@@ -124,8 +125,8 @@ function BookManagementPage()
         return (
             <div>
             <button onClick={()=>{
-                onDeleteBook(item.id);
-            }}>Xoa sach</button>  
+                deleteBook(item.id);
+            }}>Xóa sách</button>  
             <br></br>
             <button onClick={(e)=>{
                 e.preventDefault();
@@ -133,6 +134,20 @@ function BookManagementPage()
             }}>Xem tựa sách</button>
             </div>
         )
+     } 
+     function deleteBook(item) 
+     {
+        Swal.fire({
+            title:"Xóa sách",
+            text:"Bạn có chắc muốn xóa sách",
+            confirmButtonText:"Có",
+            cancelButtonText:"Không"
+        }).then((result)=>{
+            if(result.isConfirmed) 
+            {
+                onDeleteBook(item.id);
+            }
+        })  
      }
      async function onDeleteBook(id) 
      {
@@ -169,10 +184,10 @@ function BookManagementPage()
                         }
                     }}/> 
                    <select id="searchType">
-                    <option value="Tat ca">Tat ca</option> 
-                    <option value="San sang">San sang</option> 
-                    <option value="Dang cho muon">Dang cho muon</option> 
-                    <option value="Dang duoc muon">Dang duoc muon</option>
+                    <option value="Tat ca">Tất cả</option> 
+                    <option value="San sang">Sẵn sàng</option> 
+                    <option value="Dang cho muon">Đang chờ lấy</option> 
+                    <option value="Dang duoc muon">Đang được mượn</option>
                    </select>
                 </div>
                 <div>
@@ -180,11 +195,11 @@ function BookManagementPage()
                         <thead>
                             <tr>
                                 <th>STT</th> 
-                                <th>Ma sach</th> 
-                                <th>Ten dau sach</th> 
-                                <th>The loai</th> 
-                                <th>Trang thai</th> 
-                                <th>Hanh dong</th>
+                                <th>Mã sách</th> 
+                                <th>Tên tựa sách</th> 
+                                <th>Thể loại</th> 
+                                <th>Trạng thái</th> 
+                                <th>Hành động</th>
                             </tr>
                         </thead> 
                         <tbody>

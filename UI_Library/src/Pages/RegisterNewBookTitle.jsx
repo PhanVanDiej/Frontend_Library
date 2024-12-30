@@ -18,10 +18,7 @@ function RegisterNewBookTitleForm()
             console.log(responseData);
             setBookType(responseData);
         }
-        document.getElementById("register_form").addEventListener("submit",(e)=>{
-            e.preventDefault();
-            onSubmitForm();
-        })
+        
         fetchToServer();
 
     },[]);  
@@ -66,7 +63,7 @@ function RegisterNewBookTitleForm()
             {
                 return;
             }  
-            alert("Created book title");
+            alert("Tạo tựa sách sách thành côngcông");
     } 
     permissionLibrarian();
     return (
@@ -76,7 +73,10 @@ function RegisterNewBookTitleForm()
             </Header_Main> 
             <div>
                 <h2 className="title">Đăng ký sách mới</h2> 
-                <form id="register_form" className="registerForm">
+                <form id="register_form" className="registerForm" onSubmit={(e)=>{
+                    e.preventDefault();
+                    onSubmitForm();
+                }}>
                     <div>
                         <label htmlFor="bookName">Tên sách :</label> 
                         <input type="text" required id="bookName"/>

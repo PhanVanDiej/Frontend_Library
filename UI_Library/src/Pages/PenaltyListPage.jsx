@@ -29,17 +29,17 @@ function PenaltyList()
         <div>
         <Header_Main></Header_Main> 
             <div>
-                <h2>Danh sach cac phieu phat</h2> 
+                <h2>Danh sách các phiếu phạtphạt</h2> 
                 <div>
                     <table border={1}>
                         <thead>
                             <tr>
                                 <th>STT</th> 
-                                <th>Ma phieu phat</th> 
-                                <th>Ma doc gia</th> 
-                                <th>Ten doc gia</th>
-                                <th>Tien phat</th> 
-                                <th>Noi dung phat</th>
+                                <th>Mã phiếu phạt:</th> 
+                                <th>Mã tài khoản:</th> 
+                                <th>Họ tên:</th>
+                                <th>Tiền phạt:</th> 
+                                <th>Nội dung phạt:</th>
                             </tr>
                         </thead> 
                         <tbody>

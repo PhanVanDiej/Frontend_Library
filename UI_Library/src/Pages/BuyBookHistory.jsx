@@ -32,18 +32,18 @@ function BuyBookHistoryPage()
         <div>
         <Header_Main></Header_Main>
         <div>
-            <h2>Lich su mua sach</h2>
+            <h2>Lịch sử mua sáchsách</h2>
             <div>
                 <table border={1}>
                     <thead>
                         <tr>
                             <th>STT</th> 
-                            <th>Ma phieu nhap</th> 
-                            <th>Ma dau sach</th> 
-                            <th>Ten dau sach</th> 
-                            <th>So luong</th> 
-                            <th>Don gia</th> 
-                            <th>Ngay mua</th>
+                            <th>Mã phiếu nhập</th> 
+                            <th>Mã tựa sách</th> 
+                            <th>Tên tựa sách</th> 
+                            <th>Số lượng</th> 
+                            <th>Đơn giá</th> 
+                            <th>Ngày mua</th>
                         </tr>
                     </thead>
                     <tbody>

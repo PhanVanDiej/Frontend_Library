@@ -51,7 +51,7 @@ function BookTypeManagement()
         if(!response.ok) 
         {
             Swal.fire({
-                title:"Xóa thất bạibại",
+                title:"Xóa thất bại",
                 text:"Không thể xóa thể loại này"
             });
             return;

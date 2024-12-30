@@ -135,15 +135,15 @@ function SellBookForm()
 
             </Header_Main> 
            <div>
-            <h2>Ban sach</h2> 
+            <h2>Thanh lý sáchsách</h2> 
             <div>
                 <form id="sell_book_info" onSubmit={(e)=>{
                         e.preventDefault();
                         onConfirmAdd();
                     }}>
-                    <label htmlFor="bookId">Ma sach</label> 
+                    <label htmlFor="bookId">Mã sáchsách</label> 
                     <input type="number" id="bookId" required/>
-                    <label htmlFor="price">Gia ban</label> 
+                    <label htmlFor="price">Giá thanh lýlý</label> 
                     <input type="number" id="price" required/>
                     <input type="submit" value="Them"/>
                 </form>
@@ -154,14 +154,14 @@ function SellBookForm()
                         e.preventDefault();
                         onConfirmSell();
                     }}  
-                    >Xac nhan</button> 
+                    >Xác nhậnnhận</button> 
                     <button  
                     onClick={(e)=>{
                         e.preventDefault();
                         onConfirmDeleteAll();
                     }}
-                    >Xoa toan bo</button> 
-                    <button>Huy</button>
+                    >Xóa toàn bộ</button> 
+                    
                 </div>
             </div>
             <div>
@@ -169,9 +169,9 @@ function SellBookForm()
                     <thead>
                         <tr>
                             <th>STT</th> 
-                            <th>Ma sach</th> 
-                            <th>Gia ban</th> 
-                            <th>Xoa</th>
+                            <th>Mã sách</th> 
+                            <th>Giá bán</th> 
+                            <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -187,7 +187,7 @@ function SellBookForm()
                                             e.preventDefault();
                                             onDeleteAt(item.bookId);
                                         }
-                                    }>Xoa</button></td>
+                                    }>Xóa</button></td>
                                 </tr>)
                             })
                         }

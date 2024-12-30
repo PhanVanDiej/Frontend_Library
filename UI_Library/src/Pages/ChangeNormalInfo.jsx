@@ -58,7 +58,7 @@ function ChangeNormalInfo()
             </Header_Main> 
             <div> 
                 <br></br>
-                <h2>Chinh sua thong tin tai khoan</h2>
+                <h2>Chỉnh sửa thông tin tài khoảnkhoản</h2>
 
                 <form id="info" onSubmit={(e)=>{
                     e.preventDefault();
@@ -66,20 +66,20 @@ function ChangeNormalInfo()
                 }}> 
                     <div>
                         <label htmlFor="fullname"> 
-                            Ten tai khoan:
+                            Họ tên:
                             </label> 
                             <input type="text" required id="fullname" defaultValue={user.fullname}/>
                             </div> 
                     <div>
                         <label htmlFor="address">
-                            Dia chi: 
+                            Địa chỉ: 
                         </label> 
                         <input type="text" required id="address" defaultValue={user.address}/>
                     </div>
 
                     <div>
                         <label htmlFor="phoneNumber" defaultValue={user.phoneNumber}>
-                            So dien thoai
+                            Số điện thoại:
                         </label> 
                         <input type="tel" required id="phoneNumber" defaultValue={user.phoneNumber}/>
                     </div> 

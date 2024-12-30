@@ -53,7 +53,7 @@ function BuyBookForm()
     return (
         <div>
             <Header_Main></Header_Main>  
-            <h3>Nhap sach</h3> 
+            <h3>Nhập sáchsách</h3> 
             <div>
                 
                 <div>
@@ -88,15 +88,15 @@ function BuyBookForm()
                 
             }}> 
                 <div>
-                <label htmlFor="buyBookTitleName">Ten sach: </label>
-                <input type="text" id="buyBookTitleName" required/> 
+                <label htmlFor="buyBookTitleName">Mã tựa sách:</label>
+                <input type="number" id="buyBookTitleName" required/> 
                 </div> 
                 <div>
-                <label htmlFor="buyBookTitlePrice">Don gia:</label> 
+                <label htmlFor="buyBookTitlePrice">Đơn giá:</label> 
                 <input type="number" required min="1" id="buyBookTitlePrice"/>
                 </div> 
                 <div>
-                    <label htmlFor="buyBookTitleAmount">So luong:</label> 
+                    <label htmlFor="buyBookTitleAmount">Số lượnglượng:</label> 
                     <input type="number" required min="1" id="buyBookTitleAmount"/>
                 </div>
                 <input type="submit" value="Them"/>
@@ -106,7 +106,7 @@ function BuyBookForm()
             </form>
         </div> 
         <div id="messageArea"></div>
-        <div><button>Xoa toan bo</button></div>
+        <div><button>Xóa toàn bộbộ</button></div>
                 </div>
             </div>  
             <div>
@@ -116,7 +116,7 @@ function BuyBookForm()
                         onSubmit();
 
                     }
-                }>Xac nhan mua sach</button>
+                }>Xác nhận mua sách</button>
             </div>
             <div>
                 <table border={1}>

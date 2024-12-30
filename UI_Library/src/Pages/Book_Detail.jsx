@@ -16,17 +16,17 @@ const Book_Detail = () => {
   {
     if(localStorage.getItem("role")=="0") 
       {
-        return "Them vao gio"
+        return "Thêm vào danh sách muốn mượn"
       } 
-      return "Chinh sua"
+      return "Chỉnh sửasửa"
   } 
   function displayDeleteOrBorrow() 
   {
     if(localStorage.getItem("role")=="0") 
       {
-        return "Muon sach"
+        return "Mượn ngayngay"
       } 
-      return "Danh sach cac sach"
+      return "Danh sách các sáchsách"
   }
   
   
@@ -95,11 +95,11 @@ const Book_Detail = () => {
         });
         if(!response.ok) 
         {
-          alert("Fail");
+          alert("Thêm vào danh sách muốn mượn thất bại!");
           return;
         } 
-        alert("Success");
-        navigate("/cart");
+        alert("Thêm vào danh sách muốn mượn thành công");
+      
       }
     }
     async function onBorrowOneBook() 
@@ -118,22 +118,22 @@ const Book_Detail = () => {
       }); 
       if(!response.ok) 
         {
-            alert("Fail");
+            alert(" Thất bạibại");
             return;
         } 
         const responseData= await response.json();
         console.log(responseData);
         if(responseData.message=="Not enough"){
-        let messageString = "Khong du sach ";
+        let messageString = "Không đủ sáchsách ";
         for(let i=0;i<responseData.listResponse.length;i++) 
         {
             messageString+=responseData.listResponse[i]+",";
         } 
-        messageString+="vui long dieu chinh lai so luong";
+        messageString+="vui lòng điều chỉnh lại số lượnglượng";
         alert(messageString); 
         return;
         }
-        alert("Muon sach thanh cong"); 
+        alert("Mượn sách thành công"); 
         navigate("/history");
     }
 

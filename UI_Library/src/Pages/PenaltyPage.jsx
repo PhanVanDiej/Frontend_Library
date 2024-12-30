@@ -42,32 +42,32 @@ function PenaltyPage()
         });
         if(!response.ok) 
         {
-            alert("Fail");
+            alert("Lập phiêú phạt thất bạibại");
             return;
         } 
-        alert("Success");
+        alert("Lập phiếu phạt thành công");
     }
     permissionLibrarian();
     return (<div>
             <Header_Main></Header_Main> 
             <div>
-                <h2>Phieu phat</h2> 
+                <h2>Phiếu phạtphạt</h2> 
                 <div>
-                    <div>Ma phieu phat: {penalty?.id} </div> 
-                    <div>Ma doc gia: {penalty?.reader?.userId}</div> 
-                    <div>Ten doc gia: {penalty?.reader?.fullname} </div>  
-                    <div>Noi dung phat (khong qua 100 ki tu)</div>
+                    <div>Mã phiếu phạt: {penalty?.id} </div> 
+                    <div>Mã độc giả: {penalty?.reader?.userId}</div> 
+                    <div>Tên độc giả: {penalty?.reader?.fullname} </div>  
+                    <div>Nội dung phạt (không quá 100 kí tự)</div>
                     <textarea id="content"></textarea>
                     <br></br>
                     <button onClick={(e)=>{
                         e.preventDefault();
                         handleSave();
-                    }}>Luu</button> 
+                    }}>Lưu</button> 
                     <button onClick={(e)=>{
                         e.preventDefault();
                         
                     }}
-                    >Huy</button>
+                    >Hủy</button>
                 </div>
             </div>
         </div>

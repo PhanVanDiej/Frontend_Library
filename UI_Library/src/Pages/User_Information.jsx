@@ -191,7 +191,7 @@ const User_Information = () => {
       <h1>Thông tin tài khoản</h1>
 
       <div id="userInfoArea">
-        <h3>Mã độc giả: </h3>
+        <h3>Mã tài khoản: </h3>
         <h3>Họ và tên: </h3> 
         <h3>Địa chỉ: </h3> 
         <h3>Số điện thoại: </h3>

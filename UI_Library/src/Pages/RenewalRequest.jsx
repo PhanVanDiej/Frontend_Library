@@ -75,6 +75,23 @@ function RenewalRequestPage()
         })
 
     } 
+    function onDenyRenewal(item) 
+    {
+        Swal.fire({
+            title:"Xác nhận",
+            text:"Từ chối gia hạn",
+            icon:"warning",
+            showCancelButton:true,
+            confirmButtonText:"Có",
+            cancelButtonText:"Không"
+        }
+        ).then((result)=>{
+            if(result.isConfirmed) 
+            {
+                onResponseRenewal(item,"Deny");
+            }
+        })
+    }
     permissionLibrarian();
     return (
 
@@ -83,25 +100,25 @@ function RenewalRequestPage()
 
             </Header_Main> 
             <div>
-                <h2>Danh sach cac yeu cau gia han</h2>  
+                <h2>Danh sách các yêu cầu gia hạnhạn</h2>  
                 <div>
                     <input type="text" id="search" placeholder="Tim kiem bang ma doc gia"/> 
-                    <button>Tim</button>
+                    <button>Tìm</button>
                 </div>
                 <div>
                     <table border={1}>
                         <thead>
                             <tr>
                                 <th>STT</th> 
-                                <th>Ma doc gia</th> 
-                                <th>Ten doc gia</th> 
-                                <th>Ma phieu muon</th> 
-                                <th>Ma sach</th> 
-                                <th>Ten sach</th> 
-                                <th>Ngay muon</th> 
-                                <th>Gia han den</th> 
-                                <th>Chap nhan</th> 
-                                <th>Tu choi</th>
+                                <th>Mã tài khoản</th> 
+                                <th>Họ tên</th> 
+                                <th>Mã phiếu mượn</th> 
+                                <th>Mã sách</th> 
+                                <th>Tên sách</th> 
+                                <th>Ngày mượn</th> 
+                                <th>Gia hạn đến</th> 
+                                <th>Chấp nhận</th> 
+                                <th>Từ chối</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -122,8 +139,13 @@ function RenewalRequestPage()
                                                     e.preventDefault();
                                                     onAcceptRenewal(item);
                                                 }
-                                            }>Chap nhan</button></td> 
-                                            <td><button>Tu choi</button></td>
+                                            }>Chấp nhận</button></td> 
+                                            <td><button  onClick={
+                                                (e)=>{
+                                                    e.preventDefault();
+                                                    onDenyRenewal(item);
+                                                }
+                                            }>Từ chối</button></td>
                                         </tr>
                                     )
                                 })

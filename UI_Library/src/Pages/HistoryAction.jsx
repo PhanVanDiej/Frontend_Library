@@ -57,23 +57,23 @@ const HistoryAction = () => {
   {
     if(status=="PENDING") 
     {
-      return "Dang cho lay";
+      return "Đang chờ lấy";
     } 
     if(status=="CANCELLED"||status=="DESTROY") 
     {
-      return "Da huy";
+      return "Đã hủy";
     } 
     if(status=="BORROWING")
     {
-      return "Dang muon";
+      return "Đang mượn";
     }
     if(status=="RETURNED") 
     {
-      return "Da tra";
+      return "Đã trả";
     } 
     if(status=="RENEWAL") 
     {
-      return "Dang cho gia han";
+      return "Đang chờ gia hạn";
     }
   } 
   function displayAction(status, item) 
@@ -84,7 +84,7 @@ const HistoryAction = () => {
           <button onClick={(e)=>{
             e.preventDefault();
             onCancel(item);
-          }}>Huy</button>
+          }}>Hủy</button>
         );
       } 
     if(status=="BORROWING") 
@@ -94,7 +94,7 @@ const HistoryAction = () => {
           e.preventDefault();
           chooseRenewalDate(item);
         }} 
-        >Gia han</button>
+        >Gia hạn</button>
       );
     } 
     return "";
@@ -102,27 +102,20 @@ const HistoryAction = () => {
 
   async function onCancel(item) 
   {
-      const data= {
-        serviceId:item.service.serviceId,
-        bookId:[
-          item.book.id
-        ],
-        status:"CANCELLED"
-      }
-      const response= await fetch(BE_ENDPOINT+"borrowing-card-detail",{
-        method:"POST",
+      
+      const response= await fetch(BE_ENDPOINT+"reader/cancel_borrow/"+item.id,{
+        method:"PUT",
         headers:{
           "Content-Type":"application/json",
           "Authorization":"Bearer "+localStorage.getItem("token")
-        },
-        body:JSON.stringify(data)
+        }
       });
       if(!response.ok) 
       {
-        alert("Fail");
+        alert("Thất bại, vui lòng thử lại");
         return;
       } 
-      alert("Success");
+      alert("Thành công");
       window.location.reload();
   }
 
@@ -138,10 +131,10 @@ const HistoryAction = () => {
       });
       if(!response.ok) 
       {
-        alert("Fail");
+        alert("Thất bại, vui lòng thử lại");
         return;
       } 
-      alert("Success");
+      alert("Thành công");
       window.location.reload();
   } 
   permissionReader();
@@ -197,13 +190,13 @@ const HistoryAction = () => {
               <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Ma phieu muon</th> 
-                  <th>Ma sach</th> 
-                  <th>Ten sach</th> 
-                  <th>Ngay muon</th> 
-                  <th>Ngay tra</th> 
-                  <th>Trang thai</th> 
-                  <th>Hoat dong</th>
+                  <th>Mã phiếu mượn</th> 
+                  <th>Mã sách</th> 
+                  <th>Tên sách</th> 
+                  <th>Ngày mượn</th> 
+                  <th>Ngày trả</th> 
+                  <th>Trạng thái</th> 
+                  <th>Hoạt động</th>
                 </tr>
               </thead>
               <tbody>

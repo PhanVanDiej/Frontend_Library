@@ -103,7 +103,7 @@ function EditBookTitleForm()
         <div>
             <Header_Main></Header_Main>
 <div>
-    <h3>Chinh sua sach</h3> 
+    <h3>Chỉnh sửa thông tin tựa sách:</h3> 
     <form id="register_form">
         <div>
             <label htmlFor="bookName">Tên sách :</label> 
@@ -148,7 +148,7 @@ function EditBookTitleForm()
             <img src={displayImageURL(bookTitle?.imageData)}></img>
         </div> 
         <div>
-            <label htmlFor="updateBookTitleImage">Upload file anh neu muon thay doi bia sach</label> 
+            <label htmlFor="updateBookTitleImage">Upload file ảnh nếu muốn thay đổi bìa sách</label> 
             <input type="file" id="updateBookTitleImage"/>
         </div>
         <div>
