@@ -6,14 +6,14 @@ import ScrollList from '../Components/ScrollList_Book'
 import BE_ENDPOINT from '../Env/EndPont'
 export default  function Home(){
     const [products, setProducts] = useState([]);
-   async function fetchBookType() 
+   async function fetchBookType()
    { 
-        const response= await fetch(BE_ENDPOINT+"book-types"); 
+        const response= await fetch(BE_ENDPOINT+"book-types");
         
         const responseData= await response.json();
         setProducts(responseData);
    } 
-   useEffect(()=>{ 
+   useEffect(()=>{
     fetchBookType();
    },[])
     return (

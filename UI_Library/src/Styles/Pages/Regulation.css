@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'kyiv_type_titling_regular';
+    src: url('../../assets/Fonts/kyiv_type_titling/KyivTypeTitling-Regular.otf');
+}
+.wrapping-content{
+    height: 100%;;
+}
+.main-content{
+    padding: 50px 200px 100px 200px;
+}
+
+.title-regulation h2{
+    color: #A27430;
+    font-family: 'kyiv_type_titling_regular', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+.detail-regulations{
+    padding: 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.detail-regulations ul li{
+    font-size: 22px;
+}

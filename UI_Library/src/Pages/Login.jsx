@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import Header from "../Components/Header_Register";
 import handleLogin  from "../FetchScripts/HandleLogin";
 import { useNavigate } from "react-router-dom";
+import '../Styles/Pages/Login.css';
 export default function LoginPage() { 
   const navigate= useNavigate();
   async function Login(nameOrEmail, password) 

@@ -42,7 +42,7 @@ function App(){
     <>
      <div className='container'>
           <Routes>
-              <Route path='/' element={<Navigate to='login'/>}/>
+              <Route path='/' element={<Navigate to='book_detail/1'/>}/>
               <Route path='/login' element={<LoginPage></LoginPage>}/>
               <Route path='/signup' element={<SignupPage></SignupPage>}/>
               <Route path='/home' element={<Home></Home>}/>

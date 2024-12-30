@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Header_Main from '../Components/Header_Main'
 import { useParams } from "react-router-dom";
 import '../Styles/Pages/BookDetail.css'
-import cover from '../assets/Book_Cover/rezero.png'
-import bag from '../assets/Icons/bag.png'
-import ScrollList from '../Components/ScrollList_Book';
 import BE_ENDPOINT from '../Env/EndPont'; 
 import displayImageURL from '../Env/DisplayImage';
 import { useNavigate } from "react-router-dom";
@@ -146,7 +143,7 @@ const Book_Detail = () => {
   return (
     <div>
       <Header_Main></Header_Main>
-      <div className='wrapping-content'>
+      <div className='wrapping-content-detail'>
         <div className='path'>
            <h3>{bookDetail?.type?.name}</h3>
            <br></br>

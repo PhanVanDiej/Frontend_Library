@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import '../Styles/Components/BookGrid.css'
-import cover from '../assets/Book_Cover/rezero.png'
 import { useNavigate } from "react-router-dom"; 
 import BE_ENDPOINT from "../Env/EndPont"; 
 import displayImageURL from "../Env/DisplayImage";

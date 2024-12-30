@@ -2,12 +2,10 @@ import {React,useEffect,useState} from 'react'
 import '../Styles/Components/Header.css';
 import { Link, Navigate, useMatch, useResolvedPath } from 'react-router-dom';
 import arrowDown from '../assets/Icons/arrow_down.png';
-import downBlack from '../assets/Icons/down_black.png';
 import transparency from '../assets/Icons/transparency.png';
 import logo from '../assets/Icons/logo.png';
 import { useNavigate } from "react-router-dom";
 import BE_ENDPOINT from '../Env/EndPont';
-import Swal from 'sweetalert2';
 
 
 export default function Header_Main() {
@@ -110,20 +108,23 @@ export default function Header_Main() {
         <li>
           <p>Nghiệp vụ</p>
           <ul className='dropdown-menu'>
-            <li className='option-drop'><CustomLink to="/reader_management">Quản lý độc giả</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/book_management">Quản lý sách</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/renewal_request">Danh sách yêu cầu gia hạn</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/buy_book">Mua sách</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/sell_book">Bán sách</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li> 
-            <li className="option-drop"><CustomLink to="/penalty">Lập phiếu phạt</CustomLink></li>
-            <li className="option-drop"><CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink></li>
-            <li className="option-drop"><CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink></li>
-            <li className="option-drop"><CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink></li>
-            <li className="option-drop"><div><p>Lập báo cáo</p><ul className="dropdown-menu"> 
-              <li className="option-drop">Báo cáo lượt mượn theo tựa sách</li> 
-              <li className="option-drop">Báo cáo lượt mượn theo thể loại</li>
-              </ul></div></li>
+            <CustomLink to="/reader_management">Quản lý độc giả</CustomLink>
+            <CustomLink to="/book_management">Quản lý sách</CustomLink>
+            <CustomLink to="/renewal_request">Danh sách yêu cầu gia hạn</CustomLink>
+            <CustomLink to="/buy_book">Mua sách</CustomLink>
+            <CustomLink to="/sell_book">Bán sách</CustomLink>
+            <CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink>
+            <CustomLink to="/penalty">Lập phiếu phạt</CustomLink>
+            <CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink>
+            <CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink>
+            <CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink>
+            <li className="option-drop report-menu">
+              <p>Lập báo cáo</p>
+              <ul className="dropdown-menu-report"> 
+                <CustomLink to="/#">Báo cáo lượt mượn theo tựa sách</CustomLink> 
+                <CustomLink to="/#">Báo cáo lượt mượn theo thể loại</CustomLink>
+              </ul>
+            </li>
           </ul>
         </li>
         <CustomLink to="/regulation">Quy định thư viện</CustomLink>
@@ -148,12 +149,9 @@ export default function Header_Main() {
             <img src={logo} alt='ArrowDown'></img>
             <Link to="/home" className='Home-title' style={{color:"#A27430"}}>Trang Chủ</Link>
             <ul>
-            <ul>
-              { 
-            display()
-          }
-            </ul>
-
+                {   
+                  display()
+                }
             </ul>
 
             <div className='search-box' onClick={openSearchBox}>
@@ -195,9 +193,9 @@ function CustomLink({to,children,...props}){
     const resovledPath=useResolvedPath(to)
     const isActived=useMatch({ path:resovledPath.pathname, end:true }) // Dam bao path phai dung hoan toan
     return(
-        <li className={isActived? "active":""}>
+        <li className={isActived? "option-drop active":"option-drop"}>
             <Link to={to} {...props}>
-            {children}
+              {children}
             </Link>
         </li>
     )

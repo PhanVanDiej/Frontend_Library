@@ -1,40 +1,82 @@
-import React, { useState, useEffect } from 'react'
-import BE_ENDPOINT from '../Env/EndPont'; 
-import { useNavigate } from 'react-router-dom';
-import Header_Main from '../Components/Header_Main'; 
-import ReactDOMServer from 'react-dom/server';
-import Swal from 'sweetalert2';
-import permissionReader from '../Env/PermissionReader';
+import React, { useState, useEffect } from "react";
+import BE_ENDPOINT from "../Env/EndPont";
+import { useNavigate } from "react-router-dom";
+import Header_Main from "../Components/Header_Main";
+import ReactDOMServer from "react-dom/server";
+import Swal from "sweetalert2";
+import permissionReader from "../Env/PermissionReader";
+import "../Styles/Pages/UserInfo.css";
+import avatar from "../assets/Book_Cover/neko.jpg";
+import editIcon from "../assets/Icons/edit.png";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  Typography,
+  Autocomplete,
+} from "@mui/material";
 
-const User_Information = () => { 
-  const userId=localStorage.getItem("userId"); 
-  const navigate= useNavigate();
-  function  onClickEditNormalInformation() 
-  {    
-    navigate("/edit_normal_info");
-  }  
-  async function onChangeEmail(newEmail) 
-  {
-     const response = await fetch(BE_ENDPOINT+"update/email", {
-      method:"PUT",
-      headers:{
-        "Content-Type":"text/plain",
-        "Authorization":"Bearer "+localStorage.getItem("token")
-      },
-      body:newEmail
-     });
-    if(response.status==403) 
-    {
-      Swal.fire({
-        title:"Email này đã được sử dụng",
-        icon:"fail"
-      }).then((result)=>{
-        window.location.reload();
-      })
-    }
-  } 
-  async function onChangePassword(data) 
-  {
+const userExample = {
+  userId: "1",
+  fullName: "Phan Van Dai",
+  address: "Viet Nam",
+  phoneNumber: "12345678",
+  email: "22520182@gmail.com",
+  role: "Customer",
+};
+const User_Information = () => {
+
+  // const userId=localStorage.getItem("userId"); 
+  // const navigate= useNavigate();
+
+  const [userId, setUserId] = useState("");
+  const [address, setAddress] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    if (userExample)
+      // replace with real data
+      setFullname(userExample.fullName);
+      setUserId(userExample.userId);
+      setAddress(userExample.address);
+      setPhoneNumber(userExample.phoneNumber);
+      setEmail(userExample.email);
+      setRole(userExample.role);
+  }, [userExample]);
+
+  const onClickChangeEmail =async () => {
+    const htmlTag="<input type=\"email\ id=\"newEmail\"/>";
+
+    Swal.fire({
+      title:"Vui lòng nhập email", 
+      html:htmlTag,
+      focusConfirm:false,
+      preConfirm:()=>{
+        const newEmail = Swal.getPopup().querySelector("#newEmail").value;
+        if(!newEmail) 
+        {
+          Swal.showValidationMessage("Vui lòng nhập địa chỉ email");
+        } 
+        return {
+          newEmail:newEmail
+        }
+      }
+
+    }).then((result)=>{  
+      if(result.isConfirmed) {
+      onChangeEmail(result.value.newEmail); 
+      }
+
+    })
+  };
+  const onClickChangePassword = async() => {
     const response = await fetch(BE_ENDPOINT+"update/password",{
       method:"PUT",
       headers:{
@@ -69,166 +111,130 @@ const User_Information = () => {
     }
     )
     return;
-  }
-  function onClickChangeEmail()
-  { 
-    const htmlTag="<input type=\"email\ id=\"newEmail\"/>";
+  };
+  const onClickEditNormalInformation =async () => {
 
-    Swal.fire({
-      title:"Vui lòng nhập email", 
-      html:htmlTag,
-      focusConfirm:false,
-      preConfirm:()=>{
-        const newEmail = Swal.getPopup().querySelector("#newEmail").value;
-        if(!newEmail) 
-        {
-          Swal.showValidationMessage("Vui lòng nhập địa chỉ email");
-        } 
-        return {
-          newEmail:newEmail
-        }
-      }
-
-    }).then((result)=>{  
-      if(result.isConfirmed) {
-      onChangeEmail(result.value.newEmail); 
-      }
-
-    })
-  } 
-  function onClickChangePassword() 
-  { 
-      const htmlTag = (
-        <>
-          <label htmlFor="oldPassword">Mật khẩu cũ</label> 
-          <input type="password" id="oldPassword"/>
-          <br></br> 
-          <label htmlFor="newPassword">Mật khẩu mới</label> 
-          <input type="password" id="newPassword"/>
-          <br></br>
-          <label htmlFor="repeatNewPassword">Xác nhận mật khẩu mới</label> 
-          <input type="password" id="repeatNewPassword"/>
-        </>
-      );
-      const htmlString= ReactDOMServer.renderToString(htmlTag);
-      Swal.fire(
-        {
-          title:"Thay đổi mật khẩu",
-          html:htmlString,
-          focusConfirm:false,
-          preConfirm:()=>{
-            const oldPassword = Swal.getPopup().querySelector("#oldPassword").value;
-            const newPassword = Swal.getPopup().querySelector("#newPassword").value;
-            const repeatNewPassword = Swal.getPopup().querySelector("#repeatNewPassword").value;
-            if(!oldPassword) 
-            {
-              Swal.showValidationMessage("Vui lòng điền mật khẩu cũ");
-              
-            } 
-            if(!newPassword) 
-            {
-              Swal.showValidationMessage("Vui lòng điền mật khẩu mới");
-            } 
-            return {
-              oldPassword:oldPassword,
-              newPassword:newPassword,
-              repeatNewPassword:repeatNewPassword
-            } 
-
-          }
-        }
-      ).then((result)=>{ 
-        if(result.isConfirmed) 
-        {
-          onChangePassword(result.value);
-        }
-
-      })
-  }
-  let userData={};
-    useEffect(()=>{  
-    async function fetchUser(userId) 
-    {
-      const userInfo= await fetch(BE_ENDPOINT+"find/user/"+userId);
-      if(!userInfo.ok) 
-      {
-        alert("Không tìm thấy người dùng"); 
-        return;
-      }  
-      userData= await userInfo.json(); 
-      console.log(userData);
-      
-      const userInfoArea= document.getElementById("userInfoArea");
-      userInfoArea.children[0].innerHTML="Mã tài khoản:" + userData.userId;
-      userInfoArea.children[1].innerHTML="Họ và tên: "+userData.fullname;
-      userInfoArea.children[2].innerHTML="Địa chỉ: "+userData.address;
-      userInfoArea.children[3].innerHTML="Số điện thoại: "+userData.phoneNumber;
-      userInfoArea.children[4].innerHTML="Địa chỉ email: "+userData.email;
-      let role="";
-      if(userData.role==0){
-        role="Độc giả";
-      } 
-      else {
-        if(userData.role==1) 
-        {
-          role="Thủ thư";
-        } 
-        else {
-          role="Quản lý";
-        }
-      } 
-      userInfoArea.children[5].innerHTML="Vai trò: "+role;
-  }
-    if(userId!="") 
-    {
-       fetchUser(userId);
-    }
-  },[]);
-  permissionReader();
+  };
   return (
-    <div>
+    <div className="wrapping-content">
       <Header_Main></Header_Main>
-      <h1>Thông tin tài khoản</h1>
+      <h1 style={{marginTop:"50px", marginLeft:"100px"}}>Thông tin tài khoản</h1>
 
       <div id="userInfoArea">
-        <h3>Mã độc giả: </h3>
-        <h3>Họ và tên: </h3> 
-        <h3>Địa chỉ: </h3> 
-        <h3>Số điện thoại: </h3>
-        <h3>Địa chỉ email: </h3>  
-        <h3>Vai trò: </h3>
+        <div className="avatar-area">
+          <img src={avatar} alt="avatar" className="avatar-img"></img>
+          <div>
+            <h3 style={{ whiteSpace: "nowrap" }}>{userExample.fullName}</h3>
+            <h5 style={{ whiteSpace: "nowrap" }}>{userExample.role}</h5>
+            <button
+              className="editInfo-Btn"
+              onClick={(e) => {
+                e.preventDefault();
+                onClickEditNormalInformation();
+              }}
+            >
+              <img src={editIcon} alt="editInfo" width={20}></img>
+              Sửa thông tin cơ bản
+            </button>
+            <button
+              className="editInfo-Btn"
+              onClick={(e) => {
+                e.preventDefault();
+                onClickChangeEmail();
+              }}
+            >
+              <img src={editIcon} alt="editInfo" width={20}></img>
+              Thay đổi email
+            </button>
+            <button
+              className="editInfo-Btn"
+              onClick={(e) => {
+                e.preventDefault();
+                onClickChangePassword();
+              }}
+            >
+              <img src={editIcon} alt="editInfo" width={20}></img>
+              Thay đổi mật khẩu
+            </button>
+          </div>
+        </div>
+        <div className="detail-info">
+          <Box sx={{ display: "flex", alignItems: "center", height: 45 }}>
+            <Typography sx={{ ml: 1, mr: 2, marginTop: 1, width: 156 }}>
+              Mã tài khoản :
+            </Typography>
+            <TextField
+              fullWidth
+              disabled
+              margin="dense"
+              size="small"
+              value={userId}
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", height: 45 }}>
+            <Typography sx={{ ml: 1, mr: 2, marginTop: 1, width: 156 }}>
+              Họ và tên :
+            </Typography>
+            <TextField
+              fullWidth
+              disabled
+              margin="dense"
+              size="small"
+              value={userExample.fullName}
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", height: 45 }}>
+            <Typography sx={{ ml: 1, mr: 2, marginTop: 1, width: 156 }}>
+              Địa chỉ :
+            </Typography>
+            <TextField
+              fullWidth
+              disabled
+              margin="dense"
+              size="small"
+              value={address}
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", height: 45 }}>
+            <Typography sx={{ ml: 1, mr: 2, marginTop: 1, width: 156 }}>
+              Số điện thoại :
+            </Typography>
+            <TextField
+              fullWidth
+              disabled
+              margin="dense"
+              size="small"
+              value={phoneNumber}
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", height: 45 }}>
+            <Typography sx={{ ml: 1, mr: 2, marginTop: 1, width: 156 }}>
+              Email :
+            </Typography>
+            <TextField
+              fullWidth
+              disabled
+              margin="dense"
+              size="small"
+              value={userId}
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", height: 45 }}>
+            <Typography sx={{ ml: 1, mr: 2, marginTop: 1, width: 156 }}>
+              Role :
+            </Typography>
+            <TextField
+              fullWidth
+              disabled
+              margin="dense"
+              size="small"
+              value={role}
+            />
+          </Box>
+        </div>
       </div>
-      <div>
-        <button  onClick={
-          (e)=>{
-            e.preventDefault();
-            onClickEditNormalInformation();
-          }
-        }>Sửa đổi thông tin cơ bản</button>  
-        <br></br>
-        <button
-        onClick={
-          (e)=>{
-            e.preventDefault();
-            onClickChangeEmail();
-          }
-        } 
-        
-        >Thay đổi email</button> 
-        <br></br> 
-        <button    
-        onClick={
-          (e)=>{
-            e.preventDefault();
-            onClickChangePassword();
-          }
-        }
-        >Thay đổi mật khẩu</button> 
-        <br></br>
-      </div> 
-      
     </div>
-  )
-}
+  );
+};
 
-export default User_Information
+export default User_Information;
