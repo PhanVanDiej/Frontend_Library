@@ -42,7 +42,7 @@ function PenaltyPage()
         });
         if(!response.ok) 
         {
-            alert("Lập phiêú phạt thất bạibại");
+            alert("Lập phiêú phạt thất bại");
             return;
         } 
         alert("Lập phiếu phạt thành công");

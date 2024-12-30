@@ -173,21 +173,20 @@ function BookManagementPage()
         <div>
             <Header_Main></Header_Main> 
 
-            <div>
-                <h2>Quan ly sach</h2> 
-                <div>
-                    <input type="text" placeholder="Tim kiem" id="searchData" onKeyDown={(e)=>{
-                        
-                        if(e.key=="Enter") 
+            <div className="main-content">
+                <h2 className="title-page">Quản lý sách</h2> 
+                <div className="filter-header">
+                    <input className="search-input" type="text" placeholder="Tìm kiếm" id="searchData" onKeyDown={(e)=>{
+                        if(e.key=="Enter")
                         {
                             onSearch(document.getElementById("searchType").value);
                         }
                     }}/> 
-                   <select id="searchType">
-                    <option value="Tat ca">Tất cả</option> 
-                    <option value="San sang">Sẵn sàng</option> 
-                    <option value="Dang cho muon">Đang chờ lấy</option> 
-                    <option value="Dang duoc muon">Đang được mượn</option>
+                   <select className="type-status-list" id="searchType">
+                    <option value="Tat ca">Tat ca</option> 
+                    <option value="San sang">San sang</option> 
+                    <option value="Dang cho muon">Dang cho muon</option> 
+                    <option value="Dang duoc muon">Dang duoc muon</option>
                    </select>
                 </div>
                 <div>
@@ -212,10 +211,7 @@ function BookManagementPage()
                                             <td>{item.title.name}</td> 
                                             <td>{item.title.type.name}</td>  
                                             <td>{item.status.name}</td>
-                                            <td>{ 
-                                            displayDeleteButton(item)
-                                                }</td> 
-                                            
+                                            <td>{displayDeleteButton(item)}</td> 
                                         </tr>
                                     )
                                 })

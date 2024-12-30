@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BE_ENDPOINT from '../Env/EndPont'; 
 import NotificationTag from '../Components/Notification';
 import Header_Main from '../Components/Header_Main'; 
-import "../Styles/Pages/Anouncement.css"
+//import "../Styles/Pages/Anouncement.css"
 
 const Announcement = () => {
   const [data, setData ]=useState(null);

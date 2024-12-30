@@ -51,7 +51,7 @@ function ReaderManagement()
             return;
         }
         let listResult = listTemp.filter((item)=>{
-            return (item.userId==value);
+            return (item.userId==value||item.fullname.includes(value));
         });
         setListUser(listResult);
     }
@@ -61,15 +61,17 @@ function ReaderManagement()
             <Header_Main>
 
             </Header_Main> 
-            <div> 
-                <div>
-                <input type="number" id="searchBar" placeholder="Tìm kiếm bằng mã độc giảgiả" onKeyDown={(e)=>{
-                    e.preventDefault();
-                    if(e.key=="Enter")
-                    {  
-                        onSearch(document.getElementById("searchBar").value);
-                    }        
-                     }}/> 
+            
+            <div className="main-content"> 
+                <h2 className="title-page">Quản lý độc giả</h2>
+                <div className="filter-header">
+                    <input className="search-input" type="text" id="searchBar" placeholder="Tìm kiếm bằng mã độc giả hoặc họ tên" onKeyDown={(e)=>{
+                        //e.preventDefault();
+                        if(e.key=="Enter")
+                        {  
+                            onSearch(document.getElementById("searchBar").value);
+                        }        
+                        }}/> 
                 </div>
 
                 <div>

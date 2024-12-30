@@ -3,7 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BuyBookTitleForm from "../Components/BuyBookTitleForm";
 import BE_ENDPOINT from "../Env/EndPont";
 import BuyBook from "../FetchScripts/BuyBook";
-import "../Styles/Pages/BuyBook.css"
+//import "../Styles/Pages/BuyBook.css"
 import permissionLibrarian from "../Env/PermissionLibrarian";
 
 function BuyBookForm() 

@@ -1,85 +1,23 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+.title-page{
+    color:#A27430 ;
+    font-size: 30px;
 }
-
-/* Header styles */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-/* Main container styles */
-.container {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Section title styles */
-h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Search bar and select styles */
-.search-container {
+.filter-header{
+    margin-top: 30px;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    gap: 20px;
 }
-
-.search-container input[type="text"] {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.search-input{
+    padding: 8px;
+    width: 400px;
+    border: solid 1px grey;
+    border-radius: 10px;
 }
-
-.search-container select {
-    width: 28%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.search-input:hover{
+    border:solid 1px #A27430 !important;
 }
-
-/* Table styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-button:hover {
-    background-color: #d32f2f;
+.type-status-list{
+    padding: 8px;
+    border: solid 1px grey;
+    border-radius: 10px;
 }

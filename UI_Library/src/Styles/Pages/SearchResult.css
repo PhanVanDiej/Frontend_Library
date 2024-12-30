@@ -1,7 +1,9 @@
 .wrapping-content{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 .SearchResult-wrapping-content{
     display: flex;
+    padding: 50px;
 }

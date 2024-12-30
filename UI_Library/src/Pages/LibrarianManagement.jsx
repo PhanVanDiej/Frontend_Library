@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import LibrarianDetail from "../Components/LibrarianInformation"; 
-import "../Styles/Pages/LibrarianManagement.css"
+//import "../Styles/Pages/LibrarianManagement.css"
 function LibrarianInformation(){
 const [librarianData, setLibrarianData]= useState([]);
 const [listSelectLibrarian, setListSelecctLibrarian]= useState([]);

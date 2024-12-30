@@ -1,0 +1,63 @@
+.form-wrapper{
+    padding: 20px;
+    border-radius: 10px;
+    box-Shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+}
+.form-label{
+    padding:8px;
+    font-size: 20px;
+}
+.form-input{
+    padding:8px;
+    border-radius: 10px;
+    border: solid 1px grey;
+}
+.form-btn{
+    border: solid 1px #A27430;
+    background-color: white;
+    color: #A27430;
+    border-radius: 10px;
+    padding: 5px 20px 5px 20px;
+}
+.form-sellBook{
+    display: flex;
+    justify-content: space-between;
+}
+.form-sellBook-footer{
+    display: flex;
+    justify-content: right !important;
+    text-align: right;
+}
+.action-btn{
+    padding: 5px 20px;
+    border-radius: 10px;
+    border:none;
+}
+.confirm-btn{
+    background-color: #A27430;
+    color: white;
+}
+.confirm-btn:hover{
+    background-color: #855000;
+}
+.action-btn-wrapper{
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+}
+.delete-btn{
+    background-color: red;
+    color: white;
+}
+.delete-btn:hover{
+    background-color: rgb(106, 0, 0);
+}
+.cancel-btn{
+    background-color: white;
+    border: solid 1px grey;
+    color: grey;
+}
+.cancel-btn:hover{
+    background-color: rgb(222, 222, 222);
+}

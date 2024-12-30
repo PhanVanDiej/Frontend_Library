@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header_Register'
 import handleRegister from '../FetchScripts/HandleRegister'
 import BE_ENDPOINT from '../Env/EndPont';
+import '../Styles/Pages/Login.css';
 
 export default function SignupPage(){ 
     const [submit,setSubmit] = useState(false);
@@ -69,7 +70,9 @@ export default function SignupPage(){
                         
                         
                     </form>
-                    <button onClick={(e)=>{
+                    <button 
+                    className='submit-btn'
+                    onClick={(e)=>{
                         e.preventDefault();
                         setSubmit(true)}} >
                             Đăng ký

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate"; 
-import "../Styles/Pages/Allot.css"
+//import "../Styles/Pages/Allot.css"
 function AllotPage() 
 {  
     const [listWorkDetail, setListWorkDetail]= useState([]);  

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"; 
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont"; 
-import "../Styles/Pages/RegisterBookTitle.css"
+//import "../Styles/Pages/RegisterBookTitle.css"
 import permissionLibrarian from "../Env/PermissionLibrarian";
 function RegisterNewBookTitleForm() 
 {

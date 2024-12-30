@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header_Main from '../Components/Header_Main'
-import '../Styles/Pages/HistoryAction.css'
+//import '../Styles/Pages/HistoryAction.css'
 import BE_ENDPOINT from '../Env/EndPont'; 
 import formatDate from '../Env/FormatDate'; 
 import Swal from "sweetalert2";

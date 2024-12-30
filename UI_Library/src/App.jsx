@@ -37,12 +37,13 @@ import ForgetPassword from './Pages/ForgetPassword'
 import RegulationPage from './Pages/Regulation'
 import UpdateRegulationPage from './Pages/UpdateRegulation'
 import PenaltyHistoryPage from './Pages/PenaltyHistoryPage'
+import CreatePenalty from './Pages/CreatePenaltyPage'
 function App(){
   return (
     <>
      <div className='container'>
           <Routes>
-              <Route path='/' element={<Navigate to='login'/>}/>
+              <Route path='/' element={<Navigate to='book_detail/1'/>}/>
               <Route path='/login' element={<LoginPage></LoginPage>}/>
               <Route path='/signup' element={<SignupPage></SignupPage>}/>
               <Route path='/home' element={<Home></Home>}/>
@@ -79,7 +80,8 @@ function App(){
               <Route path="/forgetPassword" element={<ForgetPassword></ForgetPassword>}/> 
               <Route path="/regulation" element={<RegulationPage></RegulationPage>}/>
               <Route path="/update_regulation" element={<UpdateRegulationPage></UpdateRegulationPage>}/> 
-              <Route path="/penalty_history" element={<PenaltyHistoryPage></PenaltyHistoryPage>}/>
+              <Route path="/penalty_history" element={<PenaltyHistoryPage></PenaltyHistoryPage>}/> 
+              <Route path="/create_penalty" element={<CreatePenalty></CreatePenalty>}/>
               
           </Routes>
      </div>

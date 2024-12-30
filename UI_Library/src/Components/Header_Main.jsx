@@ -2,7 +2,6 @@ import {React,useEffect,useState} from 'react'
 import '../Styles/Components/Header.css';
 import { Link, Navigate, useMatch, useResolvedPath } from 'react-router-dom';
 import arrowDown from '../assets/Icons/arrow_down.png';
-import downBlack from '../assets/Icons/down_black.png';
 import transparency from '../assets/Icons/transparency.png';
 import logo from '../assets/Icons/logo.png';
 import { useNavigate } from "react-router-dom";
@@ -162,7 +161,7 @@ export default function Header_Main() {
             <li className='option-drop'><CustomLink to="/buy_book">Mua sách</CustomLink></li>
             <li className='option-drop'><CustomLink to="/sell_book">Bán sách</CustomLink></li>
             <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li> 
-            <li className="option-drop"><CustomLink to="/penalty">Lập phiếu phạt</CustomLink></li>
+            <li className="option-drop"><CustomLink to="/create_penalty">Lập phiếu phạt</CustomLink></li>
             <li className="option-drop"><CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink></li>
             <li className="option-drop"><CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink></li>
             <li className="option-drop"><CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink></li>
@@ -204,12 +203,9 @@ export default function Header_Main() {
             <img src={logo} alt='ArrowDown'></img>
             <Link to="/home" className='Home-title' style={{color:"#A27430"}}>Trang Chủ</Link>
             <ul>
-            <ul>
-              { 
-            display()
-          }
-            </ul>
-
+                {   
+                  display()
+                }
             </ul>
 
             <div className='search-box' onClick={openSearchBox}>
@@ -251,9 +247,9 @@ function CustomLink({to,children,...props}){
     const resovledPath=useResolvedPath(to)
     const isActived=useMatch({ path:resovledPath.pathname, end:true }) // Dam bao path phai dung hoan toan
     return(
-        <li className={isActived? "active":""}>
+        <li className={isActived? "option-drop active":"option-drop"}>
             <Link to={to} {...props}>
-            {children}
+              {children}
             </Link>
         </li>
     )
