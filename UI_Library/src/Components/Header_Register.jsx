@@ -7,8 +7,8 @@ const Header = () => {
     <header className="header">
         <nav class="navbar">
             <img src={logo} alt='ArrowDown'></img>
+            <Link to="/home" className='Home-title' style={{color:"#A27430", whiteSpace:'nowrap', width:"fit-content"}}>WEBSITE THƯ VIỆN</Link>
             <ul>
-               <CustomLink to='/home' style={{color:"#A27430"}}>WEBSITE THƯ VIỆN</CustomLink>
                <CustomLink to='/login'>ĐĂNG NHẬP</CustomLink>
                <CustomLink to='/signup'>ĐĂNG KÝ</CustomLink>
             </ul>

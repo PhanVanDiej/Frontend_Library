@@ -1,0 +1,27 @@
+.title-page{
+    color:#A27430 ;
+    font-size: 30px;
+}
+.filter-header{
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+.search-input{
+    padding: 8px;
+    width: 400px;
+    border: solid 1px grey;
+    border-radius: 10px;
+    outline: none;
+}
+.search-input:hover{
+    border:solid 1px #A27430 !important;
+}
+.type-status-list{
+    padding: 8px;
+    border: solid 1px grey;
+    border-radius: 10px;
+}
+.content-table{
+    margin-top: 30px;
+}

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import '../Styles/Components/BookGrid.css'
-import cover from '../assets/Book_Cover/rezero.png'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+import BE_ENDPOINT from "../Env/EndPont"; 
+import displayImageURL from "../Env/DisplayImage";
 
-const BookGrid = ({ productsPerPage = 15 }) => {
+const BookGrid = ({ productsPerPage = 10, id }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -13,12 +14,26 @@ const BookGrid = ({ productsPerPage = 15 }) => {
     const fetchProducts = async () => {
 
       // Replace this with actual API call
-      const data = Array.from({ length: 50 }, (_, i) => ({
+      /*const data = Array.from({ length: 50 }, (_, i) => ({
         id: i + 1,
         name: `Product ${i + 1}`,
         image: '../assets/Book_Cover/rezero.png',
         state: 'Còn sách'
-      }));
+      }));*/
+      const response = await fetch(BE_ENDPOINT+"book-titles/get/byBookType/"+id);
+      const responseData = await response.json(); 
+
+      const data= responseData.map((item)=>{ 
+        let state="";
+        if(item.amountRemaining>0) state="Còn sách";
+        else state="Hết sách";
+        return {
+          id: item.id,
+          name: item.name,
+          image: displayImageURL(item.imageData),
+          state:state
+        }
+      })
       setProducts(data);
     };
     fetchProducts();
@@ -42,9 +57,11 @@ const BookGrid = ({ productsPerPage = 15 }) => {
       <h1 className="title">Kết quả tìm kiếm</h1>
       <div className="grid-container">
         {currentProducts.map((product) => (
-          <div className="grid-item" key={product.id} onClick={() => handleProductClick(product.id)}>
+          <div className="grid-item" key={product.id} onClick={() =>{
+            window.location.href="/book_detail/"+product.id;
+          }}>
             <img
-                src={cover}              // Thay the = product.image 
+                src={product.image}              // Thay the = product.image 
                 alt={product.name} 
             />
             <p>{product.name}</p>
@@ -72,4 +89,5 @@ const BookGrid = ({ productsPerPage = 15 }) => {
   );
 };
 
-export default BookGrid;
+export default BookGrid; 
+
