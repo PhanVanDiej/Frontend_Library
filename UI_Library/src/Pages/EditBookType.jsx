@@ -77,29 +77,30 @@ function EditBookTypeForm()
     }
     permissionLibrarian();
     return (
-        <div>
-            <Header_Main></Header_Main>
-            <h2>Thay đổi thông tin thể loại sách</h2>
-                <form id="editBookTypeForm">
-                    <div>
-                        <label htmlFor="bookTypeName">Tên thể loại:  </label>  
-                        <input type="text" id="bookTypeName"  defaultValue={bookType?.name}required/>
-                    </div> 
-                    <div>
-                        <label>Hình ảnh thể loại sách</label> 
-                        <img src={displayImageURL(bookType?.imageData)} ></img>
-                    </div> 
-                    <div>
-                        <label htmlFor="bookTypeImage">Upload file ảnh nếu muốn thay đổi hình minh họa thể loại</label>
-                        <input type="file" id="bookTypeImage"/>
-                    </div> 
-                    <div>
-                        <input type="submit" value="Xác nhậnnhận"/>
-                    </div>
-                </form>
-                <p id="MessageZone"></p>
-            
+        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <Header_Main />
+
+    <h2 style={{ color: '#333', textAlign: 'center' }}>Thay đổi thông tin thể loại sách</h2>
+    <form id="editBookTypeForm">
+        <div style={{ marginBottom: '10px' }}>
+            <label htmlFor="bookTypeName" style={{ display: 'block', marginBottom: '5px' }}>Tên thể loại:</label>
+            <input type="text" id="bookTypeName" defaultValue={bookType?.name} required style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
         </div>
+        <div style={{ marginBottom: '10px' }}>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Hình ảnh thể loại sách</label>
+            <img src={displayImageURL(bookType?.imageData)} style={{ display: 'block', margin: '10px auto',width:"200px", height:"200px" }} />
+        </div>
+        <div style={{ marginBottom: '10px' }}>
+            <label htmlFor="bookTypeImage" style={{ display: 'block', marginBottom: '5px' }}>Upload file ảnh nếu muốn thay đổi hình minh họa thể loại</label>
+            <input type="file" id="bookTypeImage" style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+        </div>
+        <div>
+            <input type="submit" value="Xác nhận" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} />
+        </div>
+    </form>
+    <p id="MessageZone"></p>
+</div>
+
     )
 } 
 export default EditBookTypeForm;

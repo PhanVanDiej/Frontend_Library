@@ -21,8 +21,7 @@ const Cart = () => {
 
     const [cartItems,setCartItems]=useState([]);
     let [selectedCartItem, setSelectedCartItem] = useState([]);
-    useEffect(()=>{ 
-        async function getAllCartData() 
+    async function getAllCartData() 
         {
             const response= await fetch(BE_ENDPOINT+"reader/cart",{
                 method:"GET",
@@ -41,6 +40,8 @@ const Cart = () => {
             setSelectedCartItem(responseData);
     
         } 
+    useEffect(()=>{ 
+        
         getAllCartData();
     
        },[]);
@@ -49,19 +50,42 @@ const Cart = () => {
     const numItems=cartItems.length;
 
     const handleIncrement=(id)=>{
-        setCartItems((items)=>
-            items.map((item)=>
-                item.id===id ? {...item,amount: item.amount+1 } : item
-            )
+        const listTemp= cartItems.map(
+            (item)=>
+            {
+                if(item.id==id) 
+                {
+                    let temp=item;
+                    temp.amount++;
+                    return temp;
+                } 
+                else {
+                    return item;
+                }
+            }
         );
+        setCartItems(
+           listTemp
+        ); 
         onSaveAllCartItem(cartItems);
+        
     }
     const handleDecrement=(id)=>{
-        setCartItems((items)=>
-            items.map((item)=>
-                item.id===id && item.amount > 1 ? {...item,amount: item.amount - 1 } : item
-            )
-        );
+        const listTemp= cartItems.map(
+            (item)=>
+            {
+                if(item.id==id) 
+                {
+                    let temp=item;
+                    temp.amount--;
+                    return temp;
+                } 
+                else {
+                    return item;
+                }
+            }
+        ); 
+        setCartItems(listTemp);
         onSaveAllCartItem(cartItems);
     }
     const handleDeleteItem= async (id)=>{
@@ -72,13 +96,7 @@ const Cart = () => {
                 "Authorization":"Bearer "+localStorage.getItem("token")
             }
         });
-        if(!response.ok) 
-        {
-            alert("Fail");
-            return;
-        } 
-        alert("Success");
-        window.location.reload();
+        getAllCartData();
     }
 
     const handleOnchangeChecked=(item, isChecked)=>{ 
@@ -169,14 +187,7 @@ const Cart = () => {
             },
             body:JSON.stringify(data)
         });
-        if(!response.ok) 
-        {
-            alert("Lưu thất bại");
-            return;
-        } 
-        alert("Thành công"); 
-        window.location.reload();
-        return;
+        
     }     
      permissionReader();
     return (

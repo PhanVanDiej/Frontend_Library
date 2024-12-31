@@ -31,7 +31,7 @@ const ScrollList = ({ products }) => {
       <div className="product-list" ref={containerRef}>
         {products.map((product) => (
           <div key={product.id} className="product-item" onClick={() => {
-            window.location.href="/book_detail/"+product.id;
+            window.location.href="/search_result/"+product.id;
           }}>
             <img width={100} height={50} src={displayImageURL(product.imageData)} alt={product.name} className="product-image" />
             <p className="product-name">{product.name}</p>

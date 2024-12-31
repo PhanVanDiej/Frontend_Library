@@ -52,46 +52,44 @@ function ChangeNormalInfo()
     } 
     permissionReader();
     return (
-        <div>
-            <Header_Main>
+        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <Header_Main />
 
-            </Header_Main> 
-            <div> 
-                <br></br>
-                <h2>Chỉnh sửa thông tin tài khoảnkhoản</h2>
+    <div>
+        <br />
+        <h2 style={{ color: '#333', textAlign: 'left' }}>Chỉnh sửa thông tin tài khoản</h2> 
+        <br></br>
 
-                <form id="info" onSubmit={(e)=>{
-                    e.preventDefault();
-                    onSubmit();
-                }}> 
-                    <div>
-                        <label htmlFor="fullname"> 
-                            Họ tên:
-                            </label> 
-                            <input type="text" required id="fullname" defaultValue={user.fullname}/>
-                            </div> 
-                    <div>
-                        <label htmlFor="address">
-                            Địa chỉ: 
-                        </label> 
-                        <input type="text" required id="address" defaultValue={user.address}/>
-                    </div>
-
-                    <div>
-                        <label htmlFor="phoneNumber" defaultValue={user.phoneNumber}>
-                            Số điện thoại:
-                        </label> 
-                        <input type="tel" required id="phoneNumber" defaultValue={user.phoneNumber}/>
-                    </div> 
-                    <br></br>
-                    <div>
-                        <input type="submit" value="Xac nhan thay doi"/>
-                    </div>
-
-
-                </form>
+        <form id="info" onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit();
+        }}>
+            <div style={{ marginBottom: '10px', width:"300px" }}>
+                <label htmlFor="fullname" style={{ display: 'block', marginBottom: '5px' }}>
+                    Họ tên:
+                </label>
+                <input type="text" required id="fullname" defaultValue={user.fullname} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
             </div>
-        </div>
+            <div style={{ marginBottom: '10px',width:"300px" }}>
+                <label htmlFor="address" style={{ display: 'block', marginBottom: '5px' }}>
+                    Địa chỉ:
+                </label>
+                <input type="text" required id="address" defaultValue={user.address} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
+            </div>
+            <div style={{ marginBottom: '10px', width:"300px"  }}>
+                <label htmlFor="phoneNumber" style={{ display: 'block', marginBottom: '5px' }}>
+                    Số điện thoại:
+                </label>
+                <input type="tel" required id="phoneNumber" defaultValue={user.phoneNumber} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Xác nhận thay đổi" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} />
+            </div>
+        </form>
+    </div>
+</div>
+
     )
 } 
 export default ChangeNormalInfo

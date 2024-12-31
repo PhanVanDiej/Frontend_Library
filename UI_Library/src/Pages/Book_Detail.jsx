@@ -7,24 +7,25 @@ import displayImageURL from '../Env/DisplayImage';
 import { useNavigate } from "react-router-dom";
 import permissionReader from '../Env/PermissionReader';
 import ScrollList from '../Components/ScrollList_Book';
+import Swal from 'sweetalert2';
 
 const Book_Detail = () => {  
  
   function displayFeature() 
   {
-    if(localStorage.getItem("role")=="0") 
+    if(localStorage.getItem("role_user")=="0") 
       {
         return "Thêm vào danh sách muốn mượn"
       } 
-      return "Chỉnh sửasửa"
+      return "Chỉnh sửa"
   } 
   function displayDeleteOrBorrow() 
   {
-    if(localStorage.getItem("role")=="0") 
+    if(localStorage.getItem("role_user")=="0") 
       {
-        return "Mượn ngayngay"
+        return "Mượn ngay"
       } 
-      return "Danh sách các sáchsách"
+      return "Xoá tựa sáchsách"
   }
   
   
@@ -73,16 +74,16 @@ const Book_Detail = () => {
         });
         if(!response.ok) 
         {
-          alert("Them vao gio sach that bai");
+          alert("Thêm vào danh sách muốn mượn thất bại");
         } 
-        navigate("/cart");
+        
         
     }
     
     const navigate=useNavigate();
     const handleOnClickBorrowBtn=async ()=>{ 
       console.log("Click");
-      if(localStorage.getItem("role")!=0) 
+      if(localStorage.getItem("role_user")!=0) 
       {
         navigate('/edit_book_title/'+bookId.id);
       } 
@@ -110,9 +111,39 @@ const Book_Detail = () => {
     }
     async function onBorrowOneBook() 
     {
-      if(localStorage.getItem("role")!=0) 
+      if(localStorage.getItem("role_user")!=0) 
       {
-        navigate("/book_management",{state:bookDetail})
+        Swal.fire({
+          title:"Xóa tựa sách?",
+          text:"Bạn có chắc muốn xóa tựa sách này?",
+          icon:"warning"
+        }).then( async (result)=>{
+          if(result.isConfirmed) 
+          {
+            const response = await fetch(BE_ENDPOINT+"librarian/delete_book_title/"+bookId.id,{
+              method:"DELETE",
+              headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("token")
+              }
+            });
+            if(!response.ok) 
+            {
+              Swal.fire({
+                title:"Thất bại",
+                text:"Hiện tại không thể xóa tựa sách do đang có độc giả đặt mượn",
+                icon:"fail"
+              });
+              return;
+            } 
+            Swal.fire({
+              title:"Thành công",
+              text:"Xóa tựa sách thành công",
+              icon:"success"
+            });
+            return;
+          }
+        })
         return;
       }
       const response= await fetch(BE_ENDPOINT+"reader/borrowOneBook/"+bookId.id,{
@@ -124,7 +155,7 @@ const Book_Detail = () => {
       }); 
       if(!response.ok) 
         {
-            alert(" Thất bạibại");
+            alert(" Thất bại");
             return;
         } 
         const responseData= await response.json();

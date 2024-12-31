@@ -21,7 +21,7 @@ async function handleLogin(nameOrEmail, password)
 
     localStorage.setItem("userId",responseData.userId);
     localStorage.setItem("token", responseData.token);
-    localStorage.setItem("role", responseData.role);
+    localStorage.setItem("role_user", responseData.role);
     return "Success";
 }
 export default handleLogin;

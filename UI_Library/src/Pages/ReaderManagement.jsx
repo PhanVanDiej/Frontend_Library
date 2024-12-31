@@ -12,7 +12,8 @@ function ReaderManagement()
     const location = useLocation();
     const user = location.state||{};
 
-    useEffect(()=>{ 
+    useEffect(()=>{  
+        
         async function fetchFromServer() 
         {
             const response = await fetch(BE_ENDPOINT+"librarian/getAllReader",{

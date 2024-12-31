@@ -43,28 +43,32 @@ function CreatePenalty()
     } 
     permissionLibrarian();
     return (
-        <div>
-            <Header_Main></Header_Main> 
-            <div>
-                <h2>
-                    Lập phiếu phạt
-                </h2>
-                <div>
-                    <form>
-                        <label htmlFor="readerId">Mã tài khoản độc giả</label> 
-                        <input type="number" id="readerId" required/> 
+        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <Header_Main />
+    <br></br>
+    <div>
+        <h2 style={{ color: '#333', textAlign: 'left' }}>
+            Lập phiếu phạt
+        </h2> 
+        <br></br>
+        <div style={{ marginBottom: '20px' }}>
+            <form>
+                <label htmlFor="readerId" style={{ display: 'block', marginBottom: '10px' }}>Mã tài khoản độc giả</label>
+                <input type="number" id="readerId" required style={{ padding: '10px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
 
-                        <label htmlFor="money">Số tiền phạt</label> 
-                        <input type="number" id="money" required/>
+                <label htmlFor="money" style={{ display: 'block', marginBottom: '10px' }}>Số tiền phạt</label>
+                <input type="number" id="money" required style={{ padding: '10px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
 
-                        <label htmlFor="penaltyMessage">Nội dung (không quá 50 từ)</label> 
-                        <textarea id="penaltyMessage"></textarea> 
+                <label htmlFor="penaltyMessage" style={{ display: 'block', marginBottom: '10px' }}>Nội dung (không quá 50 từ)</label>
+                <textarea id="penaltyMessage" style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }}></textarea>
+                <br></br>
 
-                        <input type="submit" value="Tạo phiếu phạt"/>
-                    </form>
-                </div>
-            </div>
+                <input type="submit" value="Tạo phiếu phạt" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', marginTop: '10px' }} />
+            </form>
         </div>
+    </div>
+</div>
+
     )
 } 
 export default CreatePenalty;

@@ -148,7 +148,7 @@ export default function Header_Main() {
     })
  }
   function display() {
-    if(localStorage.getItem("role")=="1" ) 
+    if(localStorage.getItem("role_user")=="1" ) 
     { return (   // Role = 1 : thủ thư
       <>
         <CustomLink to='/user_information'>Thông tin thủ thư</CustomLink>

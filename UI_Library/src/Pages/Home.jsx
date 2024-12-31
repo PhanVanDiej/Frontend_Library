@@ -4,6 +4,8 @@ import Footer from '../Components/Footer'
 import Header_Main from '../Components/Header_Main' 
 import ScrollList from '../Components/ScrollList_Book' 
 import BE_ENDPOINT from '../Env/EndPont'
+import permissionLibrarian from '../Env/PermissionLibrarian'
+import permissionReader from '../Env/PermissionReader'
 export default  function Home(){
     const [products, setProducts] = useState([]);
    async function fetchBookType()
@@ -15,7 +17,8 @@ export default  function Home(){
    } 
    useEffect(()=>{
     fetchBookType();
-   },[])
+   },[]) 
+   permissionReader();
     return (
         <div>
             <Header_Main></Header_Main>

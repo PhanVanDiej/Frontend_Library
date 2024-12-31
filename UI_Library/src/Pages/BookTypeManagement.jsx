@@ -64,57 +64,78 @@ function BookTypeManagement()
     }
     return (
         <div>
-            <Header_Main></Header_Main> 
-            <div>
-                <input type="text" placeHolder="Tìm kiếm thể loại sách"/>
-                <button onClick={
-                    (e)=>{
-                        e.preventDefault();
-                        onSearch();
-                    }
-                }>Tìm</button>
-            </div>
-            <button onClick={(e)=>{
+    <Header_Main />
+    <div>
+        <input 
+            id="searchData"
+            type="text"
+            placeholder="Tìm kiếm thể loại sách"
+            style={{ padding: '8px', margin: '8px 0', width: '100%' }}
+        />
+        <button
+            onClick={(e) => {
                 e.preventDefault();
-                navigate("/register_book_type");
-            }}>Thêm thể loại sách</button>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>STT</th>  
-                            <th>Hình ảnh minh họa</th>
-                            <th>Mã thể loại</th> 
-                            <th>Tên thể loại</th> 
-                            <th>Xóa</th> 
-                            <th>Sửa</th>
-                        </tr> 
-                        
-                    </thead> 
-                    <tbody>
-                        {
-                            selectProducts.map((item, index)=>{
-                                return (
-                                    <tr>
-                                        <td>{index+1}</td> 
-                                        <td><img src={displayImageURL(item.imageData)}></img></td> 
-                                        <td>{item.id}</td> 
-                                        <td>{item.name}</td> 
-                                        <td><button>Xóa</button></td> 
-                                        <td><button onClick={
-                                            (e)=>{
-                                                e.preventDefault();
-                                                navigate("/edit_book_type/"+item.id);
-                                            }
-                                        }>Sửa</button></td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                onSearch(document.getElementById("searchData").value);
+            }}
+            style={{ padding: '8px 16px', margin: '8px 0' }}
+        >
+            Tìm
+        </button>
+    </div>
+    <button
+        onClick={(e) => {
+            e.preventDefault();
+            navigate("/register_book_type");
+        }}
+        style={{ padding: '8px 16px', margin: '8px 0' }}
+    >
+        Thêm thể loại sách
+    </button>
+    <div>
+        <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid black' }}>
+            <thead>
+                <tr style={{ backgroundColor: '#f2f2f2' }}>
+                    <th style={{ padding: '8px', textAlign: 'left' }}>STT</th>
+                    <th style={{ padding: '8px', textAlign: 'left' }}>Hình ảnh minh họa</th>
+                    <th style={{ padding: '8px', textAlign: 'left' }}>Mã thể loại</th>
+                    <th style={{ padding: '8px', textAlign: 'left' }}>Tên thể loại</th>
+                    <th style={{ padding: '8px', textAlign: 'left' }}>Xóa</th>
+                    <th style={{ padding: '8px', textAlign: 'left' }}>Sửa</th>
+                </tr>
+            </thead>
+            <tbody>
+                {selectProducts.map((item, index) => (
+                    <tr key={index} style={{ borderBottom: '1px solid #ddd' }}>
+                        <td style={{ padding: '8px' }}>{index + 1}</td>
+                        <td>
+                            <img
+                                style={{ width: '50px', height: '50px' }}
+                                src={displayImageURL(item.imageData)}
+                                alt="Hình ảnh minh họa"
+                            />
+                        </td>
+                        <td style={{ padding: '8px' }}>{item.id}</td>
+                        <td style={{ padding: '8px' }}>{item.name}</td>
+                        <td style={{ padding: '8px' }}>
+                            <button>Xóa</button>
+                        </td>
+                        <td style={{ padding: '8px' }}>
+                            <button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate("/edit_book_type/" + item.id);
+                                }}
+                            >
+                                Sửa
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+</div>
+
     )
 } 
 export default BookTypeManagement;

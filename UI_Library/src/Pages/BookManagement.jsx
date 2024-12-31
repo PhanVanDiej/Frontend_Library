@@ -115,9 +115,14 @@ function BookManagementPage()
             return (
                 <div>
                     <p>Đang được mượn</p> 
-                    <button onClick={(e)=>{
+                    <button style={
+                        {
+                            color:"white",
+                            backgroundColor:"red"
+                        }
+                    } onClick={(e)=>{
                 e.preventDefault();
-                navigate("/book_detail/"+item.title.id)
+                navigate("/book_detail/"+item.title.id);
             }}>Xem tựa sách</button>
                 </div>
             )
@@ -128,13 +133,27 @@ function BookManagementPage()
                 deleteBook(item.id);
             }}>Xóa sách</button>  
             <br></br>
-            <button onClick={(e)=>{
+            <button onClick={(e)=>{ 
+                if(item.isUsable==false)
+                {
+                    return;
+                }
                 e.preventDefault();
                 navigate("/book_detail/"+item.title.id)
-            }}>Xem tựa sách</button>
+            }}>{()=>{
+                if(item.title.enable==false) 
+                {
+                    return "Sách đã bị xóa";
+                } 
+                else {
+                    return "Xem tựa sách"
+                }
+            }
+            }</button>
             </div>
-        )
-     } 
+        
+     )
+     }
      function deleteBook(item) 
      {
         Swal.fire({
@@ -183,41 +202,45 @@ function BookManagementPage()
                         }
                     }}/> 
                    <select className="type-status-list" id="searchType">
-                    <option value="Tat ca">Tat ca</option> 
-                    <option value="San sang">San sang</option> 
-                    <option value="Dang cho muon">Dang cho muon</option> 
-                    <option value="Dang duoc muon">Dang duoc muon</option>
+                    <option value="Tat ca">Tất cả</option> 
+                    <option value="San sang">Sẵn sàng</option> 
+                    <option value="Dang cho muon">Đang chờ mượn</option> 
+                    <option value="Dang duoc muon">Đang được mượn</option>
                    </select>
                 </div>
-                <div>
-                    <table border={1}>
-                        <thead>
-                            <tr>
-                                <th>STT</th> 
-                                <th>Mã sách</th> 
-                                <th>Tên tựa sách</th> 
-                                <th>Thể loại</th> 
-                                <th>Trạng thái</th> 
-                                <th>Hành động</th>
-                            </tr>
-                        </thead> 
-                        <tbody>
-                            {
-                                listSelectBook.map((item, index)=>{
-                                    return (
-                                        <tr>
-                                            <td>{index+1}</td> 
-                                            <td>{item.id}</td> 
-                                            <td>{item.title.name}</td> 
-                                            <td>{item.title.type.name}</td>  
-                                            <td>{item.status.name}</td>
-                                            <td>{displayDeleteButton(item)}</td> 
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                <br></br>
+                <div style={
+                    {
+                        width:"100%",
+                        height:"700px",
+                        overflow:"auto"
+                    }
+                }>
+                <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid black' }}>
+    <thead>
+        <tr style={{ backgroundColor: '#f2f2f2' }}>
+            <th style={{ padding: '8px', textAlign: 'left' }}>STT</th>
+            <th style={{ padding: '8px', textAlign: 'left' }}>Mã sách</th>
+            <th style={{ padding: '8px', textAlign: 'left' }}>Tên tựa sách</th>
+            <th style={{ padding: '8px', textAlign: 'left' }}>Thể loại</th>
+            <th style={{ padding: '8px', textAlign: 'left' }}>Trạng thái</th>
+            <th style={{ padding: '8px', textAlign: 'left' }}>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {listSelectBook.map((item, index) => (
+            <tr key={index} style={{ borderBottom: '1px solid #ddd' }}>
+                <td style={{ padding: '8px' }}>{index + 1}</td>
+                <td style={{ padding: '8px' }}>{item.id}</td>
+                <td style={{ padding: '8px' }}>{item.title.name}</td>
+                <td style={{ padding: '8px' }}>{item.title.type.name}</td>
+                <td style={{ padding: '8px' }}>{item.status.name}</td>
+                <td style={{ padding: '8px' }}>{displayDeleteButton(item)}</td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
                 </div>
             </div>
         </div>

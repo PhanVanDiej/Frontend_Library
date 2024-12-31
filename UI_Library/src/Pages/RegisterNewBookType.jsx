@@ -34,20 +34,18 @@ function RegisterNewBookTypeForm()
         {
             return ;
         } 
-        alert("Tạo thể loại thành côngcông");
+        alert("Tạo thể loại thành công");
     }
-    useEffect(()=>{
-        document.getElementById("registerNewBookTypeForm").addEventListener("submit",(e)=>{
-            e.preventDefault(); 
-            onSubmit();
-        })
-    },[]) 
+    
     permissionLibrarian();
     return (
         <div>
             <Header_Main></Header_Main>   
             <div> 
-                <form id="registerNewBookTypeForm"> 
+                <form id="registerNewBookTypeForm" onSubmit={(e)=>{
+                    e.preventDefault();
+                    onSubmit();
+                }}> 
                     <div>
                         <label htmlFor="bookTypeName">Tên thể loại sách</label> 
                         <input type="text" id="bookTypeName" required/>

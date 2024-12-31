@@ -69,72 +69,62 @@ function BorrowOfflinePage()
     }
     permissionLibrarian();
     return (
-        <div>
-            <Header_Main>
+        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <Header_Main />
 
-            </Header_Main>
-            <div>
-                <h2>Mượn sách trực tiếp</h2> 
-                <div>
-                    <form>
-                        <label htmlFor="userId">Mã độc giả</label> 
-                        <input type="number" id="userId"/>
+    <div>
+        <h2 style={{ color: '#333', textAlign: 'center' }}>Mượn sách trực tiếp</h2>
+        <div style={{ marginBottom: '20px' }}>
+            <form>
+                <label htmlFor="userId" style={{ display: 'block', marginBottom: '10px' }}>Mã độc giả</label>
+                <input type="number" id="userId" style={{ padding: '10px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc' }} />
 
-                        <label htmlFor="bookId">Mã sách</label> 
-                        <input type="number" id="bookId"/>
-                    </form> 
-                    <button  
-                    onClick={
-                        (e)=>{
-                            e.preventDefault();
-                            if(document.getElementById("bookId").value!="") 
-                            {
-                                onAdd(document.getElementById("bookId").value);
-                            }
-                        }
-                    }
-                    >Thêm</button>
-                    <button onClick={(e)=>{
-                        e.preventDefault();
-                        confirmBorrow();
-                    }}>Xác nhận cho mượn</button>
-                </div>
-                <div> 
-                    <table border={1}> 
-                        <thead>
-                            <tr>
-                                <th>STT</th> 
-                                <th>Mã sách</th> 
-                                <th>Tên sách</th> 
-                                <th>Xóa</th>
-                            </tr> 
-                        </thead> 
-                        <tbody>
-                            {
-                            listBook.map((item, index)=>{
-                                return (
-                                    <tr>
-                                        <td>{index+1}</td> 
-                                        <td>{item.id}</td> 
-                                        <td>{item.title.name}</td> 
-                                        <td><button 
-                                        onClick={
-                                            (e)=>{
-                                                e.preventDefault();
-                                                onDelete(index);
-                                            }
-                                        } 
-                                        >Xóa</button></td>
-                                    </tr>
-                                )
-                            })
-}
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
+                <label htmlFor="bookId" style={{ display: 'block', marginBottom: '10px' }}>Mã sách</label>
+                <input type="number" id="bookId" style={{ padding: '10px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc' }} />
+            </form>
+            <button onClick={(e) => {
+                e.preventDefault();
+                if (document.getElementById("bookId").value !== "") {
+                    onAdd(document.getElementById("bookId").value);
+                }
+            }} style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', marginRight: '10px' }}>Thêm</button>
+            <button onClick={(e) => {
+                e.preventDefault();
+                confirmBorrow();
+            }} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>Xác nhận cho mượn</button>
         </div>
+        <div>
+            <table border={1} style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                    <tr>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>STT</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Mã sách</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Tên sách</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        listBook.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{index + 1}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{item.id}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{item.title.name}</td>
+                                    <td><button onClick={(e) => {
+                                        e.preventDefault();
+                                        onDelete(index);
+                                    }} style={{ padding: '5px 10px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '5px' }}>Xóa</button></td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
     )
 } 
 export default BorrowOfflinePage;

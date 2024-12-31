@@ -261,67 +261,71 @@ function BorrowingDetailPage()
     } 
     function onSearch(borrowId) {
         const listResult= borrowDetailList.filter((item)=>{
-            return item.service.servieId= borrowId;
+            return item.service.serviceId == borrowId;
         }) 
         setSelectedBorrowDetailList(listResult);
     }
     permissionLibrarian();
     return (
+        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <Header_Main />
+    
         <div>
-            <Header_Main>
-
-            </Header_Main> 
-            <div> 
-                <h2>Danh sách các phiếu mượnmượn</h2>
-                <div>
-                    <button>Tất cả</button> 
-                    <button>Đang chờ lấy</button> 
-                    <button>Đang được mượn</button> 
-                    <button>Đã trả</button>
-                </div> 
-                <div>
-                <input type="number" id="searchDate" placeholder="Tìm kiếm bằng mã phiếu"/> 
-                <button  onClick={(e)=>{
+            <h2 style={{ color: '#333', textAlign: 'center' }}>Danh sách các phiếu mượn</h2> 
+            <br></br>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                <input type="number" id="searchDate" placeholder="Tìm kiếm bằng mã phiếu" style={{ padding: '10px', marginRight: '10px', borderRadius: '5px', border: '1px solid #ccc' }} />
+                <button onClick={(e) => {
                     e.preventDefault();
                     onSearch(document.getElementById("searchDate").value);
-                }}>Tìm</button>
-                </div>
-                <table border={1}>
-                   <thead>
+                }} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>Tìm</button>
+            </div>
+            <div style={
+                {
+                    width:"100%",
+                    height:"700px",
+                    overflow:"auto"
+                }
+            }>
+            <table border={1} style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
                     <tr>
-                        <th>STT</th> 
-                        <th>Mã phiếu mượn</th> 
-                        <th>Mã sách</th> 
-                        <th>Tựa sách</th> 
-                        <th>Mã độc giả</th> 
-                        <th>Tên độc giả</th> 
-                        <th>Ngày mượn</th> 
-                        <th>Ngày trả</th> 
-                        <th>Hành động</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>STT</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Mã phiếu mượn</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Mã sách</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Tựa sách</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Mã độc giả</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Tên độc giả</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Ngày mượn</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Ngày trả</th>
+                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Hành động</th>
                     </tr>
-                   </thead>
-                   <tbody>
+                </thead>
+                <tbody>
                     {
-                        selectedBorrowDetailList.map((item, index)=>{
+                        selectedBorrowDetailList.map((item, index) => {
                             return (
-                                <tr>
-                                    <td>{index+1}</td> 
-                                    <td>{item.service.serviceId}</td>
-                                    <td>{item.book.id}</td> 
-                                    <td>{item.book.title.name}</td>
-                                    <td>{item.service.reader.userId}</td> 
-                                    <td>{item.service.reader.fullname}</td> 
-                                    <td>{formatDate(item.service.implementDate)}</td>
-                                    <td>{formatDate(item.expireDate)}</td>
-                                    <td>{displayAction(item)}</td>
+                                <tr key={index}>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{index + 1}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{item.service.serviceId}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{item.book.id}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{item.book.title.name}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{item.service.reader.userId}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{item.service.reader.fullname}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{formatDate(item.service.implementDate)}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{formatDate(item.expireDate)}</td>
+                                    <td style={{ padding: '10px', border: '1px solid #ddd' }}>{displayAction(item)}</td>
                                 </tr>
                             )
                         })
                     }
-                   </tbody>
-                </table>
+                </tbody>
+            </table> 
             </div>
         </div>
+    </div>
+    
     )
 } 
 export default BorrowingDetailPage;

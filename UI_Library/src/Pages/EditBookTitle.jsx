@@ -100,65 +100,66 @@ function EditBookTitleForm()
     },[])
     permissionLibrarian();
     return (
-        <div>
-            <Header_Main></Header_Main>
-<div>
-    <h3>Chỉnh sửa thông tin tựa sách:</h3> 
-    <form id="register_form">
-        <div>
-            <label htmlFor="bookName">Tên sách :</label> 
-            <input type="text" required id="bookName" defaultValue ={bookTitle?.name}/>
-        </div>
-        <div>
-            <label htmlFor="bookType">Thể loại :</label> 
-            <select id="bookType" required defaultValue={bookTitle?.type?.id}>
-                {
-                    bookType.map((item)=>{
-                        return <option value={item.id}>{item.name}</option>
-                    })
-                }
-            </select>
-        </div>
-        <div>
-            <label htmlFor="author">Tác giả :</label> 
-            <input id="author" required type="text" defaultValue={bookTitle?.author}/>
-        </div> 
-        <div>
-            <label htmlFor="NXB">Nhà xuất bản :</label>
-            <input id="NXB" type="text" required defaultValue={bookTitle?.nxb}/>
-        </div> 
-        <div>
-            <label htmlFor="YEAR">Năm xuất bản :</label>  
-            <input type="number" min="1900" max="2024" id="YEAR" required defaultValue={bookTitle?.year}/>
-        </div>  
-        <div>
-            <label htmlFor="language">Ngôn ngữ : </label> 
-            <input type="text" id="language" required defaultValue={bookTitle?.language}/>
-        </div>
-        <div>
-            <label htmlFor="pageAmount">Số lượng trang : </label> 
-            <input type="number" id="pageAmount" required min="10" defaultValue={bookTitle?.pageAmount}></input>
-        </div>
-        <div> 
-            <label htmlFor="Review">Mô tả nội dung :</label> 
-            <textarea required id="Review" defaultValue={bookTitle?.review}></textarea>
-        </div> 
-        <div>
-            <label>Hình ảnh bìa sách :</label> 
-            <img src={displayImageURL(bookTitle?.imageData)}></img>
-        </div> 
-        <div>
-            <label htmlFor="updateBookTitleImage">Upload file ảnh nếu muốn thay đổi bìa sách</label> 
-            <input type="file" id="updateBookTitleImage"/>
-        </div>
-        <div>
-            <input type="submit"/>
-        </div>
+        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <Header_Main />
 
-
-    </form>
+    <div>
+        <h3 style={{ color: '#333', textAlign: 'center' }}>Chỉnh sửa thông tin tựa sách:</h3>
+        <form id="register_form">
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="bookName" style={{ display: 'block', marginBottom: '5px' }}>Tên sách :</label>
+                <input type="text" required id="bookName" defaultValue={bookTitle?.name} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="bookType" style={{ display: 'block', marginBottom: '5px' }}>Thể loại :</label>
+                <select id="bookType" required defaultValue={bookTitle?.type?.id} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }}>
+                    {
+                        bookType.map((item) => {
+                            return <option value={item.id}>{item.name}</option>
+                        })
+                    }
+                </select>
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="author" style={{ display: 'block', marginBottom: '5px' }}>Tác giả :</label>
+                <input id="author" required type="text" defaultValue={bookTitle?.author} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="NXB" style={{ display: 'block', marginBottom: '5px' }}>Nhà xuất bản :</label>
+                <input id="NXB" type="text" required defaultValue={bookTitle?.nxb} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="YEAR" style={{ display: 'block', marginBottom: '5px' }}>Năm xuất bản :</label>
+                <input type="number" min="1900" max="2024" id="YEAR" required defaultValue={bookTitle?.year} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="language" style={{ display: 'block', marginBottom: '5px' }}>Ngôn ngữ :</label>
+                <input type="text" id="language" required defaultValue={bookTitle?.language} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="pageAmount" style={{ display: 'block', marginBottom: '5px' }}>Số lượng trang :</label>
+                <input type="number" id="pageAmount" required min="10" defaultValue={bookTitle?.pageAmount} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="Review" style={{ display: 'block', marginBottom: '5px' }}>Mô tả nội dung :</label>
+                <textarea required id="Review" defaultValue={bookTitle?.review} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }}></textarea>
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label>Hình ảnh bìa sách :</label> 
+                <br></br>
+                <img src={displayImageURL(bookTitle?.imageData)} style={{ display: 'block', margin: '10px auto', width:"200px", height:"200px", alignContent:"left" }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label htmlFor="updateBookTitleImage" style={{ display: 'block', marginBottom: '5px' }}>Upload file ảnh nếu muốn thay đổi bìa sách</label>
+                <input type="file" id="updateBookTitleImage" style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
+            </div>
+            <div>
+                <input type="submit" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} />
+            </div>
+        </form>
+    </div>
 </div>
-        </div>
+
     )
 } 
 export default EditBookTitleForm

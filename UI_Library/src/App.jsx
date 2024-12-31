@@ -38,8 +38,9 @@ import RegulationPage from './Pages/Regulation'
 import UpdateRegulationPage from './Pages/UpdateRegulation'
 import PenaltyHistoryPage from './Pages/PenaltyHistoryPage'
 import CreatePenalty from './Pages/CreatePenaltyPage'
+import BookTypeManagement from './Pages/BookTypeManagement'
 function App(){
-  localStorage.setItem("role","0");
+  
   return (
     <>
      <div className='container'>
@@ -81,8 +82,10 @@ function App(){
               <Route path="/forgetPassword" element={<ForgetPassword></ForgetPassword>}/> 
               <Route path="/regulation" element={<RegulationPage></RegulationPage>}/>
               <Route path="/update_regulation" element={<UpdateRegulationPage></UpdateRegulationPage>}/> 
-              <Route path="/penalty_history" element={<PenaltyHistoryPage></PenaltyHistoryPage>}/> 
-              <Route path="/create_penalty" element={<CreatePenalty></CreatePenalty>}/>
+              <Route path="/penalty_history" element={<PenaltyHistoryPage></PenaltyHistoryPage>}/>  
+              <Route path="/book_type_management" element={<BookTypeManagement></BookTypeManagement>}/>
+              <Route path="/create_penalty" element={<CreatePenalty></CreatePenalty>}/> 
+              <Route path='/borrow_offline' element={<BorrowOfflinePage></BorrowOfflinePage>}/>
               
           </Routes>
      </div>
