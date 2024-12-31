@@ -165,8 +165,8 @@ function BookManagementPage()
      
      permissionLibrarian();
 
-     const handleOnDeleteClick=()=>{
-
+     const handleOnDeleteClick=(book)=>{
+        setSelectedBook(book);
      }
 
     return (
@@ -231,7 +231,7 @@ function BookManagementPage()
                         {BooksExample.map((item,index)=>(
                             <BookManagementItem
                                 key={item.id}
-                                onDelete={()=>handleOnDeleteClick}
+                                onDelete={()=>handleOnDeleteClick(item)}
                                 book={item}
                                 index={index}
                             />
