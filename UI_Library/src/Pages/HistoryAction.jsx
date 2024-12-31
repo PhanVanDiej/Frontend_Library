@@ -141,9 +141,7 @@ const HistoryAction = () => {
   return (
     <div>
       <Header_Main></Header_Main>
-     
-      <div className='content-wrapper'>
-        
+      <div className='main-content'>
         <div className='nav-cart-state'>
             <ul>
                 <li onClick={
@@ -180,7 +178,7 @@ const HistoryAction = () => {
                     return item.status=="RETURNED"
                   }))
                 }}
-                >Da tra</li>
+                >Đã trả</li>
 
             </ul>
         </div> 

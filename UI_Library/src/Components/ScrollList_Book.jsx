@@ -20,7 +20,7 @@ const ScrollList = ({ products }) => {
   };
   const navigate = useNavigate();
   const handleProductClick = (id) => {
-    navigate(`/search_result/${id}`);
+    navigate(`/book_detail/${id}`);
   };
   //Thay the src = {product.image}
   return (
@@ -30,14 +30,16 @@ const ScrollList = ({ products }) => {
       </button>
       <div className="product-list" ref={containerRef}>
         {products.map((product) => (
-          <div key={product.id} className="product-item" onClick={() => handleProductClick(product.id)}>
-            <img src={displayImageURL(product.imageData)} alt={product.name} className="product-image" />
+          <div key={product.id} className="product-item" onClick={() => {
+            window.location.href="/book_detail/"+product.id;
+          }}>
+            <img width={100} height={50} src={displayImageURL(product.imageData)} alt={product.name} className="product-image" />
             <p className="product-name">{product.name}</p>
           </div>
         ))}
       </div>
       <button className="arrow right-arrow" onClick={() => handleScroll("right")}>
-        <img src={rightArrow}></img>
+        <img width={10} height={10} src={rightArrow}></img>
       </button>
     </div>
   );

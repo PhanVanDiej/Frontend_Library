@@ -54,6 +54,7 @@ const Cart = () => {
                 item.id===id ? {...item,amount: item.amount+1 } : item
             )
         );
+        onSaveAllCartItem(cartItems);
     }
     const handleDecrement=(id)=>{
         setCartItems((items)=>
@@ -61,6 +62,7 @@ const Cart = () => {
                 item.id===id && item.amount > 1 ? {...item,amount: item.amount - 1 } : item
             )
         );
+        onSaveAllCartItem(cartItems);
     }
     const handleDeleteItem= async (id)=>{
         const response= await fetch(BE_ENDPOINT+"reader/deleteItemFromCart/"+id,{
@@ -232,12 +234,10 @@ const Cart = () => {
                 )
             })}
         </div>
-
-        <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
-        <button className='cart-confirm-btn' onClick={(e)=>{
-            e.preventDefault();
-            onSaveAllCartItem(cartItems);
-        }}>Lưu</button>
+        <div style={{display:'flex'}}>
+            <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
+           
+        </div>
       </div>
     </div>
   )

@@ -149,7 +149,7 @@ function SellBookForm() {
           <div id="messageArea"></div>
         </div>
         <div>
-          <div className="action-btn-wrapper" >
+          <div className="filter-header" >
             <button
             className="action-btn confirm-btn"
               onClick={(e) => {
@@ -170,37 +170,39 @@ function SellBookForm() {
             </button>
             <button className="action-btn cancel-btn">Huỷ</button>
           </div>
-          <table border={1}>
-            <thead>
-              <tr>
-                <th>STT</th>
-                <th>Ma sach</th>
-                <th>Gia ban</th>
-                <th>Xoa</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listSellBook.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{item.bookId}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          onDeleteAt(item.bookId);
-                        }}
-                      >
-                        Xoa
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="content-table">
+            <table border={1}>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Ma sach</th>
+                  <th>Gia ban</th>
+                  <th>Xoa</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listSellBook.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{item.bookId}</td>
+                      <td>{item.price}</td>
+                      <td>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            onDeleteAt(item.bookId);
+                          }}
+                        >
+                          Xoa
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

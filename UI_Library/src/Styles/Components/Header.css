@@ -15,8 +15,10 @@
 .navbar {
     background-color: #000000;
     display: flex;
-    padding-left: 200px;
+    padding-left: 50px;
+    padding-right: 50px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .navbar img{
@@ -99,16 +101,18 @@
 .navbar ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     font-family: Arial, sans-serif;
     font-family: 'kyiv_type_titling_regular',sans-serif;
+    white-space: nowrap ;
 }
 .navbar ul li p{
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     font-family: Arial, sans-serif;
     font-family: 'kyiv_type_titling_regular',sans-serif;
+    white-space: nowrap ;
 }
 .Home-title{
     font-size: 30px;
@@ -117,10 +121,22 @@
     margin: 0;
     width: 200px;
     font-family: 'kyiv_type_titling_regular',sans-serif;
+    white-space: nowrap ;
 }
-
+.logout-btn{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    margin-left: 40px;
+    font-family: 'kyiv_type_titling_regular',sans-serif;
+    padding: 8px;
+    border-radius: 5px;
+}
+.logout-btn:hover{
+    background-color: red;
+}
 .search-box{
-    margin-left: 100px;
+    margin-left: 50px;
     background-color: #8E8E8E;
     border-radius: 20px;
     display: flex;

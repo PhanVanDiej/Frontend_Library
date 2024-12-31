@@ -1,11 +1,6 @@
-.content-wrapper{
-    display: flex;
-    justify-content: center;
-}
 .nav-cart-state{
     box-Shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    margin-top: 70px;
     width: fit-content;
     border-radius: 5px;
 }
@@ -15,7 +10,10 @@
 }
 .nav-cart-state ul li{
     padding: 10px 80px 10px 80px; 
+    white-space: nowrap;
+    border-radius: 10px;
 }
 .nav-cart-state ul li:hover{
     background-color: #D9D9D9;
+    cursor: pointer;
 }

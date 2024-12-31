@@ -177,14 +177,16 @@ useEffect(
   };
   return (
     <div className="wrapping-content">
+    <div className="wrapping-content">
       <Header_Main></Header_Main>
       <h1 style={{marginTop:"50px", marginLeft:"100px"}}>Thông tin tài khoản</h1>
+      
 
       <div id="userInfoArea">
         <div className="avatar-area">
           <img src={avatar} alt="avatar" className="avatar-img"></img>
           <div>
-            <h3 style={{ whiteSpace: "nowrap" }}>{userExample.fullName}</h3>
+            <h3 style={{ whiteSpace: "nowrap" }}>{userExample.fullname}</h3>
             <h5 style={{ whiteSpace: "nowrap" }}>{role}</h5>
             <button
               className="editInfo-Btn"
@@ -293,8 +295,11 @@ useEffect(
           </Box>
         </div>
       </div>
+        
+      </div>
     </div>
   );
 };
 
 export default User_Information;
+

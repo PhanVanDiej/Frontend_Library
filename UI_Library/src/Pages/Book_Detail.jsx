@@ -6,6 +6,7 @@ import BE_ENDPOINT from '../Env/EndPont';
 import displayImageURL from '../Env/DisplayImage';
 import { useNavigate } from "react-router-dom";
 import permissionReader from '../Env/PermissionReader';
+import ScrollList from '../Components/ScrollList_Book';
 
 const Book_Detail = () => {  
  
@@ -30,6 +31,7 @@ const Book_Detail = () => {
     const bookId= useParams();  
     console.log(bookId.id);
     const [bookDetail, setBookDetail] = useState({}); 
+    const [suggestBook, setSuggestBook] = useState([]);
     useEffect(()=>{
       async function fetchToServer(bookId) 
       { 
@@ -41,7 +43,14 @@ const Book_Detail = () => {
         }  
         const responseData= await response.json();
         console.log(responseData);
-        setBookDetail(responseData)
+        setBookDetail(responseData);
+        const listSuggestBook= await fetch(BE_ENDPOINT+"book-titles/get/byBookType/"+responseData.type.id);
+        let listSuggestBookData = await listSuggestBook.json(); 
+        listSuggestBookData= listSuggestBookData.filter((item)=>{
+          return item.id!=responseData.id;
+        });
+        console.log(listSuggestBookData);
+        setSuggestBook(listSuggestBookData);
         
       }  
       
@@ -207,7 +216,9 @@ const Book_Detail = () => {
             </div>
         </div>
         <div className='suggest-related-book-scroll'>
-            
+        
+            <ScrollList products={suggestBook}></ScrollList>
+        
         </div>
       </div>
     </div>

@@ -5,9 +5,9 @@ import arrowDown from '../assets/Icons/arrow_down.png';
 import transparency from '../assets/Icons/transparency.png';
 import logo from '../assets/Icons/logo.png';
 import { useNavigate } from "react-router-dom";
-import BE_ENDPOINT from '../Env/EndPont'; 
-import ReactDOMServer from 'react-dom/server';
-import Swal from 'sweetalert2';
+import BE_ENDPOINT from '../Env/EndPont';
+import ReactDOMServer from "react-dom/server";
+
 
 
 export default function Header_Main() {
@@ -155,30 +155,23 @@ export default function Header_Main() {
         <li>
           <p>Nghiệp vụ</p>
           <ul className='dropdown-menu'>
-            <li className='option-drop'><CustomLink to="/reader_management">Quản lý độc giả</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/book_management">Quản lý sách</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/renewal_request">Danh sách yêu cầu gia hạn</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/buy_book">Mua sách</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/sell_book">Bán sách</CustomLink></li>
-            <li className='option-drop'><CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink></li> 
-            <li className="option-drop"><CustomLink to="/create_penalty">Lập phiếu phạt</CustomLink></li>
-            <li className="option-drop"><CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink></li>
-            <li className="option-drop"><CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink></li>
-            <li className="option-drop"><CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink></li>
-            <li className="option-drop"><div><p>Lập báo cáo</p><ul className="dropdown-menu"> 
-              <li className="option-drop" onClick={
-                (e)=>{
-                  e.preventDefault();
-                  onClickReport(1);
-                }
-              }>Báo cáo lượt mượn theo tựa sách</li> 
-              <li className="option-drop"  onClick={
-                (e)=>{
-                  e.preventDefault();
-                  onClickReport(0);
-                }
-              }>Báo cáo lượt mượn theo thể loại</li>
-              </ul></div></li>
+            <CustomLink to="/reader_management">Quản lý độc giả</CustomLink>
+            <CustomLink to="/book_management">Quản lý sách</CustomLink>
+            <CustomLink to="/renewal_request">Danh sách yêu cầu gia hạn</CustomLink>
+            <CustomLink to="/buy_book">Mua sách</CustomLink>
+            <CustomLink to="/sell_book">Bán sách</CustomLink>
+            <CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink>
+            <CustomLink to="/penalty">Lập phiếu phạt</CustomLink>
+            <CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink>
+            <CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink>
+            <CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink>
+            <li className="option-drop report-menu">
+              <p>Lập báo cáo</p>
+              <ul className="dropdown-menu-report"> 
+                <CustomLink to="/#">Báo cáo lượt mượn theo tựa sách</CustomLink> 
+                <CustomLink to="/#">Báo cáo lượt mượn theo thể loại</CustomLink>
+              </ul>
+            </li>
           </ul>
         </li>
         <CustomLink to="/regulation">Quy định thư viện</CustomLink>
@@ -200,6 +193,7 @@ export default function Header_Main() {
     <div>
       <header className="header">
         <nav className="navbar">
+          <div style={{display:'flex',alignItems:'center'}}>
             <img src={logo} alt='ArrowDown'></img>
             <Link to="/home" className='Home-title' style={{color:"#A27430"}}>Trang Chủ</Link>
             <ul>
@@ -207,11 +201,22 @@ export default function Header_Main() {
                   display()
                 }
             </ul>
-
+          </div>
+          <div style={{display:'flex',alignItems:'center'}}>
             <div className='search-box' onClick={openSearchBox}>
               <img src={arrowDown} alt='ArrowDown'></img>
               <img src={transparency} alt='Transparency'></img>
             </div>
+            <div className='logout-btn' onClick={
+              (e)=>{
+                e.preventDefault();
+                localStorage.removeItem("userId");
+                localStorage.removeItem("token");
+                localStorage.removeItem("role");
+                navigate("/login");
+              }
+            }>Đăng xuất</div>
+          </div>
         </nav>
       </header>
       {isSearchBoxOpen&&(

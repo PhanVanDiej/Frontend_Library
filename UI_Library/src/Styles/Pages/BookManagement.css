@@ -12,6 +12,7 @@
     width: 400px;
     border: solid 1px grey;
     border-radius: 10px;
+    outline: none;
 }
 .search-input:hover{
     border:solid 1px #A27430 !important;
@@ -20,4 +21,7 @@
     padding: 8px;
     border: solid 1px grey;
     border-radius: 10px;
+}
+.content-table{
+    margin-top: 30px;
 }

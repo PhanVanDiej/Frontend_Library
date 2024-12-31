@@ -7,7 +7,7 @@ export default function LoginPage() {
   const navigate= useNavigate();
   async function Login(nameOrEmail, password) 
   {
-    
+      
       const result = await handleLogin(nameOrEmail, password);
       if(result==="Success") 
       {
