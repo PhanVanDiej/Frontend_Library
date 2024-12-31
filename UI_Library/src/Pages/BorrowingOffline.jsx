@@ -73,9 +73,9 @@ function BorrowOfflinePage()
             <Header_Main>
 
             </Header_Main>
-            <div>
-                <h2>Mượn sách trực tiếp</h2> 
-                <div>
+            <div className="main-content">
+                <h2 className="title-page">Mượn sách trực tiếp</h2> 
+                <div className="table-content">
                     <form>
                         <label htmlFor="userId">Mã độc giả</label> 
                         <input type="number" id="userId"/>

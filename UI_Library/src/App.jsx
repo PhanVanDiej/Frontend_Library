@@ -38,7 +38,7 @@ import RegulationPage from './Pages/Regulation'
 import UpdateRegulationPage from './Pages/UpdateRegulation'
 import PenaltyHistoryPage from './Pages/PenaltyHistoryPage'
 function App(){
-  localStorage.setItem("role","0");
+  //localStorage.setItem("role","1");
   return (
     <>
      <div className='container'>

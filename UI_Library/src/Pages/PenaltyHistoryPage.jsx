@@ -30,9 +30,9 @@ function PenaltyHistoryPage()
     return (
         <div>
             <Header_Main></Header_Main> 
-            <div>
-                <h2>Lich su vi pham</h2> 
-                <div>
+            <div className="main-content">
+                <h2 className="title-page">Lịch sử vi phạm</h2> 
+                <div className="table-content">
                     <table>
                         <thead>
                             <tr>

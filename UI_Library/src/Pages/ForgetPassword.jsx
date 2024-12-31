@@ -18,16 +18,20 @@ function ForgetPassword()
     return (
         <div>
             <Header_Main></Header_Main> 
-            <div>
-                <form onSubmit={
+            <div className="main-content">
+                <form 
+                className="form-primary"
+                onSubmit={
                     (e)=>{
                         e.preventDefault();
                         onConfirmSendEmail();
                     }
                 }>
-                    <label htmlFor="email">Nhập địa chỉ email của bạn</label> 
+                    <div className="form-control">
+                    <label htmlFor="email">Nhập địa chỉ email của bạn :</label> 
                     <input type="email" required id="email"/>
-                    <input type="submit" value="Gửi email xác nhận"/>
+                    </div>
+                    <input className="action-btn confirm-btn " type="submit" value="Gửi email xác nhận"/>
                 </form>  
 
                 <p id="messageAreaForgetPassword"></p>
