@@ -28,9 +28,9 @@ function PenaltyList()
     return ( 
         <div>
         <Header_Main></Header_Main> 
-            <div>
-                <h2>Danh sach cac phieu phat</h2> 
-                <div>
+            <div className="main-content">
+                <h2 className="title-page">Danh sach cac phieu phat</h2> 
+                <div className="content-table">
                     <table border={1}>
                         <thead>
                             <tr>

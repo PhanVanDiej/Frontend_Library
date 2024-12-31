@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header_Main from '../Components/Header_Main'
-//import '../Styles/Pages/HistoryAction.css'
+import '../Styles/Pages/HistoryAction.css'
 import BE_ENDPOINT from '../Env/EndPont'; 
 import formatDate from '../Env/FormatDate'; 
 import Swal from "sweetalert2";
@@ -148,9 +148,7 @@ const HistoryAction = () => {
   return (
     <div>
       <Header_Main></Header_Main>
-     
-      <div className='content-wrapper'>
-        
+      <div className='main-content'>
         <div className='nav-cart-state'>
             <ul>
                 <li onClick={
@@ -187,7 +185,7 @@ const HistoryAction = () => {
                     return item.status=="RETURNED"
                   }))
                 }}
-                >Da tra</li>
+                >Đã trả</li>
 
             </ul>
         </div> 

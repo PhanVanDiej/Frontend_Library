@@ -1,6 +1,6 @@
 import {React,useState, useEffect} from 'react'
 import Header_Main from '../Components/Header_Main'
-//import '../Styles/Pages/Cart.css'
+import '../Styles/Pages/Cart.css'
 import BookCover from '../assets/Book_Cover/rezero.png'
 import recycleBin from '../assets/Icons/recycle_bin.png'
 import { useNavigate } from 'react-router-dom' 
@@ -232,12 +232,14 @@ const Cart = () => {
                 )
             })}
         </div>
-
-        <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
-        <button className='cart-confirm-btn' onClick={(e)=>{
-            e.preventDefault();
-            onSaveAllCartItem(cartItems);
-        }}>Lưu</button>
+        <div style={{display:'flex'}}>
+            <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
+            <button className='cart-confirm-btn' onClick={(e)=>{
+                e.preventDefault();
+                onSaveAllCartItem(cartItems);
+            }}>Lưu
+            </button>
+        </div>
       </div>
     </div>
   )

@@ -38,11 +38,12 @@ import RegulationPage from './Pages/Regulation'
 import UpdateRegulationPage from './Pages/UpdateRegulation'
 import PenaltyHistoryPage from './Pages/PenaltyHistoryPage'
 function App(){
+  localStorage.setItem("role","0");
   return (
     <>
      <div className='container'>
           <Routes>
-              <Route path='/' element={<Navigate to='book_detail/1'/>}/>
+              <Route path='/' element={<Navigate to='/login'/>}/>
               <Route path='/login' element={<LoginPage></LoginPage>}/>
               <Route path='/signup' element={<SignupPage></SignupPage>}/>
               <Route path='/home' element={<Home></Home>}/>

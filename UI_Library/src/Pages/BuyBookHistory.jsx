@@ -31,9 +31,9 @@ function BuyBookHistoryPage()
     return (  
         <div>
         <Header_Main></Header_Main>
-        <div>
-            <h2>Lich su mua sach</h2>
-            <div>
+        <div className="main-content">
+            <h2 className="title-page">Lich su mua sach</h2>
+            <div className="content-table">
                 <table border={1}>
                     <thead>
                         <tr>

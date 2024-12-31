@@ -146,6 +146,7 @@ export default function Header_Main() {
     <div>
       <header className="header">
         <nav className="navbar">
+          <div style={{display:'flex',alignItems:'center'}}>
             <img src={logo} alt='ArrowDown'></img>
             <Link to="/home" className='Home-title' style={{color:"#A27430"}}>Trang Chủ</Link>
             <ul>
@@ -153,11 +154,14 @@ export default function Header_Main() {
                   display()
                 }
             </ul>
-
+          </div>
+          <div style={{display:'flex',alignItems:'center'}}>
             <div className='search-box' onClick={openSearchBox}>
               <img src={arrowDown} alt='ArrowDown'></img>
               <img src={transparency} alt='Transparency'></img>
             </div>
+            <Link to="/" className='logout-btn'>Đăng xuất</Link>
+          </div>
         </nav>
       </header>
       {isSearchBoxOpen&&(

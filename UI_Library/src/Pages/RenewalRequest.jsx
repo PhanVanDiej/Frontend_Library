@@ -82,13 +82,13 @@ function RenewalRequestPage()
             <Header_Main>
 
             </Header_Main> 
-            <div>
-                <h2>Danh sach cac yeu cau gia han</h2>  
-                <div>
-                    <input type="text" id="search" placeholder="Tim kiem bang ma doc gia"/> 
-                    <button>Tim</button>
+            <div className="main-content">
+                <h2 className="title-page">Danh sach cac yeu cau gia han</h2>  
+                <div className="filter-header">
+                    <input className="search-input" type="text" id="search" placeholder="Tìm kiếm bằng mã đọc giả"/> 
+                    <button className="action-btn confirm-btn">Tìm</button>
                 </div>
-                <div>
+                <div className="content-table">
                     <table border={1}>
                         <thead>
                             <tr>
