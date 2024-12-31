@@ -24,4 +24,65 @@
 }
 .content-table{
     margin-top: 30px;
+    border-radius: 10px;
+    border: solid 1px grey;
+}
+.book-list-header{
+display: flex;
+  flex-direction: row; 
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500; 
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 12px; 
+  padding-bottom: 12px; 
+}
+.book-list-header .STT{
+    width: 10%;
+    font-size: 16px;
+}
+.book-list-header .id{
+    width: 10%;
+    font-size: 16px;
+}
+.book-list-header .book-title-name{
+    width: 35%;
+    font-size: 16px;
+}
+.book-list-header .book-title-type{
+    width: 20%;
+    font-size: 16px;
+}
+.book-list-header .book-status{
+    width: 15%;
+    font-size: 16px;
+}
+.book-list-header .user-action{
+    width: 10%;
+    font-size: 16px;
+}
+.header-border-line {
+    border-bottom: 2px solid lightgray;
+}
+.book-item{
+display: grid;
+  grid-template-columns: 10fr 10fr 35fr 20fr 15fr 10fr;
+  height: 48px;
+  color: gray;
+  align-items: center;
+  transition: color 0.2s;
+}
+.book-item p{
+    font-size: 14px;
+  font-weight: 400;
+}
+.delete-btn-item{
+    border: none;
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+}
+.book-list-data{
+    padding-inline: 32px;
 }
