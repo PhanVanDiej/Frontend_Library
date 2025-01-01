@@ -51,6 +51,7 @@ function BorrowOfflinePage()
                 return item.id
             })
         }
+        console.log(data);
         const response = await fetch(BE_ENDPOINT+"librarian/borrowOffline",{
             method:"POST",
             headers:{

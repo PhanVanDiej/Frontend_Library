@@ -191,66 +191,70 @@ const Cart = () => {
     }     
      permissionReader();
     return (
-    <div>
-      <Header_Main></Header_Main>
-      <div className='content-wrapper'>
-        <h2>Giỏ hàng </h2>
-        <div className='checkBox-select-book'>
-            <input
-                className='checked-box'
-                type='checkbox'
-                checked={selectAll}
-                onChange={handleOnchangeSelectAll}/>
-            <p>Chọn tất cả ( {numItems} cuốn sách )</p>
-            <p className='bookNumber-header'>Số lượng</p>
-        </div>
-        <div className='cart-container'>
-            {cartItems.map((item)=>{
-                return (
-                    <div className='cart-item'>
-                        <input 
-                            className='checked-box'
-                            type='checkbox'
-                            defaultChecked={true}
-                            onChange={(e)=>{
-                                handleOnchangeChecked(item, e.target.checked);
-                                
-                                console.log(selectedCartItem);    
-                            }}/>
-                        <img
-                            className='book-cover-item'
-                            src={'data:image/jpeg;base64,'+item.image} //item.image
-                            alt={item.title}/>
-                        <p>{item.title}</p>
-                        <div className='adjustNum-box'>
-                            <button
-                                onClick={()=>handleDecrement(item.id)}
-                                >
-                                -
-                            </button>
-                            <input
-                                disabled
-                                type='number'
-                                value={item.amount}
-                                ></input>
-                            <button
-                                onClick={()=>handleIncrement(item.id)}
-                                >
-                                +
-                            </button>
-                        </div>
-                        <img className='deleteBtn-Icon' src={recycleBin} alt='delete' 
-                            onClick={()=>handleDeleteItem(item.cartDetailId)}/>
-                    </div>
-                )
-            })}
-        </div>
-        <div style={{display:'flex'}}>
-            <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
-           
+        <div>
+        <Header_Main></Header_Main>
+        <div className='content-wrapper'>
+          <h2>Giỏ hàng </h2>
+          <div className='checkBox-select-book'>
+              <input
+                  className='checked-box'
+                  type='checkbox'
+                  checked={selectAll}
+                  onChange={handleOnchangeSelectAll}/>
+              <p>Chọn tất cả ( {numItems} cuốn sách )</p>
+              <p className='bookNumber-header'>Số lượng</p>
+          </div>
+          <div className='cart-container'>
+              {cartItems.map((item)=>{
+                  return (
+                      <div className='cart-item'>
+                          <input 
+                              className='checked-box'
+                              type='checkbox'
+                              defaultChecked={true}
+                              onChange={(e)=>{
+                                  handleOnchangeChecked(item, e.target.checked);
+                                  
+                                  console.log(selectedCartItem);    
+                              }}/>
+                          <img
+                              className='book-cover-item'
+                              src={'data:image/jpeg;base64,'+item.image} //item.image
+                              alt={item.title}/>
+                          <p>{item.title}</p>
+                          <div className='adjustNum-box'>
+                              <button
+                                  onClick={()=>handleDecrement(item.id)}
+                                  >
+                                  -
+                              </button>
+                              <input
+                                  disabled
+                                  type='number'
+                                  value={item.amount}
+                                  ></input>
+                              <button
+                                  onClick={()=>handleIncrement(item.id)}
+                                  >
+                                  +
+                              </button>
+                          </div>
+                          <img className='deleteBtn-Icon' src={recycleBin} alt='delete' 
+                              onClick={()=>handleDeleteItem(item.cartDetailId)}/>
+                      </div>
+                  )
+              })}
+          </div>
+          <div style={{display:'flex'}}>
+              <button className='cart-confirm-btn' onClick={()=>handleConfirmCartSubmit()}>Mượn</button>
+              <button className='cart-confirm-btn' onClick={(e)=>{
+                  e.preventDefault();
+                  onSaveAllCartItem(cartItems);
+              }}>Lưu
+              </button>
+          </div>
         </div>
       </div>
-    </div>
   )
 }
 

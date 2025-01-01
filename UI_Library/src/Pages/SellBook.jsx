@@ -21,6 +21,10 @@ function SellBookForm() {
       const responseData = await response.json();
       console.log(responseData);
       setListBook(responseData);
+      const listRes = listBook.filter((item)=>{
+        return item.status.id!=2&&item.isUsable==false
+      });
+      setListSellBook(listRes);
     }
     getAllBook();
   }, []);
@@ -175,9 +179,9 @@ function SellBookForm() {
               <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Ma sach</th>
-                  <th>Gia ban</th>
-                  <th>Xoa</th>
+                  <th>Mã sách</th>
+                  <th>Gía bán</th>
+                  <th>Xóa</th>
                 </tr>
               </thead>
               <tbody>

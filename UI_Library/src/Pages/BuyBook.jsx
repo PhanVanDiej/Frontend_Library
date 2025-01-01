@@ -13,6 +13,7 @@ function BuyBookForm() {
     listDetailRequest: [],
   });
   async function onSubmit() {
+    console.log(listBuyBook);
     const result = await BuyBook(listBuyBook);
     document.getElementById("messageArea").innerHTML = result;
   }
@@ -51,7 +52,7 @@ function BuyBookForm() {
               onSubmit={(e) => {
                 e.preventDefault();
                 document.getElementById("messageArea").innerHTML = "";
-
+                
                 const data = {
                   bookTitleId:
                     document.getElementById("buyBookTitleName")?.value,
@@ -59,8 +60,9 @@ function BuyBookForm() {
                   price: document.getElementById("buyBookTitlePrice")?.value,
                 };
                 const filterList = listBookTitle.filter((item) => {
-                  return item.name == data.bookTitleId;
+                  return item.id == data.bookTitleId;
                 });
+                
                 if (filterList.length == 0) {
                   document.getElementById("messageArea").innerHTML =
                     "Tên sách không tồn tại trong thư viện, vui lòng chọn tên khác";
@@ -75,8 +77,8 @@ function BuyBookForm() {
               }}
             >
               <div className="form-control">
-                <label htmlFor="buyBookTitleName">Tên sách : </label>
-                <input type="text" id="buyBookTitleName" required />
+                <label htmlFor="buyBookTitleName">Mã tựa sách : </label>
+                <input type="number" id="buyBookTitleName" required />
               </div>
               <div className="form-control">
                 <label htmlFor="buyBookTitlePrice">Đơn giá :</label>

@@ -5,6 +5,7 @@ import "../Styles/Pages/BookManagement.css"
 import { useLocation, useNavigate } from "react-router-dom";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import Swal from "sweetalert2";
+import BookManagementItem from "../Components/Book_management_item";
 function BookManagementPage() 
 { 
     const location = useLocation();
@@ -190,10 +191,10 @@ function BookManagementPage()
      permissionLibrarian();
     return (
         <div>
-            <Header_Main></Header_Main> 
+            <Header_Main></Header_Main>
 
             <div className="main-content">
-                <h2 className="title-page">Quản lý sách</h2> 
+                <h2 className="title-page">Quản lý sách</h2>
                 <div className="filter-header">
                     <input className="search-input" type="text" placeholder="Tìm kiếm" id="searchData" onKeyDown={(e)=>{
                         if(e.key=="Enter")
@@ -202,45 +203,60 @@ function BookManagementPage()
                         }
                     }}/> 
                    <select className="type-status-list" id="searchType">
-                    <option value="Tat ca">Tất cả</option> 
-                    <option value="San sang">Sẵn sàng</option> 
-                    <option value="Dang cho muon">Đang chờ mượn</option> 
-                    <option value="Dang duoc muon">Đang được mượn</option>
+                    <option value="Tat ca">Tat ca</option>
+                    <option value="San sang">San sang</option>
+                    <option value="Dang cho muon">Dang cho muon</option>
+                    <option value="Dang duoc muon">Dang duoc muon</option>
                    </select>
                 </div>
-                <br></br>
-                <div style={
-                    {
-                        width:"100%",
-                        height:"700px",
-                        overflow:"auto"
-                    }
-                }>
-                <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid black' }}>
-    <thead>
-        <tr style={{ backgroundColor: '#f2f2f2' }}>
-            <th style={{ padding: '8px', textAlign: 'left' }}>STT</th>
-            <th style={{ padding: '8px', textAlign: 'left' }}>Mã sách</th>
-            <th style={{ padding: '8px', textAlign: 'left' }}>Tên tựa sách</th>
-            <th style={{ padding: '8px', textAlign: 'left' }}>Thể loại</th>
-            <th style={{ padding: '8px', textAlign: 'left' }}>Trạng thái</th>
-            <th style={{ padding: '8px', textAlign: 'left' }}>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        {listSelectBook.map((item, index) => (
-            <tr key={index} style={{ borderBottom: '1px solid #ddd' }}>
-                <td style={{ padding: '8px' }}>{index + 1}</td>
-                <td style={{ padding: '8px' }}>{item.id}</td>
-                <td style={{ padding: '8px' }}>{item.title.name}</td>
-                <td style={{ padding: '8px' }}>{item.title.type.name}</td>
-                <td style={{ padding: '8px' }}>{item.status.name}</td>
-                <td style={{ padding: '8px' }}>{displayDeleteButton(item)}</td>
-            </tr>
-        ))}
-    </tbody>
-</table>
-
+                <div className="content-table">
+                    {/* <table border={1}>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Ma sach</th>
+                                <th>Ten dau sach</th>
+                                <th>The loai</th>
+                                <th>Trang thai</th>
+                                <th>Hanh dong</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                BooksExample.map((item, index)=>{
+                                    return (
+                                        <tr>
+                                            <td>{index+1}</td>
+                                            <td>{item.id}</td>
+                                            <td>{item.title.name}</td>
+                                            <td>{item.title.type.name}</td>
+                                            <td>{item.status.name}</td>
+                                            <td>{displayDeleteButton(item)}</td>
+                                        </tr>                                        
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table> */}
+                    <div className="book-list-header">
+                        <div className="STT">STT</div>
+                        <div className="id">Mã sách</div>
+                        <div className="book-title-name">Tên đầu sách</div>
+                        <div className="book-title-type">Thể loại</div>
+                        <div className="book-status">Trạng thái</div>
+                        <div className="user-action">Hành động</div>
+                    </div>
+                    <div className="header-border-line" />
+                    <div className="book-list-data">
+                        {listSelectBook.map((item,index)=>(
+                            <BookManagementItem
+                                key={item.id}
+                                onDelete={()=>deleteBook(item)}
+                                book={[item]}
+                                index={index}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

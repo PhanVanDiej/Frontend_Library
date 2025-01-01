@@ -7,7 +7,8 @@ import logo from '../assets/Icons/logo.png';
 import { useNavigate } from "react-router-dom";
 import BE_ENDPOINT from '../Env/EndPont';
 import ReactDOMServer from "react-dom/server";
-
+import Swal from 'sweetalert2';
+import {saveAs} from 'file-saver';
 
 
 export default function Header_Main() {
@@ -114,21 +115,21 @@ export default function Header_Main() {
  function onClickReport(option) 
  {
     Swal.fire({
-      title:"Lập báo cáo theo thể loại", 
+      title:"Lập báo cáo", 
       html:htmlString,
       focusConfirm:false,
       preConfirm:()=>{
         const startDate= Swal.getPopup().querySelector("#startDate").value;
-        const endDate = Swal.getPopup().querySelector("#endDate").value;
+        const endDate = Swal.getPopup().querySelector("#endDate").value; 
+        console.log(startDate);
         if(!startDate||!endDate) 
         {
           Swal.showValidationMessage("Cần điền đầy đủ ngày bắt đâuf và ngày kết thúc");
         }
-        const startDayString =`${startDate.getYear()}-${startDate.getMonth()+1}-${startDate.getDay()}`;
-        const endDayString = `${endDate.getYear()}-${endDate.getMonth()+1}-${endDate.getDay()}`;
+        
         return {
-          start:startDayString,
-          end:endDayString
+          start:startDate,
+          end:endDate
         }
       }
 
@@ -136,12 +137,29 @@ export default function Header_Main() {
       if(result.isConfirmed) 
       {
         if(option==1) 
-        {
-          const response = await fetch(BE_ENDPOINT+"/book-titles/report"+`?strartDate=${result.value.start}&endDate=${result.value.end}`);
+        { 
+          
+          const response = await fetch(BE_ENDPOINT+"book-titles/report"+`?startDate=${result.value.start}&endDate=${result.value.end}`); 
+          console.log("report"); 
+          console.log(BE_ENDPOINT+"book-titles/report"+`?startDate=${result.value.start}&endDate=${result.value.end}`); 
+          if(response.ok) 
+          {
+            const file = await response.blob(); 
+            
+            saveAs(file,"report.pdf");
+
+          }
           return;
         } 
         else {
-          const response = await fetch(BE_ENDPOINT+"/book-types/report"+`?strartDate=${result.value.start}&endDate=${result.value.end}`);
+          const response = await fetch(BE_ENDPOINT+"book-types/report"+`?startDate=${result.value.start}&endDate=${result.value.end}`); 
+          if(response.ok) 
+            {
+              const file = await response.blob(); 
+              
+              saveAs(file,"report.pdf");
+  
+            }
           return;
         }
       }
@@ -161,15 +179,27 @@ export default function Header_Main() {
             <CustomLink to="/buy_book">Mua sách</CustomLink>
             <CustomLink to="/sell_book">Bán sách</CustomLink>
             <CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink>
-            <CustomLink to="/penalty">Lập phiếu phạt</CustomLink>
+            <CustomLink to="/create_penalty">Lập phiếu phạt</CustomLink>
             <CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink>
             <CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink>
             <CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink>
+            <CustomLink to="/borrow_offline">Mượn sách trực tiếp</CustomLink>
+            <CustomLink to="/all_borrow_detail">Danh sách phiếu mượn</CustomLink>
             <li className="option-drop report-menu">
               <p>Lập báo cáo</p>
               <ul className="dropdown-menu-report"> 
-                <CustomLink to="/#">Báo cáo lượt mượn theo tựa sách</CustomLink> 
-                <CustomLink to="/#">Báo cáo lượt mượn theo thể loại</CustomLink>
+                <div onClick={
+                  (e)=>{
+                    e.preventDefault();
+                    onClickReport(1);
+                  }
+                }>Báo cáo lượt mượn theo tựa sách</div> 
+                <div  onClick={
+                  (e)=>{
+                    e.preventDefault();
+                    onClickReport(0);
+                  }
+                }>Báo cáo lượt mượn theo thể loại</div>
               </ul>
             </li>
           </ul>

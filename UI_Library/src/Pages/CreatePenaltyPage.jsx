@@ -52,7 +52,10 @@ function CreatePenalty()
         </h2> 
         <br></br>
         <div style={{ marginBottom: '20px' }}>
-            <form>
+            <form onSubmit={(e)=>{
+                e.preventDefault();
+                createPenalty();
+            }}>
                 <label htmlFor="readerId" style={{ display: 'block', marginBottom: '10px' }}>Mã tài khoản độc giả</label>
                 <input type="number" id="readerId" required style={{ padding: '10px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
 
