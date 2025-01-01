@@ -3,13 +3,15 @@ import Header_Main from "../Components/Header_Main";
 import BuyBookTitleForm from "../Components/BuyBookTitleForm";
 import BE_ENDPOINT from "../Env/EndPont";
 import BuyBook from "../FetchScripts/BuyBook";
-
+import '../Styles/Pages/BuyBook.css';
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import '../Styles/Pages/Common.css';
+import DeleteImg from '../assets/Icons/recycle_bin.png';
 
 function BuyBookForm() {
   let [listBuyBook, setListBuyBook] = useState({
     librarianId: localStorage.getItem("userId"),
-    implementData: new Date(),
+    implementDate: new Date(),
     listDetailRequest: [],
   });
   async function onSubmit() {
@@ -30,15 +32,26 @@ function BuyBookForm() {
     }
     fetchFromServer();
   }, []);
-  function serchById(id) {
+  function searchById(id) { 
+    console.log(id)
     for (let i = 0; i < listBookTitle.length; i++) {
       if (id == listBookTitle[i].id) {
+        
         return listBookTitle[i].name;
       }
     }
     return "";
   }
   permissionLibrarian();
+
+  const handleOnDeleteClick=(selected)=>{
+    const temp=listBuyBook.listDetailRequest.filter((item)=>item.bookTitleId!=selected.bookTitleId);
+    setListBuyBook(
+      {librarianId: localStorage.getItem("userId"),
+      implementDate: new Date(),
+      listDetailRequest: temp
+    });
+  }
   return (
     <div>
       <Header_Main></Header_Main>
@@ -138,24 +151,32 @@ function BuyBookForm() {
                 })}
               </tbody>
             </table> */}
-            <div className="borrowSlip-list-header object-list-header">
+            <div className="buyBook-list-header object-list-header">
                 <div className="STT">STT</div>
                 <div className="book-id">Mã sách</div>
-                <div className="book-title">Tựa sách</div>
-                <div className="reader-id">Mã đọc giả</div>
-                <div className="reader-fullname">Tên đọc giả</div>
-                <div className="implement-date">Ngày mượn</div>
-                <div className="expire-date">Ngày trả</div>
+                <div className="book-name">Tên sách</div>
+                <div className="price">Đơn giá</div>
+                <div className="amount">Số lượng</div>
                 <div className="user-action">Hành động</div>
             </div>
             <div className="header-border-line"></div>
-            <div className="object-list-data borrowSlip-list-data">
-                {selectedBorrowDetailList.map((item, index) => (
-                    <BorrowSlipItem
-                    index={index+1}
-                    item={item}
-                    display={()=>displayAction(item)}/>
-                ))}
+            <div className="object-list-data buyBook-list-data">
+                {listBuyBook.listDetailRequest.map((item, index) =>{ 
+                  const name=searchById(item.bookTitleId);
+                    return (
+                    <div className="buyBook-item object-item">
+                      <p>{index+1}</p>
+                      <p>{item.bookTitleId}</p>
+                      <p>{name}</p>
+                      <p>{item.price}</p>
+                      <p>{item.amount}</p>
+                      <button className="delete-btn-item" onClick={()=>handleOnDeleteClick(item)}>
+                          <img width={20} height={20} src={DeleteImg} alt="Delete" />
+                      </button>
+                    </div>
+                )
+              }
+                )}
             </div>
             </div>
           </div>

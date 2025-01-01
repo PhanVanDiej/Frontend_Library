@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Header_Main from '../Components/Header_Main'
-//import '../Styles/Pages/HistoryAction.css'
+import '../Styles/Pages/HistoryAction.css'
 import BE_ENDPOINT from '../Env/EndPont'; 
 import formatDate from '../Env/FormatDate'; 
 import Swal from "sweetalert2";
 import permissionReader from '../Env/PermissionReader';
+import HistoryAction_Item from '../Components/HistoryAction_Item.jsx';
 const HistoryAction = () => { 
   
   const [listBorrowingDetail, setListBorrowingDetail] = useState([]); 
@@ -183,8 +184,8 @@ const HistoryAction = () => {
             </ul>
         </div> 
         <br></br>
-        <div className='history-borrow-list'>
-            <table border={1}> 
+        <div className='content-table'>
+            {/* <table border={1}> 
               <thead>
                 <tr>
                   <th>STT</th>
@@ -215,7 +216,27 @@ const HistoryAction = () => {
                   })
                 }
               </tbody>
-            </table>
+            </table> */}
+            <div className="actionHistory-list-header object-list-header">
+                    <div className="STT">STT</div>
+                    <div className="bill-id">Mã phiếu mượnmượn</div>
+                    <div className="bookTitle-id">Mã sách</div>
+                    <div className="bookTitle-name">Tên tựa sách</div>
+                    <div className="implementDate">Ngày mượn</div>
+                    <div className="expireDate">Ngày trả</div>
+                    <div className="status">Trạng thái</div>
+                    <div className="user-action">Hoạt động</div>
+                </div>
+                <div className="header-border-line"></div>
+                <div className="object-list-data actionHistory-list-data">
+                    {listSelectedBorrowingDetail.map((item, index)=>(
+                        <HistoryAction_Item
+                        index={index+1}
+                        item={item}
+                        displayAction={()=>displayAction(item.status,item)}
+                        displayStatus={()=>displayStatus(item.status)}/>
+                    ))}
+                </div>
         </div>
       </div>
     </div>

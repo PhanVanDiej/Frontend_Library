@@ -1,108 +1,31 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+.buyBook-list-header .STT{
+    width: 15%;
+    font-size: 16px;
 }
-
-/* Header styles */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+.buyBook-list-header .book-id{
+    width: 15%;
+    font-size: 16px;
 }
-
-/* Main container styles */
-.container {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.buyBook-list-header .book-name{
+    width: 40%;
+    font-size: 16px;
 }
-
-/* Section title styles */
-h3 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+.buyBook-list-header .price{
+    width: 10%;
+    font-size: 16px;
 }
-
-/* Button styles */
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 4px;
+.buyBook-list-header .amount{
+    width: 10%;
+    font-size: 16px;
 }
-
-button:hover {
-    background-color: #45a049;
+.buyBook-list-header .user-action{
+    width: 10%;
+    font-size: 16px;
 }
-
-/* Form styles */
-form {
-    margin-bottom: 20px;
+.buyBook-item{
+    display: grid;
+    grid-template-columns: 15fr 15fr 40fr 10fr 10fr 10fr;
 }
-
-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-form input[type="number"],
-form input[type="date"],
-form input[type="submit"], 
-form input[type="tel"],
-form input[type="email"]
-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-form input[type="submit"] {
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-form input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-/* Table styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-button.delete {
-    background-color: #f44336;
-}
-
-button.delete:hover {
-    background-color: #d32f2f;
+.buyBook-list-data{
+    padding-inline: 32px;
 }

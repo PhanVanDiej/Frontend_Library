@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import SellBookHistory from "../Components/SellBookHistory.jsx";
 function SellBookBillPage() 
 { 
     const [listSellBook, setListSellBook] = useState([]);
@@ -30,11 +31,11 @@ function SellBookBillPage()
     permissionLibrarian();
     return (
         <div>
-            <Header_Main></Header_Main> 
+            <Header_Main></Header_Main>
             <div className="main-content">
-                <h2 className="title-page">Lich su ban sach</h2> 
+                <h2 className="title-page">Lịch sử bán sách</h2>
                 <div className="content-table">
-                    <table border={1}>
+                    {/* <table border={1}>
                         <thead>
                             <tr>
                                 <th>STT</th>  
@@ -43,7 +44,7 @@ function SellBookBillPage()
                                 <th>Tên tựa sách:</th> 
                                 
                                 <th>Giá thanh lý</th> 
-                                <th>Ngày thanh lýlý</th>
+                                <th>Ngày thanh lý</th>
                             </tr>
                         </thead> 
                         <tbody>
@@ -62,7 +63,23 @@ function SellBookBillPage()
                             })
                            }
                         </tbody>
-                    </table>
+                    </table> */}
+                    <div className="sellBookHistory-list-header object-list-header">
+                        <div className="STT">STT</div>
+                        <div className="bill-id">Mã phiếu thanh lý</div>
+                        <div className="bookTitle-id">Mã sách</div>
+                        <div className="bookTitle-name">Tên tựa sách</div>
+                        <div className="price">Giá thanh lý</div>
+                        <div className="implementDate">Ngày thanh lý</div>
+                    </div>
+                    <div className="header-border-line"></div>
+                    <div className="object-list-data sellBookHistory-list-data">
+                        {listSellBook.map((item, index)=>(
+                            <SellBookHistory
+                            index={index+1}
+                            item={item}/>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

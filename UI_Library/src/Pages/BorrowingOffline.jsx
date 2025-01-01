@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import BorrowOff_Item from "../Components/BorrowOff_Item.jsx";
+
 function BorrowOfflinePage() 
 { 
     const [listBook, setListBook] = useState([]);
@@ -73,9 +75,9 @@ function BorrowOfflinePage()
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
     <Header_Main />
 
-    <div>
-        <h2 style={{ color: '#333', textAlign: 'center' }}>Mượn sách trực tiếp</h2>
-        <div style={{ marginBottom: '20px' }}>
+    <div className="main-content">
+        <h2 className="title-page">Mượn sách trực tiếp</h2>
+        <div style={{ marginBottom: '20px',marginTop:'20px' }}>
             <form>
                 <label htmlFor="userId" style={{ display: 'block', marginBottom: '10px' }}>Mã độc giả</label>
                 <input type="number" id="userId" style={{ padding: '10px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc' }} />
@@ -95,7 +97,7 @@ function BorrowOfflinePage()
             }} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>Xác nhận cho mượn</button>
         </div>
         <div>
-            <table border={1} style={{ width: '100%', borderCollapse: 'collapse' }}>
+            {/* <table border={1} style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
                         <th style={{ padding: '10px', border: '1px solid #ddd' }}>STT</th>
@@ -121,7 +123,22 @@ function BorrowOfflinePage()
                         })
                     }
                 </tbody>
-            </table>
+            </table> */}
+            <div className="borrowOffline-list-header object-list-header">
+                <div className="STT">STT</div>
+                <div className="id">Mã sách</div>
+                <div className="title-name">Tên sách</div>
+                <div className="user-action">Hành động</div>
+            </div>
+            <div className="header-border-line"></div>
+            <div className="object-list-data borrowOffline-list-data">
+                {listBook.map((item, index)=>(
+                    <BorrowOff_Item
+                    index={index+1}
+                    item={item}
+                    onDelete={onDelete(index)}/>
+                ))}
+            </div>
         </div>
     </div>
 </div>

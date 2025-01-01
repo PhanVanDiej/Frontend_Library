@@ -4,6 +4,7 @@ import * as XLSX from "xlsx";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import "../Styles/Pages/SellBook.css";
+import SellBookItem from "../Components/sellBook_Item";
 function SellBookForm() {
   const listBookSell = {
     implementDate: new Date(),
@@ -175,7 +176,7 @@ function SellBookForm() {
             <button className="action-btn cancel-btn">Huỷ</button>
           </div>
           <div className="content-table">
-            <table border={1}>
+            {/* <table border={1}>
               <thead>
                 <tr>
                   <th>STT</th>
@@ -205,7 +206,23 @@ function SellBookForm() {
                   );
                 })}
               </tbody>
-            </table>
+            </table> */}
+            <div className="sellBook-list-header object-list-header">
+                <div className="STT">STT</div>
+                <div className="book-id">Mã sách</div>
+                <div className="price">Giá bán</div>
+                <div className="user-action">Hành động</div>
+            </div>
+            <div className="header-border-line"></div>
+            <div className="object-list-data sellBook-list-data">
+            {listSellBook.map((item, index) => (
+              <SellBookItem
+              item={item}
+              index={index+1}
+              onDelete={()=>onDeleteAt(item.bookId)}/>
+            )
+          )}
+            </div>
           </div>
         </div>
       </div>

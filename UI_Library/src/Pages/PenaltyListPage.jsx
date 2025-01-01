@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import PenaltyItem from "../Components/PenaltyItem";
 function PenaltyList() 
 {
     const [penaltyList, setPenaltyList]= useState([]);
@@ -29,9 +30,9 @@ function PenaltyList()
         <div>
         <Header_Main></Header_Main> 
             <div className="main-content">
-                <h2 className="title-page">Danh sach cac phieu phat</h2> 
+                <h2 className="title-page">Danh sách các phiếu phạt</h2> 
                 <div className="content-table">
-                    <table border={1}>
+                    {/* <table border={1}>
                         <thead>
                             <tr>
                                 <th>STT</th> 
@@ -58,7 +59,23 @@ function PenaltyList()
                                 })
                             }
                         </tbody>
-                    </table>
+                    </table> */}
+                    <div className="penalty-list-header object-list-header">
+                        <div className="STT">STT</div>
+                        <div className="penalty-id">Mã phiếu phạt</div>
+                        <div className="user-id">Mã tài khoản</div>
+                        <div className="user-name">Họ tên</div>
+                        <div className="money">Tiền phạt</div>
+                        <div className="content">Nội dung phạt</div>
+                    </div>
+                    <div className="header-border-line"></div>
+                    <div className="object-list-data penalty-list-data">
+                        {penaltyList.map((item, index)=>(
+                            <PenaltyItem
+                            index={index+1}
+                            item={item}/>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

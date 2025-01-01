@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import permissionReader from "../Env/PermissionReader";
+import ReaderPenalty_Item from "../Components/ReaderPenalty_Item";
 function PenaltyHistoryPage() 
 { 
     const [listPenalty, setListPenalty] = useState([]);
@@ -30,10 +31,10 @@ function PenaltyHistoryPage()
     return (
         <div>
             <Header_Main></Header_Main> 
-            <div>
-                <h2>Lịch sử vi phạmphạm</h2> 
-                <div>
-                    <table>
+            <div className="main-content">
+                <h2 className="title-page">Lịch sử vi phạm</h2> 
+                <div className="content-table">
+                    {/* <table>
                         <thead>
                             <tr>
                                 <th>STT</th> 
@@ -59,7 +60,21 @@ function PenaltyHistoryPage()
                         <tbody>
 
                         </tbody>
-                    </table>
+                    </table> */}
+                    <div className="readerPenalty-list-header object-list-header">
+                        <div className="STT">STT</div>
+                        <div className="bill-id">Ngày vi phạm</div>
+                        <div className="bookTitle-id">Nội dung</div>
+                        <div className="bookTitle-name">Số tiền phạt</div>
+                    </div>
+                    <div className="header-border-line"></div>
+                    <div className="object-list-data readerPenalty-list-data">
+                    {listPenalty.map((item, index)=>(
+                        <ReaderPenalty_Item
+                        index={index+1}
+                        item={item}/>
+                    ))}
+                    </div>
                 </div>
             </div>
         </div>

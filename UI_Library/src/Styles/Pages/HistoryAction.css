@@ -1,12 +1,13 @@
 .nav-cart-state{
     box-Shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    width: fit-content;
+    width: 100%;
     border-radius: 5px;
 }
 .nav-cart-state ul{
     list-style-type: none;
     display: flex;
+    justify-content: space-between;
 }
 .nav-cart-state ul li{
     padding: 10px 80px 10px 80px; 
