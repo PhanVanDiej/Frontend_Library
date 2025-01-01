@@ -4,6 +4,10 @@ import * as XLSX from "xlsx";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import "../Styles/Pages/SellBook.css";
+
+const SellListExample=[
+  {book_id:"",price:""}
+]
 function SellBookForm() {
   const listBookSell = {
     implementDate: new Date(),
@@ -171,7 +175,7 @@ function SellBookForm() {
             <button className="action-btn cancel-btn">Huỷ</button>
           </div>
           <div className="content-table">
-            <table border={1}>
+            {/* <table border={1}>
               <thead>
                 <tr>
                   <th>STT</th>
@@ -201,7 +205,17 @@ function SellBookForm() {
                   );
                 })}
               </tbody>
-            </table>
+            </table> */}
+            <div className="sell-list-header">
+              <div className="STT">STT</div>
+              <div className="book-id">Mã sách</div>
+              <div className="price">Giá bán</div>
+              <div className="user-action">Hành động</div>
+            </div>
+            <div className="header-border-line"/>
+            <div className="sell-list-data">
+
+            </div>
           </div>
         </div>
       </div>

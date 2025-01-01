@@ -1,0 +1,48 @@
+.bookType-list-header{
+    display: flex;
+  flex-direction: row; 
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500; 
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 12px; 
+  padding-bottom: 12px; 
+}
+.bookType-list-header .STT{
+    width: 10%;
+    font-size: 16px;
+}
+.bookType-list-header .id{
+    width: 10%;
+    font-size: 16px;
+}
+.bookType-list-header .CoverImg{
+    width: 30%;
+}
+.bookType-list-header .type-name{
+    width: 30%;
+    font-size: 16px;
+}
+.bookType-list-header .user-action{
+    width: 20%;
+    font-size: 16px;
+}
+.header-border-line {
+    border-bottom: 2px solid lightgray;
+}
+.bookType-list-data{
+    padding-inline: 32px;
+}
+.bookType-item{
+    display: grid;
+  grid-template-columns: 10fr 10fr 30fr 30fr 20fr;
+  height: 58px;
+  color: gray;
+  align-items: center;
+  transition: color 0.2s;
+}
+.bookType-item p{
+  font-size: 14px;
+  font-weight: 400;
+}

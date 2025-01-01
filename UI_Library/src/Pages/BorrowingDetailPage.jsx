@@ -265,8 +265,8 @@ function BorrowingDetailPage()
             <Header_Main>
 
             </Header_Main> 
-            <div> 
-                <h2>Danh sach phieu muon</h2>
+            <div className="main-content"> 
+                <h2 className="title-page">Danh sach phieu muon</h2>
                 <div>
                     <button>Tat ca</button> 
                     <button>Dang cho lay</button> 

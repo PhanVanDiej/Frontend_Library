@@ -28,7 +28,7 @@
     border: solid 1px grey;
 }
 .book-list-header{
-display: flex;
+  display: flex;
   flex-direction: row; 
   align-items: center;
   font-size: 14px;

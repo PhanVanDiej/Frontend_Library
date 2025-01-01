@@ -1,0 +1,70 @@
+.reader-list-header{
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500; 
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 12px; 
+    padding-bottom: 12px; 
+}
+.reader-list-header .STT{
+    width: 5%;
+    font-size: 16px;
+}
+.reader-list-header .id{
+    width: 10%;
+    font-size: 16px;
+}
+.reader-list-header .fullname{
+    width: 20%;
+    font-size: 16px;
+}
+.reader-list-header .email{
+    width: 25%;
+    font-size: 16px;
+}
+.reader-list-header .phoneNumber{
+    width: 15%;
+    font-size: 16px;
+}
+.reader-list-header .penaltyTime{
+    width: 15%;
+    font-size: 16px;
+}
+.reader-list-header .user-action{
+    width: 10%;
+    font-size: 16px;
+}
+.reader-item{
+    display: grid;
+    grid-template-columns: 5fr 10fr 20fr 25fr 15fr 15fr 10fr;
+    height: 48px;
+    color: gray;
+    align-items: center;
+    transition: color 0.2s;
+}
+.reader-list-data{
+    padding-inline: 32px;
+}
+.reader-item p:hover{
+    color:#A27430;
+    font-weight: bold;
+}
+.switch-btn{
+    border: none;
+    background-color: transparent;
+    padding: 3px 5px;
+    border-radius: 5px;
+
+}
+.switch-btn:hover{
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+.enable-btn{
+    background-color: rgb(106, 220, 106);
+}
+.disable-btn{
+    background-color: rgb(245, 81, 81);
+}

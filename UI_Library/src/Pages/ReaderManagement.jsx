@@ -4,13 +4,58 @@ import BE_ENDPOINT from "../Env/EndPont";
 import lockOrUnlockUser from "../FetchScripts/LockOrUnlockUser";
 import { useLocation } from "react-router-dom";
 import permissionLibrarian from "../Env/PermissionLibrarian";
-
+import ReaderItem from "../Components/ReaderItem";
+import '../Styles/Pages/ReaderManagement.css';
+const ReadersExample=[
+    {
+        id: "R001",
+        fullname: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        phoneNumber: "+1-555-123-4567",
+        penaltyTime: 10, // Penalty duration in days
+        status: true
+    },
+    {
+        id: "R002",
+        fullname: "John Smith",
+        email: "john.smith@example.com",
+        phoneNumber: "+1-555-987-6543",
+        penaltyTime: 0, // No penalty
+        status: false
+    },
+    {
+        id: "R003",
+        fullname: "Emily Davis",
+        email: "emily.davis@example.com",
+        phoneNumber: "+1-555-543-2109",
+        penaltyTime: 5, // Penalty duration in days
+        status: true
+    },
+    {
+        id: "R004",
+        fullname: "Michael Brown",
+        email: "michael.brown@example.com",
+        phoneNumber: "+1-555-678-1234",
+        penaltyTime: 0, // No penalty
+        status: false
+    },
+    {
+        id: "R005",
+        fullname: "Sophia Wilson",
+        email: "sophia.wilson@example.com",
+        phoneNumber: "+1-555-432-5678",
+        penaltyTime: 15, // Penalty duration in days
+        status: true
+    }
+];
 function ReaderManagement()
 {
     const [listUser, setListUser] = useState([]);
     const [listTemp, setListTemp]= useState([]);
     const location = useLocation();
     const user = location.state||{};
+
+    const [selectedItem,setSeclectedItem]=useState(null);
 
     useEffect(()=>{ 
         async function fetchFromServer() 
@@ -56,6 +101,13 @@ function ReaderManagement()
         setListUser(listResult);
     }
     permissionLibrarian();
+
+    const handleOnEnableClick=(item)=>{
+        setSeclectedItem(item);
+    }
+    const handleOnDisableClick=(item)=>{
+        setSeclectedItem(item);
+    }
     return (
         <div>
             <Header_Main>
@@ -74,8 +126,8 @@ function ReaderManagement()
                         }}/> 
                 </div>
 
-                <div>
-                    <table border={1}>
+                <div className="content-table">
+                    {/* <table border={1}>
                         <thead>
                             <tr>
                                 <th>STT</th> 
@@ -118,7 +170,26 @@ function ReaderManagement()
                                 })
                             }
                         </tbody>
-                    </table>
+                    </table> */}
+                    <div className="reader-list-header">
+                        <div className="STT">STT</div>
+                        <div className="id">Mã đọc giả</div>
+                        <div className="fullname">Tên đọc giả</div>
+                        <div className="email">Email</div>
+                        <div className="phoneNumber">Số điện thoại</div>
+                        <div className="penaltyTime">Số lần vi phạm</div>
+                        <div className="user-action">Hành động</div>
+                    </div>
+                    <div className="header-border-line"></div>
+                    <div className="reader-list-data">
+                        {ReadersExample.map((item,index)=>(
+                            <ReaderItem
+                            item={item}
+                            index={index}
+                            onEnable={()=>handleOnEnableClick(item)}
+                            onDisable={()=>handleOnDisableClick(item)}/>
+                        ))}
+                    </div>
                 </div>
 
 
