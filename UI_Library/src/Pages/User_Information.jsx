@@ -22,7 +22,8 @@ import {
 
 
 
-const User_Information = () => { 
+const User_Information = () => {  
+  const navigate= useNavigate();
   const [userExample, setUserExample]= useState([]); 
 useEffect(
   ()=>{ 
@@ -172,8 +173,8 @@ useEffect(
     )
     return;
   };
-  const onClickEditNormalInformation =async () => {
-
+  const onClickEditNormalInformation = () => {
+    navigate("/edit_normal_info");
   };
   return (
     <div className="wrapping-content">

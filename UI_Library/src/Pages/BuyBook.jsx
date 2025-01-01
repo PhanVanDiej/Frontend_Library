@@ -110,7 +110,7 @@ function BuyBookForm() {
             </button>
           </div>
           <div className="content-table"> 
-            <table border={1}>
+            {/* <table border={1}>
               <thead>
                 <tr>
                   <th>STT</th>
@@ -137,12 +137,31 @@ function BuyBookForm() {
                   );
                 })}
               </tbody>
-            </table>
+            </table> */}
+            <div className="borrowSlip-list-header object-list-header">
+                <div className="STT">STT</div>
+                <div className="book-id">Mã sách</div>
+                <div className="book-title">Tựa sách</div>
+                <div className="reader-id">Mã đọc giả</div>
+                <div className="reader-fullname">Tên đọc giả</div>
+                <div className="implement-date">Ngày mượn</div>
+                <div className="expire-date">Ngày trả</div>
+                <div className="user-action">Hành động</div>
+            </div>
+            <div className="header-border-line"></div>
+            <div className="object-list-data borrowSlip-list-data">
+                {selectedBorrowDetailList.map((item, index) => (
+                    <BorrowSlipItem
+                    index={index+1}
+                    item={item}
+                    display={()=>displayAction(item)}/>
+                ))}
+            </div>
+            </div>
           </div>
           <p id="messageArea"></p>
         </div>
       </div>
-    </div>
   );
 }
 export default BuyBookForm;

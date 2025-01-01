@@ -4,8 +4,60 @@ import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import Swal from "sweetalert2";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import RenewalItem from "../Components/RenewalItem";
+import '../Styles/Pages/RenewalList.css';
+
+const renewalListExample=[
+    {
+        reader_ID: "R1",
+        reader_fullname: "Alice Johnson",
+        slipID: "SL001",
+        bookID: "B001",
+        bookName: "The Great Gatsby",
+        expireDate: "2025-01-15",
+        newExpireDate: "2025-02-15"
+    },
+    {
+        reader_ID: "R2",
+        reader_fullname: "John Smith",
+        slipID: "SL002",
+        bookID: "B002",
+        bookName: "1984",
+        expireDate: "2025-01-20",
+        newExpireDate: "2025-02-20"
+    },
+    {
+        reader_ID: "R3",
+        reader_fullname: "Emily Davis",
+        slipID: "SL003",
+        bookID: "B003",
+        bookName: "To Kill a Mockingbird",
+        expireDate: "2025-01-10",
+        newExpireDate: "2025-02-10"
+    },
+    {
+        reader_ID: "R4",
+        reader_fullname: "Michael Brown",
+        slipID: "SL004",
+        bookID: "B004",
+        bookName: "Pride and Prejudice",
+        expireDate: "2025-01-12",
+        newExpireDate: "2025-02-12"
+    },
+    {
+        reader_ID: "R5",
+        reader_fullname: "Sophia Wilson",
+        slipID: "SL005",
+        bookID: "B005",
+        bookName: "Moby-Dick",
+        expireDate: "2025-01-18",
+        newExpireDate: "2025-02-18"
+    }
+]
 function RenewalRequestPage() 
 { 
+    const [selectedItem,setSeclectedItem]=useState(null);
+
     const [listRenewalRequest, setListRenewalRequest] = useState([]);
     const [listSelectedRenewalRequest, setListSelectedRenewalRequest]= useState([]);
     useEffect(()=>{ 
@@ -75,24 +127,14 @@ function RenewalRequestPage()
         })
 
     } 
-    function onDenyRenewal(item) 
-    {
-        Swal.fire({
-            title:"Xác nhận",
-            text:"Từ chối gia hạn",
-            icon:"warning",
-            showCancelButton:true,
-            confirmButtonText:"Có",
-            cancelButtonText:"Không"
-        }
-        ).then((result)=>{
-            if(result.isConfirmed) 
-            {
-                onResponseRenewal(item,"Deny");
-            }
-        })
-    }
     permissionLibrarian();
+
+    const handleOnAcceptClick=(item)=>{
+        setSeclectedItem(item);
+    }
+    const handleOnRejectClick=(item)=>{
+        setSeclectedItem(item);
+    }
     return (
 
         <div>
@@ -100,25 +142,25 @@ function RenewalRequestPage()
 
             </Header_Main> 
             <div className="main-content">
-                <h2 className="title-page">Danh sach cac yeu cau gia han</h2>  
+                <h2 className="title-page">Danh sách các yêu cầu gia hạn</h2>  
                 <div className="filter-header">
                     <input className="search-input" type="text" id="search" placeholder="Tìm kiếm bằng mã đọc giả"/> 
                     <button className="action-btn confirm-btn">Tìm</button>
                 </div>
                 <div className="content-table">
-                    <table border={1}>
+                    {/* <table border={1}>
                         <thead>
                             <tr>
                                 <th>STT</th> 
-                                <th>Mã tài khoản</th> 
-                                <th>Họ tên</th> 
-                                <th>Mã phiếu mượn</th> 
-                                <th>Mã sách</th> 
-                                <th>Tên sách</th> 
-                                <th>Ngày mượn</th> 
-                                <th>Gia hạn đến</th> 
-                                <th>Chấp nhận</th> 
-                                <th>Từ chối</th>
+                                <th>Ma doc gia</th> 
+                                <th>Ten doc gia</th> 
+                                <th>Ma phieu muon</th> 
+                                <th>Ma sach</th> 
+                                <th>Ten sach</th> 
+                                <th>Ngay muon</th> 
+                                <th>Gia han den</th> 
+                                <th>Chap nhan</th> 
+                                <th>Tu choi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,19 +181,35 @@ function RenewalRequestPage()
                                                     e.preventDefault();
                                                     onAcceptRenewal(item);
                                                 }
-                                            }>Chấp nhận</button></td> 
-                                            <td><button  onClick={
-                                                (e)=>{
-                                                    e.preventDefault();
-                                                    onDenyRenewal(item);
-                                                }
-                                            }>Từ chối</button></td>
+                                            }>Chap nhan</button></td> 
+                                            <td><button>Tu choi</button></td>
                                         </tr>
                                     )
                                 })
                             }
                         </tbody>
-                    </table>
+                    </table> */}
+                    <div className="renewal-list-header">
+                        <div className="STT">STT</div>
+                        <div className="reader-id">Mã đọc giả</div>
+                        <div className="reader-fullname">Tên đọc giả</div>
+                        <div className="slip-id">Mã phiếu mượn</div>
+                        <div className="book-id">Mã sách</div>
+                        <div className="book-title">Tên sách</div>
+                        <div className="expire-date">Ngày mượn</div>
+                        <div className="new-expire-date">Gia hạn đến</div>
+                        <div className="user-action">Hành động</div>
+                    </div>
+                    <div className="header-border-line"></div>
+                    <div className="renewal-list-data">
+                        {listRenewalRequest.map((item,index)=>(
+                            <RenewalItem
+                            index={index}
+                            onAccept={()=>handleOnAcceptClick(item)}
+                            onReject={()=>handleOnRejectClick(item)}
+                            item={item}/>
+                        ))}
+                    </div>
                 </div>
             </div>
          </div>

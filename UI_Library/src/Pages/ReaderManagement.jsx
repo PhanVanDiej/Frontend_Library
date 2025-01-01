@@ -4,6 +4,8 @@ import BE_ENDPOINT from "../Env/EndPont";
 import lockOrUnlockUser from "../FetchScripts/LockOrUnlockUser";
 import { useLocation } from "react-router-dom";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import '../Styles/Pages/ReaderManagement.css';
+import ReaderItem from "../Components/ReaderItem";
 
 function ReaderManagement()
 {
@@ -75,51 +77,26 @@ function ReaderManagement()
                         }}/> 
                 </div>
 
-                <div>
-                    <table border={1}>
-                        <thead>
-                            <tr>
-                                <th>STT</th> 
-                                <th>Mã độc giả</th>
-                                <th>Tên độc giả</th> 
-                                <th>Email</th> 
-                                <th>Số điện thoại</th>  
-                                <th>Số lần vi phạm</th>
-                                <th>Trạng thái</th> 
-                                
-                            </tr>
-                        </thead> 
-                        <tbody>
-                            {
-                                listUser.map((item, index)=>{ 
-                                    let state= item.enable; 
-                                    let stateText="";
-                                    if(state) 
-                                    {
-                                        stateText="Vô hiệu hóa";
-                                    } 
-                                    else {
-                                        stateText="Mở khóa";
-                                    }
-                                    return <tr>
-                                        <td>{index+1}</td> 
-                                        <td>{item.userId}</td> 
-                                        <td>{item.fullname}</td> 
-                                        <td>{item.email}</td> 
-                                        <td>{item.phoneNumber}</td>  
-                                        <td>{item.penaltyTime}</td>
-                                        <td><button onClick={
-                                            (e)=>{
-                                                e.preventDefault();
-                                                lockOrUnlockUser(item.userId,item.enable);
-
-                                            }
-                                        }>{stateText}</button></td>
-                                    </tr>
-                                })
-                            }
-                        </tbody>
-                    </table>
+                <div className="content-table">
+                    <div className="reader-list-header">
+                        <div className="STT">STT</div>
+                        <div className="id">Mã đọc giả</div>
+                        <div className="fullname">Tên đọc giả</div>
+                        <div className="email">Email</div>
+                        <div className="phoneNumber">Số điện thoại</div>
+                        <div className="penaltyTime">Số lần vi phạm</div>
+                        <div className="user-action">Hành động</div>
+                    </div>
+                    <div className="header-border-line"></div>
+                    <div className="reader-list-data">
+                        {listUser.map((item,index)=>(
+                            <ReaderItem
+                            item={item}
+                            index={index}
+                            onEnable={()=>handleOnEnableClick(item)}
+                            onDisable={()=>handleOnDisableClick(item)}/>
+                        ))}
+                    </div>
                 </div>
 
 

@@ -33,6 +33,7 @@ function ChangeNormalInfo()
             address:document.getElementById("address").value,
             phoneNumber:document.getElementById("phoneNumber").value
         }
+        console.log(data)
         const response = await fetch(BE_ENDPOINT+"update/normal",{
             method:"PUT",
             headers:{

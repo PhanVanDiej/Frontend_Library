@@ -1,0 +1,84 @@
+.renewal-list-header{
+    display: flex;
+  flex-direction: row; 
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500; 
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 12px; 
+  padding-bottom: 12px; 
+}
+.renewal-list-header .STT{
+    width: 5%;
+    font-size: 14px;
+}
+.renewal-list-header .reader-id{
+    width: 10%;
+    font-size: 14px;
+}
+.renewal-list-header .reader-fullname{
+    width: 15%;
+    font-size: 14px;
+}
+.renewal-list-header .slip-id{
+    width: 8%;
+    font-size: 14px;
+}
+.renewal-list-header .book-id{
+    width: 7%;
+    font-size: 14px;
+}
+.renewal-list-header .book-title{
+    width: 25%;
+    font-size: 14px;
+}
+.renewal-list-header .expire-date{
+    width: 10%;
+    font-size: 14px;
+}
+.renewal-list-header .new-expire-date{
+    width: 10%;
+    font-size: 14px;
+}
+.renewal-list-header .user-action{
+    width: 10%;
+    font-size: 14px;
+}
+.renewal-list-data{
+    padding-inline: 32px;
+}
+.renewal-item{
+  display: grid;
+  grid-template-columns: 5fr 10fr 15fr 8fr 7fr 25fr 10fr 10fr 10fr;
+  height: 48px;
+  color: gray;
+  align-items: center;
+  transition: color 0.2s;
+}
+.renewal-item p:hover{
+    color: #A27430;
+    font-weight: bold;
+}
+.user-action-btn{
+    display: flex;
+    gap: 20px;
+}
+.accept-btn{
+    border: none;
+    background-color: transparent;
+    padding: 3px;
+}
+.accept-btn:hover{
+    border: solid 1px greenyellow;
+    border-radius: 10px;
+}
+.reject-btn{
+    border: none;
+    background-color: transparent;
+    padding: 3px;
+}
+.reject-btn:hover{
+    border: solid 1px red;
+    border-radius: 10px;
+}

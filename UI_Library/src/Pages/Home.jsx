@@ -23,7 +23,7 @@ export default  function Home(){
         <div>
             <Header_Main></Header_Main>
             <div className='introduce-wrapper'>
-                <h1 className='welcome-sentence'>SOME SENTENCES GO HERE</h1>
+                <h1 className='welcome-sentence'>Chào mừng đến với thư viện</h1>
             </div>
             <div className='list-book-type'>
                 <h2>CÁC THỂ LOẠI SÁCH</h2>

@@ -5,6 +5,9 @@ import formatDate from "../Env/FormatDate";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import '../Styles/Pages/Common.css';
+import BorrowSlipItem from "../Components/borrowSlipItem";
+import '../Styles/Pages/BorrowingDetail.css'
 function BorrowingDetailPage() 
 {
     const [borrowDetailList, setBorrowDetailList]= useState([]);
@@ -136,15 +139,16 @@ function BorrowingDetailPage()
     {
         if(item.status=="RETURNED")
         {
-            return "Đã trả";
+            return (<p style={{color:'green',fontSize:'16px'}}>Đã trả</p>)
         }  
         if(item.status=="CANCELLED") 
         {
-            return "Đã hủy";
+            return (<p style={{color:"orange",fontSize:'16px'}}>Đã hủy</p>)
         }
         if(item.status=="PENDING") 
         {
             return (<button
+            className="action-btn confirm-btn"
                 onClick={(e)=>{
                     e.preventDefault();
                     onTakeBook(item);
@@ -155,12 +159,13 @@ function BorrowingDetailPage()
         if(item.status=="BORROWING") 
         { 
             const currentDate= new Date();
-            console.log(currentDate) 
-            const expireDate= new Date(item.expireDate); 
+            console.log(currentDate)
+            const expireDate= new Date(item.expireDate);
             console.log(expireDate);
             if(currentDate.getTime()>expireDate.getTime()) 
             {
                 return (<div><button
+                className="action-btn confirm-btn"
                     onClick={
                         (e)=>{
                             e.preventDefault();
@@ -168,13 +173,13 @@ function BorrowingDetailPage()
                         }
                     }
                     >Nhận sách trả</button> 
-                    <button onClick={
+                    <button className="action-btn confirm-btn" onClick={
                         (e)=>{
                             e.preventDefault();
                             navigateToUserInfo(item);
                         }
                     }>Thông tin độc giả</button> 
-                    <button  onClick={
+                    <button className="action-btn confirm-btn"  onClick={
                         (e)=>{
                             e.preventDefault();
                             DestroyBookAndLockUser(item);
@@ -267,28 +272,22 @@ function BorrowingDetailPage()
     }
     permissionLibrarian();
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <div>
         <Header_Main />
     
-        <div>
-            <h2 style={{ color: '#333', textAlign: 'center' }}>Danh sách các phiếu mượn</h2> 
-            <br></br>
+        <div className="main-content">
+            <h2 className="title-page">Danh sách các phiếu mượn</h2> 
             
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-                <input type="number" id="searchDate" placeholder="Tìm kiếm bằng mã phiếu" style={{ padding: '10px', marginRight: '10px', borderRadius: '5px', border: '1px solid #ccc' }} />
-                <button onClick={(e) => {
+            <div style={{display:"flex",gap:"10px"}}>
+                <input className="search-input" type="number" id="searchDate" placeholder="Tìm kiếm bằng mã phiếu"/>
+                <button className="action-btn confirm-btn"
+                onClick={(e) => {
                     e.preventDefault();
                     onSearch(document.getElementById("searchDate").value);
-                }} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>Tìm</button>
+                }}>Tìm</button>
             </div>
-            <div style={
-                {
-                    width:"100%",
-                    height:"700px",
-                    overflow:"auto"
-                }
-            }>
-            <table border={1} style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <div className="content-table">
+            {/* <table border={1} style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
                         <th style={{ padding: '10px', border: '1px solid #ddd' }}>STT</th>
@@ -321,7 +320,27 @@ function BorrowingDetailPage()
                         })
                     }
                 </tbody>
-            </table> 
+            </table>  */}
+            <div className="borrowSlip-list-header object-list-header">
+                <div className="STT">STT</div>
+                <div className="slip-id">Mã phiếu mượn</div>
+                <div className="book-id">Mã sách</div>
+                <div className="book-title">Tựa sách</div>
+                <div className="reader-id">Mã đọc giả</div>
+                <div className="reader-fullname">Tên đọc giả</div>
+                <div className="implement-date">Ngày mượn</div>
+                <div className="expire-date">Ngày trả</div>
+                <div className="user-action">Hành động</div>
+            </div>
+            <div className="header-border-line"></div>
+            <div className="object-list-data borrowSlip-list-data">
+                {selectedBorrowDetailList.map((item, index) => (
+                    <BorrowSlipItem
+                    index={index+1}
+                    item={item}
+                    display={()=>displayAction(item)}/>
+                ))}
+            </div>
             </div>
         </div>
     </div>

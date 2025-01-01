@@ -1,0 +1,40 @@
+.borrowSlip-list-header .STT{
+    width: 5%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .slip-id{
+    width: 10%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .book-id{
+    width: 5%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .book-title{
+    width: 20%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .reader-id{
+    width: 10%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .reader-fullname{
+    width: 20%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .implement-date{
+    width: 10%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .expire-date{
+    width: 10%;
+    font-size: 16px;
+}
+.borrowSlip-list-header .user-action{
+    width: 10%;
+    font-size: 16px;
+}
+.borrowSlip-Item{
+    display: grid;
+    grid-template-columns: 5fr 10fr 5fr 20fr 10fr 20fr 10fr 10fr 10fr;
+}
