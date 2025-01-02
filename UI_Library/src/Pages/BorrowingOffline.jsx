@@ -3,7 +3,9 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import BorrowOff_Item from "../Components/BorrowOff_Item.jsx";
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"; 
+import "../Styles/Pages/BorrowingOffline.css";
+
 
 function BorrowOfflinePage() 
 { 
@@ -14,7 +16,8 @@ function BorrowOfflinePage()
         
         const response = await fetch(BE_ENDPOINT+"books/details?id="+index);
         if(!response.ok) 
-        {
+        { 
+            console.log("fail");
             return;
         } 
         const responseData= await response.json(); 
@@ -34,14 +37,17 @@ function BorrowOfflinePage()
         {
             return;
         }
-        listSelectBook.push(responseData);
-        setListBook(listSelectBook);
+        listSelectBook.push(responseData);  
+        console.log(listSelectBook);
+        console.log("Add");
+        setListBook(listSelectBook); 
+        
         
     } 
     function onDelete(index) 
     {
-        listSelectBook = listSelectBook.filter((item, id)=>{
-            return item.id!=index;
+        listSelectBook = listSelectBook.filter((item,id)=>{
+            return id!=index;
         });
         setListBook(listSelectBook);
     }
@@ -147,12 +153,12 @@ function BorrowOfflinePage()
             </div>
             <div className="header-border-line"></div>
             <div className="object-list-data borrowOffline-list-data">
-                {listBook.map((item, index)=>(
+                {listBook.map((item, index)=>{ return (
                     <BorrowOff_Item
                     index={index+1}
                     item={item}
-                    onDelete={onDelete(index)}/>
-                ))}
+                    onDelete={()=>onDelete(index)}/>
+                )})}
             </div>
         </div>
     </div>

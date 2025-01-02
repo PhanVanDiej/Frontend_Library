@@ -1,0 +1,20 @@
+.borrowOff-item{
+    display: grid;
+    grid-template-columns: 10fr 10fr 30fr 50fr;
+}
+.borrowOffline-list-header .STT{
+    width: 10%;
+    font-size: 16px;
+}
+.borrowOffline-list-header .id{
+    width: 10%;
+    font-size: 16px;
+}
+.borrowOffline-list-header .title-name{
+    width: 30%;
+    font-size: 16px;
+}
+.borrowOffline-list-header .user-action{
+    width: 50%;
+    font-size: 16px;
+}

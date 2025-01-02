@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import '../Styles/Pages/ReaderManagement.css';
 import ReaderItem from "../Components/ReaderItem";
+import Swal from "sweetalert2";
 
 function ReaderManagement()
 {
@@ -57,8 +58,88 @@ function ReaderManagement()
             return (item.userId==value||item.fullname.includes(value));
         });
         setListUser(listResult);
+    } 
+    function handleOnDisableClick(item) {
+        async function lockUser() 
+        {
+            Swal.fire({
+                title:"Khóa tài khoản độc giả",
+                text:"Bạn có muốn khóa tài khoản độc giả",
+                icon:"warning"
+            }).then(async (result)=>{
+                if(result.isConfirmed) 
+                {
+                    const response= await fetch(BE_ENDPOINT+"librarian/lock/"+item.userId,{
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json",
+                            "Authorization":"Bearer "+localStorage.getItem("token")
+                        }
+                    });
+                    if(!response.ok) 
+                    {
+                        Swal.fire({
+                            title:"Thất bại",
+                            text:"Khóa tài khoản độc giả thất bại",
+                            icon:"fail"
+                        });
+                        return;
+                    } 
+                    else{
+                        Swal.fire({
+                            title:"Thành công",
+                            text:"Khóa tài khoản độc giả thành công",
+                            icon:"success"
+                        }).then((result)=>{
+                            window.location.reload();
+                        })
+                    }
+                }
+            })
+        } 
+        lockUser();
     }
+
     function handleOnEnableClick(item) {
+        async function enableUser() 
+        {
+            Swal.fire({
+                title:"Mở khóa tài khoản độc giả",
+                text:"Bạn có muốn mở khóa tài khoản độc giả",
+                icon:"warning"
+            }).then(async (result)=>{
+                if(result.isConfirmed) 
+                {
+                    const response= await fetch(BE_ENDPOINT+"librarian/unlock/user/"+item.userId,{
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json",
+                            "Authorization":"Bearer "+localStorage.getItem("token")
+                        }
+                    });
+                    if(!response.ok) 
+                    {
+                        Swal.fire({
+                            title:"Thất bại",
+                            text:"Mở khóa hóa tài khoản độc giả thất bại",
+                            icon:"fail"
+                        });
+                        return;
+                    } 
+                    else{
+                        Swal.fire({
+                            title:"Thành công",
+                            text:"Mở hóa tài khoản độc giả thành công",
+                            icon:"success"
+                        }).then((result)=>{
+                            window.location.reload();
+                        })
+                    }
+                }
+            })
+        } 
+        enableUser();
+
 
     }
     permissionLibrarian();

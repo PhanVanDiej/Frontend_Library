@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
-import PenaltyItem from "../Components/PenaltyItem";
+import PenaltyItem from "../Components/PenaltyItem"; 
+import "../Styles/Pages/PenaltyList.css";
 function PenaltyList() 
 {
     const [penaltyList, setPenaltyList]= useState([]);

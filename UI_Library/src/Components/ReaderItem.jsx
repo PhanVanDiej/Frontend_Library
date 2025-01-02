@@ -10,7 +10,16 @@ function ReaderItem({item,index,onEnable,onDisable}){
             <p>{item.phoneNumber}</p>
             <p>{item.penaltyTime}</p>
             <div className="user-action-btn">
-                <button className={!item.enable? "switch-btn enable-btn":"switch-btn disable-btn"} onClick={onEnable}>
+                <button className={!item.enable? "switch-btn enable-btn":"switch-btn disable-btn"} onClick={()=>{
+                    if(item.enable) 
+                    {
+                         onDisable()
+                    } 
+                    else
+                    {
+                        onEnable();
+                    }
+                }}>
                     {item.enable? "Vô hiệu hoá":"Mở khoá"}
                 </button>
             </div>

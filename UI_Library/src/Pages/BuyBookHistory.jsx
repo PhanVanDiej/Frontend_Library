@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate"; 
-//import "../Styles/Pages/BuyBookHistory.css"
+import "../Styles/Pages/BuyBookHistory.css"
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import BuyBookHistoryItem from "../Components/BuyBookHistory_Item.jsx";
 function BuyBookHistoryPage() 

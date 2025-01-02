@@ -3,7 +3,8 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import permissionLibrarian from "../Env/PermissionLibrarian";
-import SellBookHistory from "../Components/SellBookHistory.jsx";
+import SellBookHistory from "../Components/SellBookHistory.jsx"; 
+import "../Styles/Pages/SellBookHistory.css";
 function SellBookBillPage() 
 { 
     const [listSellBook, setListSellBook] = useState([]);

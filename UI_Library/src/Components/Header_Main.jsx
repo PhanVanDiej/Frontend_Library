@@ -175,6 +175,7 @@ export default function Header_Main() {
           <ul className='dropdown-menu'>
             <CustomLink to="/reader_management">Quản lý độc giả</CustomLink>
             <CustomLink to="/book_management">Quản lý sách</CustomLink>
+            <CustomLink to="/book_type_management">Quản lý thể loại sách</CustomLink>
             <CustomLink to="/renewal_request">Danh sách yêu cầu gia hạn</CustomLink>
             <CustomLink to="/buy_book">Mua sách</CustomLink>
             <CustomLink to="/sell_book">Bán sách</CustomLink>
