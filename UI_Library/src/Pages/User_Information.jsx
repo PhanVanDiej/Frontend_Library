@@ -6,7 +6,7 @@ import ReactDOMServer from "react-dom/server";
 import Swal from "sweetalert2";
 import permissionReader from "../Env/PermissionReader";
 import "../Styles/Pages/UserInfo.css";
-import avatar from "../assets/Book_Cover/neko.jpg";
+import avatar from "../assets/Book_Cover/avt.webp";
 import editIcon from "../assets/Icons/edit.png";
 import {
   Box,
