@@ -3,6 +3,15 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import BorrowOff_Item from "../Components/BorrowOff_Item.jsx";
+import '../Styles/Pages/BorrowingOffline.css'
+
+const example = [
+    { id: "1", title: { name: "The Great Gatsby" } },
+    { id: "2", title: { name: "To Kill a Mockingbird" } },
+    { id: "3", title: { name: "1984" } },
+    { id: "4", title: { name: "Pride and Prejudice" } },
+    { id: "5", title: { name: "The Catcher in the Rye" } }
+];
 
 function BorrowOfflinePage() 
 { 
@@ -72,7 +81,7 @@ function BorrowOfflinePage()
     }
     permissionLibrarian();
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <div>
     <Header_Main />
 
     <div className="main-content">
@@ -96,7 +105,7 @@ function BorrowOfflinePage()
                 confirmBorrow();
             }} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>Xác nhận cho mượn</button>
         </div>
-        <div>
+        <div className="content-table">
             {/* <table border={1} style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
@@ -132,11 +141,11 @@ function BorrowOfflinePage()
             </div>
             <div className="header-border-line"></div>
             <div className="object-list-data borrowOffline-list-data">
-                {listBook.map((item, index)=>(
+                {listBook.map((item, index)=>(//listBook
                     <BorrowOff_Item
                     index={index+1}
                     item={item}
-                    onDelete={onDelete(index)}/>
+                    onDelete={()=>onDelete(index)}/>
                 ))}
             </div>
         </div>

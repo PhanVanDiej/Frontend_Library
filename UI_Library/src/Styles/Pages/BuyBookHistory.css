@@ -1,51 +1,32 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+.buyBookHistory-item{
+    display: grid;
+    grid-template-columns: 10fr 10fr 10fr 20fr 10fr 10fr 30fr;
 }
-
-/* Header styles */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+.buyBookHistory-list-header .STT{
+    width: 10%;
+    font-size: 16px;
 }
-
-/* Main container styles */
-.container {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.buyBookHistory-list-header .bill-id{
+    width: 10%;
+    font-size: 16px;
 }
-
-/* Section title styles */
-h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+.buyBookHistory-list-header .bookTitle-id{
+    width: 10%;
+    font-size: 16px;
 }
-
-/* Table styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+.buyBookHistory-list-header .bookTitle-name{
+    width: 20%;
+    font-size: 16px;
 }
-
-table, th, td {
-    border: 1px solid #ddd;
+.buyBookHistory-list-header .amount{
+    width: 10%;
+    font-size: 16px;
 }
-
-th, td {
-    padding: 10px;
-    text-align: left;
+.buyBookHistory-list-header .price{
+    width: 10%;
+    font-size: 16px;
 }
-
-th {
-    background-color: #f2f2f2;
+.buyBookHistory-list-header .implementDate{
+    width: 30%;
+    font-size: 16px;
 }

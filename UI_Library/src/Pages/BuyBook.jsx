@@ -8,6 +8,13 @@ import permissionLibrarian from "../Env/PermissionLibrarian";
 import '../Styles/Pages/Common.css';
 import DeleteImg from '../assets/Icons/recycle_bin.png';
 
+// const example=[
+//   { bookTitleId: "B001",name:"ABCDADWDADWA", price: "12.99", amount: "3" },
+//   { bookTitleId: "B002",name:"ABCDADWDADWA", price: "15.50", amount: "5" },
+//   { bookTitleId: "B003",name:"ABCDADWDADWA", price: "8.75", amount: "2" },
+//   { bookTitleId: "B004",name:"ABCDADWDADWA", price: "20.00", amount: "1" },
+//   { bookTitleId: "B005",name:"ABCDADWDADWA", price: "5.99", amount: "10" }
+// ]
 function BuyBookForm() {
   let [listBuyBook, setListBuyBook] = useState({
     librarianId: localStorage.getItem("userId"),
@@ -161,7 +168,7 @@ function BuyBookForm() {
             </div>
             <div className="header-border-line"></div>
             <div className="object-list-data buyBook-list-data">
-                {listBuyBook.listDetailRequest.map((item, index) =>{ 
+                {listBuyBook.listDetailRequest.map((item, index) =>{ //listBuyBook.listDetailRequest
                   const name=searchById(item.bookTitleId);
                     return (
                     <div className="buyBook-item object-item">

@@ -188,18 +188,18 @@ export default function Header_Main() {
             <li className="option-drop report-menu">
               <p>Lập báo cáo</p>
               <ul className="dropdown-menu-report"> 
-                <div onClick={
+                <p onClick={
                   (e)=>{
                     e.preventDefault();
                     onClickReport(1);
                   }
-                }>Báo cáo lượt mượn theo tựa sách</div> 
-                <div  onClick={
+                }>Báo cáo lượt mượn theo tựa sách</p> 
+                <p onClick={
                   (e)=>{
                     e.preventDefault();
                     onClickReport(0);
                   }
-                }>Báo cáo lượt mượn theo thể loại</div>
+                }>Báo cáo lượt mượn theo thể loại</p>
               </ul>
             </li>
           </ul>

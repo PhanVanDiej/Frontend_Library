@@ -37,6 +37,7 @@
 .confirm-btn{
     background-color: #A27430;
     color: white;
+    max-width: 300px;
 }
 .confirm-btn:hover{
     background-color: #855000;
@@ -60,4 +61,24 @@
 }
 .cancel-btn:hover{
     background-color: rgb(222, 222, 222);
+}
+.sellBook-list-header .STT{
+    width: 20%;
+    font-size: 16px;
+}
+.sellBook-list-header .book-id{
+    width: 20%;
+    font-size: 16px;
+}
+.sellBook-list-header .price{
+    width: 20%;
+    font-size: 16px;
+}
+.sellBook-list-header .user-action{
+    width: 40%;
+    font-size: 16px;
+}
+.sellBook-item{
+    display: grid;
+    grid-template-columns: 20fr 20fr 20fr 40fr;
 }

@@ -1,0 +1,28 @@
+.sellBookHistory-item{
+    display: grid;
+    grid-template-columns: 10fr 20fr 10fr 30fr 10fr 20fr;
+}
+.sellBookHistory-list-header .STT{
+    width: 10%;
+    font-size: 16px;
+}
+.sellBookHistory-list-header .bill-id{
+    width: 20%;
+    font-size: 16px;
+}
+.sellBookHistory-list-header .bookTitle-id{
+    width: 10%;
+    font-size: 16px;
+}
+.sellBookHistory-list-header .bookTitle-name{
+    width: 30%;
+    font-size: 16px;
+}
+.sellBookHistory-list-header .price{
+    width: 10%;
+    font-size: 16px;
+}
+.sellBookHistory-list-header .implementDate{
+    width: 20%;
+    font-size: 16px;
+}

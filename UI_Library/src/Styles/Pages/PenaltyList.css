@@ -1,0 +1,28 @@
+.penalty-item{
+    display: grid;
+    grid-template-columns: 5fr 10fr 10fr 20fr 20fr 35fr;
+}
+.penalty-list-header .STT{
+    width: 5%;
+    font-size: 16px;
+}
+.penalty-list-header .penalty-id{
+    width: 10%;
+    font-size: 16px;
+}
+.penalty-list-header .user-id{
+    width: 10%;
+    font-size: 16px;
+}
+.penalty-list-header .user-name{
+    width: 20%;
+    font-size: 16px;
+}
+.penalty-list-header .money{
+    width: 20%;
+    font-size: 16px;
+}
+.penalty-list-header .content{
+    width: 35%;
+    font-size: 16px;
+}

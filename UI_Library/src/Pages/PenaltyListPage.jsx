@@ -3,6 +3,55 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import PenaltyItem from "../Components/PenaltyItem";
+import '../Styles/Pages/PenaltyList.css'
+const example = [
+    {
+        id: "C001",
+        reader: {
+            userId: "U101",
+            fullname: "Alice Johnson"
+        },
+        money: "25.50",
+        content: "Purchased 3 books on mystery and thriller."
+    },
+    {
+        id: "C002",
+        reader: {
+            userId: "U102",
+            fullname: "Bob Smith"
+        },
+        money: "15.75",
+        content: "Bought a guidebook on JavaScript programming."
+    },
+    {
+        id: "C003",
+        reader: {
+            userId: "U103",
+            fullname: "Charlie Brown"
+        },
+        money: "40.00",
+        content: "Acquired 5 novels from the romance genre."
+    },
+    {
+        id: "C004",
+        reader: {
+            userId: "U104",
+            fullname: "Diana Prince"
+        },
+        money: "10.99",
+        content: "Purchased a single copy of a cookbook."
+    },
+    {
+        id: "C005",
+        reader: {
+            userId: "U105",
+            fullname: "Ethan Hunt"
+        },
+        money: "60.00",
+        content: "Bought a complete set of sci-fi series books."
+    }
+];
+
 function PenaltyList() 
 {
     const [penaltyList, setPenaltyList]= useState([]);
@@ -70,7 +119,7 @@ function PenaltyList()
                     </div>
                     <div className="header-border-line"></div>
                     <div className="object-list-data penalty-list-data">
-                        {penaltyList.map((item, index)=>(
+                        {penaltyList.map((item, index)=>( //penaltyList
                             <PenaltyItem
                             index={index+1}
                             item={item}/>

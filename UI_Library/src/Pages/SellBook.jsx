@@ -5,6 +5,11 @@ import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import "../Styles/Pages/SellBook.css";
 import SellBookItem from "../Components/sellBook_Item";
+
+const example=[
+  { bookId: "B001", price: "12.99"}
+]
+
 function SellBookForm() {
   const listBookSell = {
     implementDate: new Date(),
@@ -215,7 +220,7 @@ function SellBookForm() {
             </div>
             <div className="header-border-line"></div>
             <div className="object-list-data sellBook-list-data">
-            {listSellBook.map((item, index) => (
+            {listSellBook.map((item, index) => ( //listSellBook
               <SellBookItem
               item={item}
               index={index+1}

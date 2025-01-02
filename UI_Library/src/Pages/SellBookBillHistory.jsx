@@ -4,6 +4,81 @@ import BE_ENDPOINT from "../Env/EndPont";
 import formatDate from "../Env/FormatDate";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import SellBookHistory from "../Components/SellBookHistory.jsx";
+import '../Styles/Pages/SellBookHistory.css'
+
+const example = [
+    {
+        sellBookBill: {
+            sellBookBillId: "SB001",
+            implementDate: "2025-01-01"
+        },
+        book: {
+            id: "BK001",
+            title: {
+                id: "BT001",
+                name: "The Hobbit"
+            }
+        },
+        price: "15.99"
+    },
+    {
+        sellBookBill: {
+            sellBookBillId: "SB002",
+            implementDate: "2025-01-02"
+        },
+        book: {
+            id: "BK002",
+            title: {
+                id: "BT002",
+                name: "War and Peace"
+            }
+        },
+        price: "20.50"
+    },
+    {
+        sellBookBill: {
+            sellBookBillId: "SB003",
+            implementDate: "2025-01-03"
+        },
+        book: {
+            id: "BK003",
+            title: {
+                id: "BT003",
+                name: "Moby Dick"
+            }
+        },
+        price: "18.75"
+    },
+    {
+        sellBookBill: {
+            sellBookBillId: "SB004",
+            implementDate: "2025-01-04"
+        },
+        book: {
+            id: "BK004",
+            title: {
+                id: "BT004",
+                name: "Jane Eyre"
+            }
+        },
+        price: "14.99"
+    },
+    {
+        sellBookBill: {
+            sellBookBillId: "SB005",
+            implementDate: "2025-01-05"
+        },
+        book: {
+            id: "BK005",
+            title: {
+                id: "BT005",
+                name: "The Catcher in the Rye"
+            }
+        },
+        price: "12.50"
+    }
+];
+
 function SellBookBillPage() 
 { 
     const [listSellBook, setListSellBook] = useState([]);
@@ -74,7 +149,7 @@ function SellBookBillPage()
                     </div>
                     <div className="header-border-line"></div>
                     <div className="object-list-data sellBookHistory-list-data">
-                        {listSellBook.map((item, index)=>(
+                        {listSellBook.map((item, index)=>(//listSellBook
                             <SellBookHistory
                             index={index+1}
                             item={item}/>
