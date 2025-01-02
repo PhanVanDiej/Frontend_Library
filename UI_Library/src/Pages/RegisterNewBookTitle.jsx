@@ -3,6 +3,8 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont"; 
 //import "../Styles/Pages/RegisterBookTitle.css"
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 function RegisterNewBookTitleForm() 
 {
     const [bookType, setBookType]= useState([]);
@@ -38,7 +40,12 @@ function RegisterNewBookTitleForm()
         const postResult = await postImage.text();
         console.log(postResult);
         if(!postImage.ok) 
-        {
+        { 
+             Swal.fire({
+                                        title:"Thất bại",
+                                        text:"Upload hình ảnh thất bại",
+                                        icon:"fail"
+                                      })
             return;
         }  
         const data = {
@@ -61,9 +68,21 @@ function RegisterNewBookTitleForm()
         });
         if(!postInformation.ok) 
             {
+                 Swal.fire({
+                                            title:"Thất bại",
+                                            text:"Tạo tựa sách thất bại",
+                                            icon:"fail"
+                                          })
                 return;
             }  
-            alert("Tạo tựa sách sách thành côngcông");
+             Swal.fire({
+                                        title:"Thành công",
+                                        text:"Tạo tựa sách thành công",
+                                        icon:"success"
+                                      }).then((result)=>{
+                                        const navigate = useNavigate();
+                                        navigate("/home");
+                                      })
     } 
     permissionLibrarian();
     return (

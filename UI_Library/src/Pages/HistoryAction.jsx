@@ -113,11 +113,20 @@ const HistoryAction = () => {
       });
       if(!response.ok) 
       {
-        alert("Thất bại, vui lòng thử lại");
+         Swal.fire({
+                              title:"Thất bại",
+                              text:"Hủy mượn sách thất bại",
+                              icon:"fail"
+                                  })
         return;
       } 
-      alert("Thành công");
-      window.location.reload();
+       Swal.fire({
+                                  title:"Thành công",
+                                  text:"Hủy phiếu mượn thành công",
+                                  icon:"success"
+                                }).then((result)=>{
+                                  window.location.reload();
+                                })
   }
 
   async function onRenewal(item, data) 

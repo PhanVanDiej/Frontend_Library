@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import Swal from "sweetalert2";
 function RegisterNewBookTypeForm() 
 {
     async function onSubmit() 
@@ -16,7 +17,12 @@ function RegisterNewBookTypeForm()
             body:formData
         });
         if(!response.ok) 
-        {
+        { 
+            Swal.fire({
+                title:"Thất bại",
+                text:"Upload hình ảnh thất bại",
+                icon:"fail"
+              })
             return;
         }  
         const data= {
@@ -31,10 +37,22 @@ function RegisterNewBookTypeForm()
             body:JSON.stringify(data)
         });
         if(!createInfoResponse.ok)
-        {
+        { 
+             Swal.fire({
+                                        title:"Thất bại",
+                                        text:"Tạo thể loại thất bại",
+                                        icon:"fail"
+                                      })
             return ;
         } 
-        alert("Tạo thể loại thành công");
+        Swal.fire({
+            title:"Thành công",
+            text:"Tạo thể loạiloại thành công",
+            icon:"success"
+          }).then((result)=>{
+            const navigate = useNavigate();
+            navigate("/home");
+          })
     }
     
     permissionLibrarian();

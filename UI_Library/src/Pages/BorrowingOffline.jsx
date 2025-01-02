@@ -3,8 +3,8 @@ import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import BorrowOff_Item from "../Components/BorrowOff_Item.jsx";
-import '../Styles/Pages/BorrowingOffline.css'
 
+import '../Styles/Pages/BorrowingOffline.css'
 const example = [
     { id: "1", title: { name: "The Great Gatsby" } },
     { id: "2", title: { name: "To Kill a Mockingbird" } },
@@ -12,6 +12,8 @@ const example = [
     { id: "4", title: { name: "Pride and Prejudice" } },
     { id: "5", title: { name: "The Catcher in the Rye" } }
 ];
+import Swal from "sweetalert2";
+
 
 function BorrowOfflinePage() 
 { 
@@ -28,7 +30,11 @@ function BorrowOfflinePage()
         const responseData= await response.json(); 
         if(responseData.status.id!=0) 
         {
-            alert("Không thể cho mượn sách này");
+             Swal.fire({
+                        title:"Thất bại",
+                        text:"Không thể cho mượn sách này",
+                        icon:"fail"
+                      })
             return;
         }
         let listAddedBook = listSelectBook.filter((item)=>{
@@ -73,11 +79,21 @@ function BorrowOfflinePage()
         });
         if(response.status==404)
         {
-            alert("Tài khoản độc giả không thể thực hiện thao tác") 
+            Swal.fire({
+                        title:"Thất bại",
+                        text:"Tài khoản độc giả không thể thực hiện thao táctác",
+                        icon:"fail"
+                      })
             return;
         }
 
-        alert("Thành công");
+         Swal.fire({
+                    title:"Thành côngcông",
+                    text:"Tạo phiếu mượn thành công",
+                    icon:"fail"
+                  }).then((result)=>{
+                    window.location.reload();
+                  })
     }
     permissionLibrarian();
     return (

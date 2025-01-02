@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";  
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BE_ENDPOINT from "../Env/EndPont";
 import Header_Main from "../Components/Header_Main";
 import displayImageURL from "../Env/DisplayImage";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import Swal from "sweetalert2";
 function EditBookTitleForm()
 {
     const bookId = useParams();
@@ -47,7 +48,11 @@ function EditBookTitleForm()
             });
             if(!putImage.ok) 
             { 
-                alert("Fail");
+                 Swal.fire({
+                            title:"Thất bại",
+                            text:"Cập nhật hình ảnh thất bại",
+                            icon:"fail"
+                          })
                 return;
             }
             console.log("Uploaded image");
@@ -76,11 +81,22 @@ function EditBookTitleForm()
         });
         if(!putInfo.ok) 
         { 
-            alert("Fail");
+             Swal.fire({
+                        title:"Thất bại",
+                        text:"Cập nhật thông tin thất bại",
+                        icon:"fail"
+                      })
             return;
         } 
         const message= await putInfo.text();
-        console.log(message);
+         Swal.fire({
+                    title:"Thành công",
+                    text:"Cập nhật thông tin thành công",
+                    icon:"success"
+                  }).then((result)=>{
+                    const navigate= useNavigate();
+                    navigate("/home");
+                  })
         //location.reload();
     }
     useEffect(()=>{ 

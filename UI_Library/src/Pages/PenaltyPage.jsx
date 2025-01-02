@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"; 
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import Swal from "sweetalert2";
 function PenaltyPage() 
 {
     const penaltyId = useParams();
@@ -42,10 +43,21 @@ function PenaltyPage()
         });
         if(!response.ok) 
         {
-            alert("Lập phiêú phạt thất bại");
+             Swal.fire({
+                                        title:"Thất bại",
+                                        text:"Lập phiếu phạt thất bại",
+                                        icon:"fail"
+                                      })
             return;
         } 
-        alert("Lập phiếu phạt thành công");
+         Swal.fire({
+                                    title:"Thành công",
+                                    text:"Lập phiếu phạt thành công",
+                                    icon:"success"
+                                  }).then((result)=>{
+                                    const navigate = useNavigate();
+                                    navigate("/reader_management");
+                                  })
     }
     permissionLibrarian();
     return (<div>

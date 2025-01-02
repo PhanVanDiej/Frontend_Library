@@ -58,6 +58,9 @@ function ReaderManagement()
         });
         setListUser(listResult);
     }
+    function handleOnEnableClick(item) {
+
+    }
     permissionLibrarian();
     return (
         <div>
