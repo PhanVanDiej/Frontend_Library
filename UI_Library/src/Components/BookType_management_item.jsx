@@ -5,7 +5,7 @@ import displayImageURL from "../Env/DisplayImage";
 import "../Styles/Pages/BookTypeManagement.css"
 function BookTypeManagementItem({bookType,index,onDelete,onEdit}){
     return(
-        <div className="bookType-item">
+        <div className="bookType-item object-item" style={{backgroundColor: index%2==0? "white":"#d9d9d9"}}>
             <p>{index+1}</p>
             <p>{bookType.id}</p>
             <img width={40} height={40} src={displayImageURL(bookType.imageData)} alt="Ảnh minh hoạ"></img>

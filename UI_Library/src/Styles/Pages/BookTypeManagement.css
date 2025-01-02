@@ -31,9 +31,7 @@
 .header-border-line {
     border-bottom: 2px solid lightgray;
 }
-.bookType-list-data{
-    padding-inline: 32px;   
-}
+
 .bookType-item{
     display: grid;
   grid-template-columns: 10fr 10fr 30fr 30fr 20fr;

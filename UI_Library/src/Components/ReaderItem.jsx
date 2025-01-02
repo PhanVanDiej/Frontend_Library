@@ -2,7 +2,7 @@ import React from "react";
 
 function ReaderItem({item,index,onEnable,onDisable}){
     return(
-        <div className="reader-item">
+        <div className="reader-item object-item" style={{backgroundColor: index%2==0? "white":"#d9d9d9"}}>
             <p>{index+1}</p>
             <p>{item.userId}</p>
             <p>{item.fullname}</p>

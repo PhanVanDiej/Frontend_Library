@@ -26,6 +26,3 @@
     display: grid;
     grid-template-columns: 15fr 15fr 40fr 10fr 10fr 10fr;
 }
-.buyBook-list-data{
-    padding-inline: 32px;
-}

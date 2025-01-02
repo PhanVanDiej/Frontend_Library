@@ -4,7 +4,7 @@ import formatDate from "../Env/FormatDate";
 const BorrowSlipItem=({item,index,display})=>{
     //console.log(item);
     return(
-        <div className="borrowSlip-Item object-item">
+        <div className="borrowSlip-Item object-item" style={{backgroundColor: index%2==0? "white":"#d9d9d9"}}>
             <p>{index}</p>
             <p>{item.service.serviceId}</p>
             <p>{item.book.id}</p>

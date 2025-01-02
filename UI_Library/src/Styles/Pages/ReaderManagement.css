@@ -45,9 +45,7 @@
     align-items: center;
     transition: color 0.2s;
 }
-.reader-list-data{
-    padding-inline: 32px;
-}
+
 .reader-item p:hover{
     color:#A27430;
     font-weight: bold;

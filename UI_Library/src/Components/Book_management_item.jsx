@@ -3,7 +3,7 @@ import DeleteImg from '../assets/Icons/recycle_bin.png';
 
 function BookManagementItem({book,index,onDelete}){
     return(
-        <div className="book-item">
+        <div className="book-item object-item" style={{backgroundColor: index%2==0? "white":"#d9d9d9"}}>
             <p>{index+1}</p>
             <p>{book[0].id}</p>
             <p>{book[0].title.name}</p>

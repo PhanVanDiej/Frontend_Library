@@ -33,11 +33,13 @@
     padding: 5px 20px;
     border-radius: 10px;
     border:none;
+    white-space: nowrap;
 }
 .confirm-btn{
     background-color: #A27430;
     color: white;
     max-width: 300px;
+    
 }
 .confirm-btn:hover{
     background-color: #855000;

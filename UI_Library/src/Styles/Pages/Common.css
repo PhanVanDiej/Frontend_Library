@@ -9,16 +9,20 @@
     padding-top: 12px; 
     padding-bottom: 12px; 
   }
-  .object-list-data{
-    padding-inline:32px;
-  }
+  
   .object-item{
-    height: 48px;
+    height: 65px;
     color: gray;
     align-items: center;
     transition: color 0.2s;
+    padding-inline:32px;
+    border-radius: 10px;
   }
   .object-item p:hover{
     color: #A27430;
     font-weight: bold;
+  }
+  .action-btn-area{
+    display: flex;
+    gap: 5px;
   }

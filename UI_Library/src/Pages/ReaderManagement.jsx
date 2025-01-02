@@ -5,6 +5,7 @@ import lockOrUnlockUser from "../FetchScripts/LockOrUnlockUser";
 import { useLocation } from "react-router-dom";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import '../Styles/Pages/ReaderManagement.css';
+import '../Styles/Pages/Common.css'
 import ReaderItem from "../Components/ReaderItem";
 import Swal from "sweetalert2";
 

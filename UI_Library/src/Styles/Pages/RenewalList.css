@@ -45,9 +45,7 @@
     width: 10%;
     font-size: 14px;
 }
-.renewal-list-data{
-    padding-inline: 32px;
-}
+
 .renewal-item{
   display: grid;
   grid-template-columns: 5fr 10fr 15fr 8fr 7fr 25fr 10fr 10fr 10fr;
