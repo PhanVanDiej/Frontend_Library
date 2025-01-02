@@ -205,8 +205,8 @@ function RenewalRequestPage()
                         {listRenewalRequest.map((item,index)=>(
                             <RenewalItem
                             index={index}
-                            onAccept={()=>handleOnAcceptClick(item)}
-                            onReject={()=>handleOnRejectClick(item)}
+                            onAccept={()=>onResponseRenewal(item,"Accept")}
+                            onReject={()=>onResponseRenewal(item,"Denied")}
                             item={item}/>
                         ))}
                     </div>

@@ -174,7 +174,7 @@ const Cart = () => {
                         text:"Mượn sách thành công",
                         icon:"success"
                       }).then((result)=>{
-                        navigate("/history_action")
+                        navigate("/history")
                       })
         }
     }

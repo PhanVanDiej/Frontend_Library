@@ -3,43 +3,41 @@ import Header from '../Components/Header_Register'
 import handleRegister from '../FetchScripts/HandleRegister'
 import BE_ENDPOINT from '../Env/EndPont';
 import '../Styles/Pages/Login.css';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignupPage(){ 
     const [submit,setSubmit] = useState(false);
-    useEffect(()=>{ 
-        const fetchAndDisplay=async ()=>{
-            const fullName= document.getElementById("userNameRegister").value;
-            const address=document.getElementById("addressRegister").value; 
-            const phone=document.getElementById("phoneRegister").value;
-            const email=document.getElementById("emailRegister").value;
-            const password=document.getElementById("passwordRegister").value;
-            const repeatPassword=document.getElementById("repeatPasswordRegister").value;
-            const information={
-                fullName:fullName,
-                address:address,
-                phoneNumber:phone,
-                email:email,
-                password:password,
-                repeatPassword:repeatPassword,
-                role:0
-            } 
-            
-            console.log(information);
-            const registerMessage = await handleRegister(information);
-            if(registerMessage) 
-            {
-                document.getElementById("registerMessageArea").innerHTML=registerMessage;
-            } 
-            else {
-                document.getElementById("registerMessageArea").innerHTML="Đã xảy ra lỗi";
-            }
-        }
-        if(submit==true) 
+    const fetchAndDisplay=async ()=>{
+        const fullName= document.getElementById("userNameRegister").value;
+        const address=document.getElementById("addressRegister").value; 
+        const phone=document.getElementById("phoneRegister").value;
+        const email=document.getElementById("emailRegister").value;
+        const password=document.getElementById("passwordRegister").value;
+        const repeatPassword=document.getElementById("repeatPasswordRegister").value;
+        const information={
+            fullName:fullName,
+            address:address,
+            phoneNumber:phone,
+            email:email,
+            password:password,
+            repeatPassword:repeatPassword,
+            role:0
+        } 
+        
+        console.log(information);
+        const registerMessage = await handleRegister(information);
+        if(registerMessage) 
         {
-           fetchAndDisplay();
-           setSubmit(false);
+            alert(registerMessage);
+            const navigate= useNavigate();
+            navigate("/login");
+        } 
+        else {
+            alert("Đã xảy ra lỗi, vui lòng thử lại");
         }
-    },[submit])
+    }
+    
    
     return(
         <div>
@@ -74,7 +72,7 @@ export default function SignupPage(){
                     className='submit-btn'
                     onClick={(e)=>{
                         e.preventDefault();
-                        setSubmit(true)}} >
+                        fetchAndDisplay()}} >
                             Đăng ký
                             </button>
                 </div>

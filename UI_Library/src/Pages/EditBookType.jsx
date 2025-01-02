@@ -23,10 +23,7 @@ function EditBookTypeForm()
             setBookType(responseData);
         } 
         fetchToServer(); 
-        document.getElementById("editBookTypeForm").addEventListener("submit",(e)=>{
-            e.preventDefault(); 
-            onSubmit();
-        })
+        
     },[]); 
     async function onSubmit() 
     {
@@ -62,6 +59,7 @@ function EditBookTypeForm()
                   }) 
                 return;
             }  
+        
             const data={
                 id:bookTypeId.id,
                 name:document.getElementById("bookTypeName").value,
@@ -94,8 +92,42 @@ function EditBookTypeForm()
                 navigate("/home");
               })
 
+        } 
+        else {
+            const data={
+                id:bookTypeId.id,
+                name:document.getElementById("bookTypeName").value,
+                imageData:[]
+            }
+            const putInfo = await fetch(BE_ENDPOINT+"librarian/update/bookType/info",{
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"Bearer "+localStorage.getItem("token")
+                },
+                body:JSON.stringify(data)
+            });
+            if(!putInfo.ok) 
+            {
+                Swal.fire({
+                    title:"Thất bại",
+                    text:"Update thông tin thất bại",
+                    icon:"success"
+                  })
+                return;
+            } 
+            const putInfoMessage = await putInfo.text();
+            Swal.fire({
+                title:"Thành công",
+                text:"Update thông tin thành công",
+                icon:"success"
+              }).then((result)=>{
+                const navigate = useNavigate();
+                navigate("/home");
+              })
         }
     }
+    
     permissionLibrarian();
     return (
         <div>
@@ -125,5 +157,6 @@ function EditBookTypeForm()
 </div>
 
     )
-} 
+}
+
 export default EditBookTypeForm;
