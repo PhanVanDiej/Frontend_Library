@@ -25,7 +25,7 @@ const Book_Detail = () => {
       {
         return "Mượn ngay"
       } 
-      return "Xoá tựa sáchsách"
+      return "Xoá tựa sách"
   }
   
   
@@ -102,10 +102,18 @@ const Book_Detail = () => {
         });
         if(!response.ok) 
         {
-          alert("Thêm vào danh sách muốn mượn thất bại!");
+          Swal.fire({
+            title:"Thất bại",
+            text:"Thêm vào danh sách muốn mượn thất bại",
+            icon:"fail"
+          })
           return;
         } 
-        alert("Thêm vào danh sách muốn mượn thành công");
+        Swal.fire({
+          title:"Thành công",
+          text:"Thêm vào danh sách muốn mượn thành công",
+          icon:"success"
+        })
       
       }
     }
@@ -161,12 +169,12 @@ const Book_Detail = () => {
         const responseData= await response.json();
         console.log(responseData);
         if(responseData.message=="Not enough"){
-        let messageString = "Không đủ sáchsách ";
+        let messageString = "Không đủ sách ";
         for(let i=0;i<responseData.listResponse.length;i++) 
         {
             messageString+=responseData.listResponse[i]+",";
         } 
-        messageString+="vui lòng điều chỉnh lại số lượnglượng";
+        messageString+="vui lòng điều chỉnh lại số lượng";
         alert(messageString); 
         return;
         }

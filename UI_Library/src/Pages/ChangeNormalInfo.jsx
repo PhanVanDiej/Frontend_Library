@@ -3,6 +3,7 @@ import Header_Main from "../Components/Header_Main";
 import { useNavigate } from "react-router-dom";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionReader from "../Env/PermissionReader";
+import Swal from "sweetalert2";
 function ChangeNormalInfo() 
 {  
     
@@ -44,11 +45,20 @@ function ChangeNormalInfo()
         });
         if(!response.ok) 
         {
-            alert("Fail");
+             Swal.fire({
+                        title:"Thất bại",
+                        text:"Chỉnh sửa thông tin thất bạibại",
+                        icon:"fail"
+                      })
             return;
         } 
-        alert("Success"); 
-        navigate("/user_information");
+         Swal.fire({
+                    title:"Thành công",
+                    text:"Chỉnh sửa thông tin thành công",
+                    icon:"success"
+                  }).then((result)=>{
+                    navigate("/user_information");
+                  })
         
     } 
     permissionReader();

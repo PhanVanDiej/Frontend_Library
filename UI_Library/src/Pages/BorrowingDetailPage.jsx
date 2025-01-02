@@ -234,10 +234,18 @@ function BorrowingDetailPage()
         });
         if(!response.ok) 
         {
-            alert("Fail");
+             Swal.fire({
+                        title:"Thất bại",
+                        text:"Lấy sách  thất bại",
+                        icon:"fail"
+                      })
             return;
         }
-        alert("Success");
+         Swal.fire({
+                    title:"Thành công",
+                    text:"Độc giả lấy sách thành công",
+                    icon:"success"
+                  })
         window.location.reload();
     } 
     async function onReturnBook(item) 
@@ -251,7 +259,11 @@ function BorrowingDetailPage()
         });
         if(!response.ok) 
         {
-            alert("Fail");
+             Swal.fire({
+                        title:"Thất bại",
+                        text:"Nhận sách trả thất bại",
+                        icon:"fail"
+                      })
             return;
         }
         const responseMessage= await response.text();
@@ -261,7 +273,11 @@ function BorrowingDetailPage()
             console.log(responseMessage);
             return;
         } 
-        alert("Success");
+         Swal.fire({
+                    title:"Thành công",
+                    text:"Nhận sách trả thành công",
+                    icon:"success"
+                  })
         window.location.reload();
     } 
     function onSearch(borrowId) {

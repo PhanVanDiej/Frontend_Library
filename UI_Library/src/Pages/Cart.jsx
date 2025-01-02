@@ -6,6 +6,7 @@ import recycleBin from '../assets/Icons/recycle_bin.png'
 import { useNavigate } from 'react-router-dom' 
 import BE_ENDPOINT from '../Env/EndPont'
 import permissionReader from '../Env/PermissionReader' 
+import Swal from 'sweetalert2'
 
 
 const exampleCartItems=[
@@ -161,11 +162,20 @@ const Cart = () => {
                 messageString+=responseData.listResponse[i]+",";
             } 
             messageString+="vui lòng điều chỉnh lại số lượng";
-            alert(messageString); 
+             Swal.fire({
+                        title:"Thất bại",
+                        text:messageString,
+                        icon:"fail"
+                      })
             return;
         }
-            alert("Mượn sách thành công"); 
-            navigate("/history");
+             Swal.fire({
+                        title:"Thành công",
+                        text:"Mượn sách thành công",
+                        icon:"success"
+                      }).then((result)=>{
+                        navigate("/history_action")
+                      })
         }
     }
     const handleOnchangeSelectAll=()=>{

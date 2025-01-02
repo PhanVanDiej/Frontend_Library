@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"; 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import displayImageURL from "../Env/DisplayImage";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import Swal from "sweetalert2";
 function EditBookTypeForm() 
 {
     const bookTypeId= useParams();
@@ -41,7 +42,12 @@ function EditBookTypeForm()
                 body:formData
             }); 
             if(!putImage.ok) 
-            {document.getElementById("MessageZone").innerHTML="Upload hinh anh that bai"; 
+            {
+                 Swal.fire({
+                            title:"Thất bại",
+                            text:"Upload hình ảnh thất bại",
+                            icon:"fail"
+                          })
                 return;
                 
             } 
@@ -49,7 +55,11 @@ function EditBookTypeForm()
             console.log(putImageMessage);
             if(putImageMessage!="Update success") 
             {
-                document.getElementById("MessageZone").innerHTML="Upload hinh anh that bai"; 
+                Swal.fire({
+                    title:"Thất bại",
+                    text:"Upload hình ảnh thất bại",
+                    icon:"fail"
+                  }) 
                 return;
             }  
             const data={
@@ -67,11 +77,22 @@ function EditBookTypeForm()
             });
             if(!putInfo.ok) 
             {
-                document.getElementById("MessageZone").innerHTML="Upload thong tin that bai";
+                Swal.fire({
+                    title:"Thất bại",
+                    text:"Update thông tin thất bại",
+                    icon:"success"
+                  })
                 return;
             } 
             const putInfoMessage = await putInfo.text();
-            document.getElementById("MessageZone").innerHTML=putInfoMessage;
+            Swal.fire({
+                title:"Thành công",
+                text:"Update thông tin thành công",
+                icon:"success"
+              }).then((result)=>{
+                const navigate = useNavigate();
+                navigate("/home");
+              })
 
         }
     }
