@@ -243,7 +243,7 @@ export default function Header_Main() {
                 e.preventDefault();
                 localStorage.removeItem("userId");
                 localStorage.removeItem("token");
-                localStorage.removeItem("role");
+                localStorage.removeItem("role_user");
                 navigate("/login");
               }
             }>Đăng xuất</div>

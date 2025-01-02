@@ -7,19 +7,19 @@ import Swal from "sweetalert2";
 import "../Styles/Pages/BorrowingOffline.css";
 
 
-function BorrowOfflinePage() 
-{ 
+function BorrowOfflinePage()
+{
     const [listBook, setListBook] = useState([]);
     let listSelectBook=[];
-    async function onAdd(index) 
-    {  
+    async function onAdd(index)
+    {
         
         const response = await fetch(BE_ENDPOINT+"books/details?id="+index);
-        if(!response.ok) 
-        { 
+        if(!response.ok)
+        {
             console.log("fail");
             return;
-        } 
+        }
         const responseData= await response.json(); 
         if(responseData.status.id!=0) 
         {

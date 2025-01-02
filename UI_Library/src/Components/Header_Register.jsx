@@ -4,14 +4,16 @@ import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import logo from '../assets/Icons/logo.png';
 const Header = () => {
   return (
-    <header className="header">
+    <header className="header-register">
         <nav class="navbar">
+          <div style={{display:'flex',gap:'30px', alignItems:'center'}}>
             <img src={logo} alt='ArrowDown'></img>
             <Link to="/home" className='Home-title' style={{color:"#A27430", whiteSpace:'nowrap', width:"fit-content"}}>WEBSITE THƯ VIỆN</Link>
-            <ul>
-               <CustomLink to='/login'>ĐĂNG NHẬP</CustomLink>
-               <CustomLink to='/signup'>ĐĂNG KÝ</CustomLink>
-            </ul>
+          </div>
+          <ul>
+              <CustomLink to='/login'>ĐĂNG NHẬP</CustomLink>
+              <CustomLink to='/signup'>ĐĂNG KÝ</CustomLink>
+          </ul>
         </nav>
     </header>
   )

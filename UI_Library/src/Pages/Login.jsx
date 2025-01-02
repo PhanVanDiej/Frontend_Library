@@ -7,7 +7,9 @@ export default function LoginPage() {
   const navigate= useNavigate();
   async function Login(nameOrEmail, password) 
   {
-      
+      localStorage.setItem("role_user",0);
+      navigate("/home");
+
       const result = await handleLogin(nameOrEmail, password);
       if(result==="Success") 
       {
