@@ -173,7 +173,7 @@ function SellBookForm() {
             >
               Xoá toàn bộ
             </button>
-            <button className="action-btn cancel-btn">Huỷ</button>
+            
           </div>
           <div className="content-table">
             {/* <table border={1}>

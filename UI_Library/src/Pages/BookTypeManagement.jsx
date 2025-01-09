@@ -11,7 +11,11 @@ function BookTypeManagement()
 { 
     const [products, setProducts] = useState([]); 
     const [selectProducts, setSelectProducts] = useState([]); 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
+    function clickEdit(item) {
+        
+        window.location.href="/edit_book_type/"+item.id;
+    } 
     async function fetchBookType() 
     { 
          const response= await fetch(BE_ENDPOINT+"book-types"); 
@@ -37,7 +41,7 @@ function BookTypeManagement()
             text:"Chắc chắn xóa thể loại?"
         }).then((result)=>{
             if(result.isConfirmed) {
-
+                onDelete(item);
             }
         })  
     } 
@@ -130,10 +134,7 @@ function BookTypeManagement()
                     <BookTypeManagementItem
                     bookType={item} 
                     onDelete={()=>onClickDelete(item)}
-                    onEdit={(item)=>{
-                        const navigate = useNavigate();
-                        navigate("/edit/book_type/"+item.id);
-                    }}
+                    onEdit={()=>clickEdit(item)}
                     index={index}/>
                 ))}
             </div>
