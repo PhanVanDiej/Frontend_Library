@@ -58,23 +58,23 @@ const HistoryAction = () => {
   {
     if(status=="PENDING") 
     {
-      return "Đang chờ lấy";
+      return (<p style={{color:'orange'}}>Đang chờ lấy</p>);
     } 
     if(status=="CANCELLED"||status=="DESTROY") 
     {
-      return "Đã hủy";
+      return (<p style={{color:'red'}}>Đã hủy</p>);
     } 
     if(status=="BORROWING")
     {
-      return "Đang mượn";
+      return (<p style={{color:'blue'}}>Đang mượn</p>);
     }
     if(status=="RETURNED") 
     {
-      return "Đã trả";
+      return (<p style={{color:'green'}}>Đã trả</p>);
     } 
     if(status=="RENEWAL") 
     {
-      return "Đang chờ gia hạn";
+      return (<p style={{color:'black'}}>Đang chờ gia hạn</p>);
     }
   } 
   function displayAction(status, item) 
@@ -82,7 +82,7 @@ const HistoryAction = () => {
     if(status=="PENDING") 
       {
         return (
-          <button onClick={(e)=>{
+          <button className='action-btn delete-btn' onClick={(e)=>{
             e.preventDefault();
             onCancel(item);
           }}>Hủy</button>
@@ -91,7 +91,7 @@ const HistoryAction = () => {
     if(status=="BORROWING") 
     {
       return (
-        < button onClick={(e)=>{
+        < button className='action-btn confirm-btn' onClick={(e)=>{
           e.preventDefault();
           chooseRenewalDate(item);
         }} 
@@ -228,7 +228,7 @@ const HistoryAction = () => {
             </table> */}
             <div className="actionHistory-list-header object-list-header">
                     <div className="STT">STT</div>
-                    <div className="bill-id">Mã phiếu mượnmượn</div>
+                    <div className="bill-id">Mã phiếu mượn</div>
                     <div className="bookTitle-id">Mã sách</div>
                     <div className="bookTitle-name">Tên tựa sách</div>
                     <div className="implementDate">Ngày mượn</div>

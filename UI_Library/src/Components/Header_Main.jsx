@@ -181,6 +181,10 @@ export default function Header_Main() {
             <CustomLink to="/sell_book">Bán sách</CustomLink>
             <CustomLink to="/penalty_list">Danh sách phiếu phạt</CustomLink>
             <CustomLink to="/create_penalty">Lập phiếu phạt</CustomLink>
+
+            <CustomLink to="/register_book_title">Tạo tựa sách mới</CustomLink>
+            <CustomLink to="/register_book_type">Tạo thể loại sách mới</CustomLink>
+
             <CustomLink to="/buy_book_history">Lịch sử mua sách</CustomLink>
             <CustomLink to="/sell_book_history">Lịch sử bán sách</CustomLink>
             <CustomLink to="/update_regulation">Chỉnh sửa quy định thư viện</CustomLink>
@@ -189,18 +193,18 @@ export default function Header_Main() {
             <li className="option-drop report-menu">
               <p>Lập báo cáo</p>
               <ul className="dropdown-menu-report"> 
-                <div onClick={
+                <li onClick={
                   (e)=>{
                     e.preventDefault();
                     onClickReport(1);
                   }
-                }>Báo cáo lượt mượn theo tựa sách</div> 
-                <div  onClick={
+                }>Báo cáo lượt mượn theo tựa sách</li> 
+                <li onClick={
                   (e)=>{
                     e.preventDefault();
                     onClickReport(0);
                   }
-                }>Báo cáo lượt mượn theo thể loại</div>
+                }>Báo cáo lượt mượn theo thể loại</li>
               </ul>
             </li>
           </ul>

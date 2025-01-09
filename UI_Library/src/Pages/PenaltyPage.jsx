@@ -63,7 +63,7 @@ function PenaltyPage()
     return (<div>
             <Header_Main></Header_Main> 
             <div>
-                <h2>Phiếu phạtphạt</h2> 
+                <h2>Phiếu phạt</h2> 
                 <div>
                     <div>Mã phiếu phạt: {penalty?.id} </div> 
                     <div>Mã độc giả: {penalty?.reader?.userId}</div> 

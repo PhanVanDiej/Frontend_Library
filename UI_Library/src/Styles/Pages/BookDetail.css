@@ -21,6 +21,9 @@
     color:#A27430 ;
 }
 
+.path .title-page{
+    text-align: center;
+}
 .book-detail-container{
     display: flex;
     gap: 30px;

@@ -18,3 +18,39 @@
     background-color: #D9D9D9;
     cursor: pointer;
 }
+.actionHistory-item{
+    display: grid;
+    grid-template-columns: 10fr 10fr 10fr 20fr 15fr 15fr 10fr 10fr;
+}
+.actionHistory-list-header .STT{
+    width: 10%;
+    font-size: 16px;
+}
+.actionHistory-list-header .bill-id{
+    width: 10%;
+    font-size: 16px;
+}
+.actionHistory-list-header .bookTitle-id{
+    width: 10%;
+    font-size: 16px;
+}
+.actionHistory-list-header .bookTitle-name{
+    width: 20%;
+    font-size: 16px;
+}
+.actionHistory-list-header .implementDate{
+    width: 15%;
+    font-size: 16px;
+}
+.actionHistory-list-header .expireDate{
+    width: 15%;
+    font-size: 16px;
+}
+.actionHistory-list-header .status{
+    width: 10%;
+    font-size: 16px;
+}
+.actionHistory-list-header .user-action{
+    width: 10%;
+    font-size: 16px;
+}

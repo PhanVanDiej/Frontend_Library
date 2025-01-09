@@ -164,7 +164,7 @@ function BorrowingDetailPage()
             console.log(expireDate);
             if(currentDate.getTime()>expireDate.getTime()) 
             {
-                return (<div><button
+                return (<div style={{display:'flex',flexDirection:'column',gap:'3px'}}><button
                 
                 className="action-btn confirm-btn"
                     onClick={
@@ -185,7 +185,7 @@ function BorrowingDetailPage()
                 
                 )
             }
-            return (<div><button
+            return (<div style={{display:'flex',flexDirection:'column',gap:'3px'}}><button
             className="action-btn confirm-btn"
             onClick={
                 (e)=>{

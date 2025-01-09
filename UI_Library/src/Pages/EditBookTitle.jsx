@@ -116,12 +116,13 @@ function EditBookTitleForm()
     },[])
     permissionLibrarian();
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <div>
     <Header_Main />
 
-    <div>
-        <h3 style={{ color: '#333', textAlign: 'center' }}>Chỉnh sửa thông tin tựa sách:</h3>
-        <form id="register_form">
+    <div style={{padding:'30px 200px'}}>
+        <h3 className="title-page" style={{textAlign: 'center'}}>Chỉnh sửa thông tin tựa sách:</h3>
+        <form id="register_form" style={{display:"flex",justifyContent:"space-between",marginTop:"30px"}}>
+            <div>
             <div style={{ marginBottom: '10px' }}>
                 <label htmlFor="bookName" style={{ display: 'block', marginBottom: '5px' }}>Tên sách :</label>
                 <input type="text" required id="bookName" defaultValue={bookTitle?.name} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
@@ -156,21 +157,24 @@ function EditBookTitleForm()
                 <label htmlFor="pageAmount" style={{ display: 'block', marginBottom: '5px' }}>Số lượng trang :</label>
                 <input type="number" id="pageAmount" required min="10" defaultValue={bookTitle?.pageAmount} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
             </div>
+            </div>
+            <div>
             <div style={{ marginBottom: '10px' }}>
                 <label htmlFor="Review" style={{ display: 'block', marginBottom: '5px' }}>Mô tả nội dung :</label>
                 <textarea required id="Review" defaultValue={bookTitle?.review} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }}></textarea>
             </div>
-            <div style={{ marginBottom: '10px' }}>
+            <div style={{ marginBottom: '10px'}}>
                 <label>Hình ảnh bìa sách :</label> 
                 <br></br>
-                <img src={displayImageURL(bookTitle?.imageData)} style={{ display: 'block', margin: '10px auto', width:"200px", height:"200px", alignContent:"left" }} />
+                <img src={displayImageURL(bookTitle?.imageData)} style={{ display: 'block', margin: '10px 20px', width:"200px", height:"200px", alignItems:"left" }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label htmlFor="updateBookTitleImage" style={{ display: 'block', marginBottom: '5px' }}>Upload file ảnh nếu muốn thay đổi bìa sách</label>
                 <input type="file" id="updateBookTitleImage" style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
             </div>
             <div>
-                <input type="submit" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} />
+                <input type="submit" value="Xác nhận" className="action-btn submit-btn" />
+            </div>
             </div>
         </form>
     </div>

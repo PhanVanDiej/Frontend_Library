@@ -1,0 +1,22 @@
+.main-content-register-BookTitle{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 100px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.form-regis-wrapper{
+    width: 70%;
+}
+.form-control #bookType{
+    width: 40%;
+    padding: 10px;
+    border-radius: 5px;
+}
+.form-control #Review{
+    width: 40%;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 50px;
+}

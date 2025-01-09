@@ -1,151 +1,145 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 import Header_Main from "../Components/Header_Main";
-import BE_ENDPOINT from "../Env/EndPont"; 
-//import "../Styles/Pages/RegisterBookTitle.css"
+import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-function RegisterNewBookTitleForm() 
-{
-    const [bookType, setBookType]= useState([]);
-    useEffect(()=>{
-        async function fetchToServer() 
-        {
-            const response = await fetch(BE_ENDPOINT+"book-types");
-            if(!response.ok) 
-            {
+import '../Styles/Pages/registerNewBookTitle.css';
+function RegisterNewBookTitleForm() {
+    const [bookType, setBookType] = useState([]);
+    useEffect(() => {
+        async function fetchToServer() {
+            const response = await fetch(BE_ENDPOINT + "book-types");
+            if (!response.ok) {
                 return;
-            } 
-            const responseData= await response.json();
+            }
+            const responseData = await response.json();
             console.log(responseData);
             setBookType(responseData);
         }
-        
+
         fetchToServer();
 
-    },[]);  
+    }, []);
 
-    async function onSubmitForm() 
-    {
-        const formData= new FormData();
-        formData.append("file",document.getElementById("Image").files[0]);
-        const postImage = await fetch(BE_ENDPOINT+"librarian/create/BookTitle/image",{
-            method:"POST",
-            headers:{
-                
-                "Authorization":"Bearer "+localStorage.getItem("token")
+    async function onSubmitForm() {
+        const formData = new FormData();
+        formData.append("file", document.getElementById("Image").files[0]);
+        const postImage = await fetch(BE_ENDPOINT + "librarian/create/BookTitle/image", {
+            method: "POST",
+            headers: {
+
+                "Authorization": "Bearer " + localStorage.getItem("token")
             },
-            body:formData
+            body: formData
         });
         const postResult = await postImage.text();
         console.log(postResult);
-        if(!postImage.ok) 
-        { 
-             Swal.fire({
-                                        title:"Thất bại",
-                                        text:"Upload hình ảnh thất bại",
-                                        icon:"fail"
-                                      })
+        if (!postImage.ok) {
+            Swal.fire({
+                title: "Thất bại",
+                text: "Upload hình ảnh thất bại",
+                icon: "fail"
+            })
             return;
-        }  
+        }
         const data = {
-            name:document.getElementById("bookName").value,
+            name: document.getElementById("bookName").value,
             bookTypeId: document.getElementById("bookType").value,
-            author:document.getElementById("author").value,
-            nxb:document.getElementById("NXB").value,
-            year:document.getElementById("YEAR").value,
-            language:document.getElementById("language").value,
+            author: document.getElementById("author").value,
+            nxb: document.getElementById("NXB").value,
+            year: document.getElementById("YEAR").value,
+            language: document.getElementById("language").value,
             pageAmount: document.getElementById("pageAmount").value,
-            review:document.getElementById("Review").value
-        } 
-        const postInformation = await fetch(BE_ENDPOINT+"librarian/create/BookTitle/info",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":"Bearer " + localStorage.getItem("token")
-            }, 
-            body:JSON.stringify(data)
+            review: document.getElementById("Review").value
+        }
+        const postInformation = await fetch(BE_ENDPOINT + "librarian/create/BookTitle/info", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+            body: JSON.stringify(data)
         });
-        if(!postInformation.ok) 
-            {
-                 Swal.fire({
-                                            title:"Thất bại",
-                                            text:"Tạo tựa sách thất bại",
-                                            icon:"fail"
-                                          })
-                return;
-            }  
-             Swal.fire({
-                                        title:"Thành công",
-                                        text:"Tạo tựa sách thành công",
-                                        icon:"success"
-                                      }).then((result)=>{
-                                        const navigate = useNavigate();
-                                        navigate("/home");
-                                      })
-    } 
+        if (!postInformation.ok) {
+            Swal.fire({
+                title: "Thất bại",
+                text: "Tạo tựa sách thất bại",
+                icon: "fail"
+            })
+            return;
+        }
+        Swal.fire({
+            title: "Thành công",
+            text: "Tạo tựa sách thành công",
+            icon: "success"
+        }).then((result) => {
+            const navigate = useNavigate();
+            navigate("/home");
+        })
+    }
     permissionLibrarian();
     return (
         <div>
             <Header_Main>
-
-            </Header_Main> 
-            <div>
-                <h2 className="title">Đăng ký sách mới</h2> 
-                <form id="register_form" className="registerForm" onSubmit={(e)=>{
-                    e.preventDefault();
+            </Header_Main>
+            <div className="main-content-register-BookTitle">
+                <h2 className="title-page" >Đăng ký tựa sách mới</h2>
+                <div className="form-regis-wrapper">
+                <form id="register_form" className="form-primary" onSubmit={(e) => {
+                    e.preventDefault(); 
                     onSubmitForm();
                 }}>
-                    <div>
-                        <label htmlFor="bookName">Tên sách :</label> 
-                        <input type="text" required id="bookName"/>
+                    <div className="form-control"> 
+                        <label htmlFor="bookName">Tên sách :</label>
+                        <input type="text" required id="bookName" />
                     </div>
-                    <div>
-                        <label htmlFor="bookType">Thể loại :</label> 
+                    <div className="form-control">
+                        <label htmlFor="bookType">Thể loại :</label>
                         <select id="bookType" required>
                             {
-                                bookType.map((item)=>{
+                                bookType.map((item) => {
                                     return <option value={item.id}>{item.name}</option>
                                 })
                             }
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="author">Tác giả :</label> 
-                        <input id="author" required type="text"/>
-                    </div> 
-                    <div>
-                        <label htmlFor="NXB">Nhà xuất bản :</label>
-                        <input id="NXB" type="text" required/>
-                    </div> 
-                    <div>
-                        <label htmlFor="YEAR">Năm xuất bản :</label>  
-                        <input type="number" min="1900" max="2024" id="YEAR" required/>
-                    </div>  
-                    <div>
-                        <label htmlFor="language">Ngôn ngữ : </label> 
-                        <input type="text" id="language" required/>
+                    <div className="form-control">
+                        <label htmlFor="author">Tác giả :</label>
+                        <input id="author" required type="text" />
                     </div>
-                    <div>
-                        <label htmlFor="pageAmount">Số lượng trang : </label> 
+                    <div className="form-control">
+                        <label htmlFor="NXB">Nhà xuất bản :</label>
+                        <input id="NXB" type="text" required />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="YEAR">Năm xuất bản :</label>
+                        <input type="number" min="1900" max="2024" id="YEAR" required />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="language">Ngôn ngữ : </label>
+                        <input type="text" id="language" required />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="pageAmount">Số lượng trang : </label>
                         <input type="number" id="pageAmount" required min="10"></input>
                     </div>
-                    <div> 
-                        <label htmlFor="Review">Mô tả nội dung :</label> 
+                    <div className="form-control">
+                        <label htmlFor="Review">Mô tả nội dung :</label>
                         <textarea required id="Review"></textarea>
-                    </div> 
-                    <div>
-                        <label htmlFor="Image">Hình ảnh bìa sách :</label> 
-                        <input type="file" id="Image" required/>
                     </div>
-                    <div>
-                        <input type="submit"/>
+                    <div className="form-control">
+                        <label htmlFor="Image">Hình ảnh bìa sách :</label>
+                        <input type="file" id="Image" required />
                     </div>
+                    <input type="submit" className="action-btn submit-btn"/>
+                   
 
 
                 </form>
+                </div>
             </div>
         </div>
     )
-} 
+}
 export default RegisterNewBookTitleForm;

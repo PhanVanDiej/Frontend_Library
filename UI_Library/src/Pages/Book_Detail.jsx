@@ -193,7 +193,7 @@ const Book_Detail = () => {
       <Header_Main></Header_Main>
       <div className='wrapping-content-detail'>
         <div className='path'>
-           <h3>{bookDetail?.type?.name}</h3>
+           <h3 className='title-page'>{bookDetail?.type?.name}</h3>
            <br></br>
         </div>
         <div className='book-detail-container'>

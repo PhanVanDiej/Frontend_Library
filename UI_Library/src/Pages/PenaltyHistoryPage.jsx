@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"; 
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
-import formatDate from "../Env/FormatDate";
 import permissionReader from "../Env/PermissionReader";
 import ReaderPenalty_Item from "../Components/ReaderPenalty_Item";
+import '../Styles/Pages/ReaderPenalty.css';
 function PenaltyHistoryPage() 
 { 
     const [listPenalty, setListPenalty] = useState([]);
@@ -63,9 +63,9 @@ function PenaltyHistoryPage()
                     </table> */}
                     <div className="readerPenalty-list-header object-list-header">
                         <div className="STT">STT</div>
-                        <div className="bill-id">Ngày vi phạm</div>
-                        <div className="bookTitle-id">Nội dung</div>
-                        <div className="bookTitle-name">Số tiền phạt</div>
+                        <div className="implementDate">Ngày vi phạm</div>
+                        <div className="content">Nội dung</div>
+                        <div className="money">Số tiền phạt</div>
                     </div>
                     <div className="header-border-line"></div>
                     <div className="object-list-data readerPenalty-list-data">

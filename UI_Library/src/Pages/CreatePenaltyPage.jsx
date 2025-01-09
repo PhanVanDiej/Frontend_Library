@@ -43,15 +43,15 @@ function CreatePenalty()
     } 
     permissionLibrarian();
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <div >
     <Header_Main />
     <br></br>
     <div>
-        <h2 style={{ color: '#333', textAlign: 'left' }}>
+        <h2 style={{ color: '#A27430', textAlign: 'center' }}>
             Lập phiếu phạt
         </h2> 
         <br></br>
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginLeft:"500px" }}>
             <form onSubmit={(e)=>{
                 e.preventDefault();
                 createPenalty();
@@ -66,7 +66,7 @@ function CreatePenalty()
                 <textarea id="penaltyMessage" style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }}></textarea>
                 <br></br>
 
-                <input type="submit" value="Tạo phiếu phạt" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', marginTop: '10px' }} />
+                <input type="submit" value="Tạo phiếu phạt" className="action-btn submit-btn" style={{width:"500px"}}/>
             </form>
         </div>
     </div>

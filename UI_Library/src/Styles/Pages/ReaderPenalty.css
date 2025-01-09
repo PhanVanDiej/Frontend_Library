@@ -1,0 +1,20 @@
+.readerPenalty-item{
+    display: grid;
+    grid-template-columns: 10fr 15fr 30fr 45fr;
+}
+.readerPenalty-list-header .STT{
+    width: 10%;
+    font-size: 16px;
+}
+.readerPenalty-list-header .implementDate{
+    width: 15%;
+    font-size: 16px;
+}
+.readerPenalty-list-header .content{
+    width: 30%;
+    font-size: 16px;
+}
+.readerPenalty-list-header .money{
+    width: 45%;
+    font-size: 16px;
+}

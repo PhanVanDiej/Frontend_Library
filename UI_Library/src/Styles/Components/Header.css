@@ -42,7 +42,8 @@
 }
 
 .navbar ul li:hover{
-    background-color: #575757;
+    background-color: #575757;  
+    cursor: pointer;
 }
 .navbar ul li .dropdown-menu{
     display: none !important; /* Ẩn menu con theo mặc định */
@@ -87,7 +88,12 @@
 .navbar ul li .dropdown-menu .report-menu:hover .dropdown-menu-report{
     display: block !important;
 }
-.navbar ul li .dropdown-menu .option-drop-report p{
+.navbar ul li .dropdown-menu .report-menu .dropdown-menu-report li{
+    padding: 8px 12px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.navbar ul li .dropdown-menu .option-drop p{
     color: black;
     font-size: small;
 }
@@ -95,7 +101,7 @@
     display: block !important;
 }
 .navbar ul li .dropdown-menu .option-drop:hover{
-    background-color: #A27430;
+    background-color: #ffca7b;
     cursor: pointer;
 }
 .navbar ul li a {
@@ -134,6 +140,7 @@
 }
 .logout-btn:hover{
     background-color: red;
+    cursor: pointer;
 }
 .search-box{
     margin-left: 50px;

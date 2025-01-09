@@ -98,10 +98,11 @@ function EditBookTypeForm()
     }
     permissionLibrarian();
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <div>
     <Header_Main />
 
-    <h2 style={{ color: '#333', textAlign: 'center' }}>Thay đổi thông tin thể loại sách</h2>
+    <h2 className="title-page" style={{textAlign: 'center',marginTop:"30px" }}>Thay đổi thông tin thể loại sách</h2>
+    <div style={{display:"flex",justifyContent:"center",marginTop:"30px"}}>
     <form id="editBookTypeForm">
         <div style={{ marginBottom: '10px' }}>
             <label htmlFor="bookTypeName" style={{ display: 'block', marginBottom: '5px' }}>Tên thể loại:</label>
@@ -109,16 +110,17 @@ function EditBookTypeForm()
         </div>
         <div style={{ marginBottom: '10px' }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Hình ảnh thể loại sách</label>
-            <img src={displayImageURL(bookType?.imageData)} style={{ display: 'block', margin: '10px auto',width:"200px", height:"200px" }} />
+            <img src={displayImageURL(bookType?.imageData)} style={{ display: 'block', margin: '10px 30px',width:"200px", height:"200px" }} />
         </div>
         <div style={{ marginBottom: '10px' }}>
             <label htmlFor="bookTypeImage" style={{ display: 'block', marginBottom: '5px' }}>Upload file ảnh nếu muốn thay đổi hình minh họa thể loại</label>
             <input type="file" id="bookTypeImage" style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '500px' }} />
         </div>
         <div>
-            <input type="submit" value="Xác nhận" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} />
+            <input type="submit" value="Xác nhận" className="action-btn submit-btn" />
         </div>
     </form>
+    </div>
     <p id="MessageZone"></p>
 </div>
 

@@ -41,7 +41,7 @@ const ScrollList = ({ products }) => {
               navigate("/search_result/"+product.id);
             }
           }}>
-            <img width={100} height={50} src={displayImageURL(product.imageData)} alt={product.name} className="product-image" />
+            <img width={100} height={150} src={displayImageURL(product.imageData)} alt={product.name} className="product-image" />
             <p className="product-name">{product.name}</p>
           </div>
         ))}

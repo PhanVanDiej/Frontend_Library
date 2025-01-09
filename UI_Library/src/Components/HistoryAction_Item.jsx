@@ -10,8 +10,8 @@ const HistoryAction_Item=({item,index,displayAction,displayStatus})=>{
             <p>{item.book.title.name}</p>
             <p>{formatDate(item.service.implementDate)}</p>
             <p>{formatDate(item.expireDate)}</p>
-            <p>{displayStatus}</p>
-            <div>{displayAction}</div>
+            <div>{displayStatus(item)}</div>
+            <div>{displayAction(item)}</div>
         </div>
     )
 }
