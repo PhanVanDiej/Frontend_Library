@@ -3,7 +3,7 @@ import formatDate from "../Env/FormatDate";
 
 const HistoryAction_Item=({item,index,displayAction,displayStatus})=>{
     return(
-        <div className="actionHistory-item object-item">
+        <div className="actionHistory-item object-item" style={{backgroundColor: index%2==0? "white":"#d9d9d9"}}>
             <p>{index}</p>
             <p>{item.service.serviceId}</p>
             <p>{item.book.id}</p>

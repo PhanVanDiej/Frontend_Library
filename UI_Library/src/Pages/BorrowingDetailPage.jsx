@@ -165,6 +165,7 @@ function BorrowingDetailPage()
             if(currentDate.getTime()>expireDate.getTime()) 
             {
                 return (<div><button
+                
                 className="action-btn confirm-btn"
                     onClick={
                         (e)=>{
@@ -173,13 +174,7 @@ function BorrowingDetailPage()
                         }
                     }
                     >Nhận sách trả</button> 
-                    <button className="action-btn confirm-btn" onClick={
-                        (e)=>{
-                            e.preventDefault();
-                            navigateToUserInfo(item);
-                        }
-                    }>Thông tin độc giả</button> 
-                    <button className="action-btn confirm-btn"  onClick={
+                    <button className="delete-btn action-btn"  onClick={
                         (e)=>{
                             e.preventDefault();
                             DestroyBookAndLockUser(item);
@@ -191,6 +186,7 @@ function BorrowingDetailPage()
                 )
             }
             return (<div><button
+            className="action-btn confirm-btn"
             onClick={
                 (e)=>{
                     e.preventDefault();
@@ -200,12 +196,12 @@ function BorrowingDetailPage()
             
             >Nhận sách trả</button>
             <button   
+            className="cancel-btn action-btn"
             onClick={(e)=>{
                 e.preventDefault();
                 renewalOffline(item);
             }}
             >Gia hạn</button>
-            
             </div>
         
         )

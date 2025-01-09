@@ -5,7 +5,7 @@ import formatDate from "../Env/FormatDate";
 
 function RenewalItem({item,index,onReject,onAccept}){
     return(
-        <div className="renewal-item">
+        <div className="renewal-item object-item" style={{backgroundColor: index%2==0? "white":"#d9d9d9"}}>
             <p>{index+1}</p>
             <p>{item.borrowingCardDetail.service.reader.userId}</p>
             <p>{item.borrowingCardDetail.service.reader.fullname}</p>

@@ -3,7 +3,7 @@ import DeleteImg from '../assets/Icons/recycle_bin.png';
 
 const BorrowOff_Item=({item,index,onDelete})=>{
     return(
-        <div className="borrowOff-item object-item">
+        <div className="borrowOff-item object-item" style={{backgroundColor: index%2==0? "white":"#d9d9d9"}}>
             <p>{index}</p>
             <p>{item.id}</p>
             <p>{item.title.name}</p>
