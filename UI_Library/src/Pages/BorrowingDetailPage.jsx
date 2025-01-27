@@ -49,7 +49,8 @@ function BorrowingDetailPage()
             if (!date) { Swal.showValidationMessage(`Vui lòng chọn ngày trả mới`); } return { newExpireDate: date }}
         }).then((result)=>{
             if(result.isConfirmed) 
-            {
+            { 
+                console.log(result.value);
                 onRenewal(item, result.value);
             }
         })
@@ -107,16 +108,14 @@ function BorrowingDetailPage()
     }
     async function onRenewal(item, newExpireDate) 
     { 
-        const data = {
-            newExpireDate:newExpireDate
-        }
+        
         const response = await fetch(BE_ENDPOINT+"librarian/renewalOffline/"+item.id,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json",
                 "Authorization":"Bearer "+localStorage.getItem("token")
             },
-            body:JSON.stringify(data)
+            body:JSON.stringify(newExpireDate)
         });
         if(!response.ok) 
         {

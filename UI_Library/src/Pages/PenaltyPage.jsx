@@ -3,7 +3,9 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Header_Main from "../Components/Header_Main";
 import BE_ENDPOINT from "../Env/EndPont";
 import permissionLibrarian from "../Env/PermissionLibrarian";
+import '../Styles/Pages/PenaltyDetail.css';
 import Swal from "sweetalert2";
+
 function PenaltyPage() 
 {
     const penaltyId = useParams();
@@ -62,20 +64,31 @@ function PenaltyPage()
     permissionLibrarian();
     return (<div>
             <Header_Main></Header_Main> 
-            <div>
-                <h2>Phiếu phạt</h2> 
-                <div>
-                    <div>Mã phiếu phạt: {penalty?.id} </div> 
-                    <div>Mã độc giả: {penalty?.reader?.userId}</div> 
-                    <div>Tên độc giả: {penalty?.reader?.fullname} </div>  
-                    <div>Nội dung phạt (không quá 100 kí tự)</div>
-                    <textarea id="content"></textarea>
-                    <br></br>
-                    <button onClick={(e)=>{
+            <div className="main-content-penalty-detail">
+                <h2 className="title-page">Phiếu phạt</h2> 
+                <div className="penalty-info-contain">
+                    <div className="penalty-item">
+                        <label >Mã phiếu phạt</label> 
+                        <p style={{color:'#A27430'}}>{penalty?.id}</p>
+                    </div>
+                    <div className="penalty-item">
+                        <label>Mã độc giả</label> 
+                        <p style={{color:'#A27430'}}> {penalty?.reader?.userId}</p>
+                    </div>
+                    <div className="penalty-item">
+                        <label>Tên độc giả </label>  
+                        <p style={{color:'#A27430'}}> {penalty?.reader?.fullname}</p>
+                    </div>
+                    <div className="penalty-item">
+                        <label>Nội dung phạt (không quá 100 kí tự)</label>
+                        <textarea  className="penalty-item" id="content"></textarea>
+                    </div>
+                    
+                    <button className="submit-btn action-btn" onClick={(e)=>{
                         e.preventDefault();
                         handleSave();
                     }}>Lưu</button> 
-                    <button onClick={(e)=>{
+                    <button className="cancel-btn action-btn" onClick={(e)=>{
                         e.preventDefault();
                         
                     }}

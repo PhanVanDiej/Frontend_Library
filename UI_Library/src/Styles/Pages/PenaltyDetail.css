@@ -1,0 +1,32 @@
+.penalty-info-contain{
+    display: flex;
+    flex-direction: column;
+    border: solid 1px grey;
+    border-radius: 10px;
+    padding: 20px 50px;
+    gap: 10px;
+}
+.penalty-info-contain .penalty-item label{
+    white-space: nowrap;
+    font-size: 20px;
+    width: 400px;
+}
+.penalty-info-contain .penalty-item textarea{
+    width: 400px;
+    border-radius: 5px;
+    min-height: 50px;
+    padding: 5px;
+}
+.penalty-info-contain .submit-btn{
+    max-width: 300px;
+    margin-left: 300px;
+}
+.penalty-info-contain .cancel-btn{
+    margin-left: 300px;
+    max-width: 300px;
+}
+.main-content-penalty-detail{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 300px;
+}

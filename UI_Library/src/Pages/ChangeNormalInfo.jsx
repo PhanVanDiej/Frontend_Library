@@ -63,41 +63,38 @@ function ChangeNormalInfo()
     } 
     permissionReader();
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <div>
     <Header_Main />
 
-    <div>
-        <br />
-        <h2 style={{ color: '#333', textAlign: 'left' }}>Chỉnh sửa thông tin tài khoản</h2> 
-        <br></br>
-
-        <form id="info" onSubmit={(e) => {
+    <div className="main-content-register-BookTitle">
+        <h2 className="title-page">Chỉnh sửa thông tin tài khoản</h2> 
+        <div className="form-regis-wrapper">
+        <form className="form-primary" id="info" onSubmit={(e) => {
             e.preventDefault();
             onSubmit();
         }}>
-            <div style={{ marginBottom: '10px', width:"300px" }}>
-                <label htmlFor="fullname" style={{ display: 'block', marginBottom: '5px' }}>
+            <div className="form-control">
+                <label htmlFor="fullname">
                     Họ tên:
                 </label>
-                <input type="text" required id="fullname" defaultValue={user.fullname} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
+                <input type="text" required id="fullname" defaultValue={user.fullname} />
             </div>
-            <div style={{ marginBottom: '10px',width:"300px" }}>
-                <label htmlFor="address" style={{ display: 'block', marginBottom: '5px' }}>
+            <div className="form-control">
+                <label htmlFor="address">
                     Địa chỉ:
                 </label>
-                <input type="text" required id="address" defaultValue={user.address} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
+                <input type="text" required id="address" defaultValue={user.address} />
             </div>
-            <div style={{ marginBottom: '10px', width:"300px"  }}>
-                <label htmlFor="phoneNumber" style={{ display: 'block', marginBottom: '5px' }}>
+            <div className="form-control">
+                <label htmlFor="phoneNumber">
                     Số điện thoại:
                 </label>
-                <input type="tel" required id="phoneNumber" defaultValue={user.phoneNumber} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
+                <input type="tel" required id="phoneNumber" defaultValue={user.phoneNumber} />
             </div>
-            <br />
-            <div>
-                <input type="submit" value="Xác nhận thay đổi" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} />
-            </div>
+            <input type="submit" value="Xác nhận thay đổi" className="submit-btn action-btn" />
+            
         </form>
+        </div>
     </div>
 </div>
 
